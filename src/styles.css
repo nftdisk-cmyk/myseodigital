@@ -1,0 +1,2006 @@
+/* ---------------------------------------------------------------------------
+   Lumen Practice — landing page styles
+   REDESIGNED: Premium white/light agency aesthetic (Linear · Stripe · Vercel)
+   --------------------------------------------------------------------------- */
+
+/* ===========================================================================
+   DIFF SUMMARY
+   ===========================================================================
+
+   CHANGE 01 — :root color system
+   CHANGE 02 — body / html base
+   CHANGE 03 — .grain (disabled on light theme)
+   CHANGE 04 — .nav (remove mix-blend-mode, refine spacing)
+   CHANGE 05 — .nav__mark (accent rebrand)
+   CHANGE 06 — .nav__links hover (opacity → color transition)
+   CHANGE 07 — .nav__status dot (rebrand)
+   CHANGE 08 — .hero::after (vignette for light bg)
+   CHANGE 09 — .hero__eyebrow (accent rebrand)
+   CHANGE 10 — .hero__line--italic (accent rebrand)
+   CHANGE 11 — .hero__caption (text rebrand)
+   CHANGE 12 — .hero__scroll-line (gradient rebrand)
+   CHANGE 13 — .section-tag (muted text rebrand)
+   CHANGE 14 — .manifesto__lede em (accent rebrand)
+   CHANGE 15 — .manifesto__col h3 (accent rebrand)
+   CHANGE 16 — .manifesto__col p (text rebrand)
+   CHANGE 17 — .practice__list / row borders (rebrand)
+   CHANGE 18 — .practice__row hover (light mode)
+   CHANGE 19 — .practice__num (accent rebrand)
+   CHANGE 20 — .practice__body (text rebrand)
+   CHANGE 21 — .practice__tags (muted rebrand)
+   CHANGE 22 — .field__card (light bg, radius bump, shadow)
+   CHANGE 23 — .field__card img filter (light mode)
+   CHANGE 24 — .field__caption (light overlay gradient)
+   CHANGE 25 — .field__heading em (accent rebrand)
+   CHANGE 26 — .field__lede (text rebrand)
+   CHANGE 27 — .approach__step (card redesign for light)
+   CHANGE 28 — .approach__step hover (shadow depth)
+   CHANGE 29 — .approach__step::before (accent rebrand)
+   CHANGE 30 — .approach__step h4, p (text rebrand)
+   CHANGE 31 — .approach__step-line (accent rebrand)
+   CHANGE 32 — .approach__intro em (accent rebrand)
+   CHANGE 33 — .conversation__headline em (accent rebrand)
+   CHANGE 34 — .conversation__row border (rebrand)
+   CHANGE 35 — .conversation__email hover (rebrand)
+   CHANGE 36 — .conversation__col h5 (muted rebrand)
+   CHANGE 37 — .conversation__col a hover (rebrand)
+   CHANGE 38 — .footer border + row (rebrand)
+   CHANGE 39 — .footer__row center item (accent rebrand)
+   CHANGE 40 — .page-stack background (rebrand)
+   CHANGE 41 — ::selection (rebrand)
+
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   CHANGE 01 — :root color system
+   WHY: Replaces the dark editorial palette with a calibrated light/white
+        system aligned with Linear, Stripe, and Vercel. CSS variables are
+        kept consistent so every downstream reference is auto-updated.
+
+   OLD:
+     --bg: #0b0a08;
+     --bg-soft: #131210;
+     --fg: #f1ece1;
+     --fg-dim: #82796a;
+     --rule: rgba(241, 236, 225, 0.10);
+     --accent: #d9a76a;
+     --accent-dim: rgba(217, 167, 106, 0.32);
+
+   NEW (below):
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Light background system */
+  --bg:           #FFFFFF;
+  --bg-soft:      #F8FAFC;
+  --bg-card:      #FFFFFF;
+
+  /* Text hierarchy */
+  --fg:           #0F172A;
+  --fg-sec:       #475569;
+  --fg-dim:       #64748B;
+
+  /* Borders */
+  --rule:         #E2E8F0;
+
+  /* Accent system */
+  --accent:       #2563EB;
+  --accent-hover: #1D4ED8;
+  --accent-cyan:  #06B6D4;
+  --accent-dim:   rgba(37, 99, 235, 0.14);
+  --accent-grad:  linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+
+  /* Shadow tokens */
+  --shadow-xs:    0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-sm:    0 2px 8px rgba(15, 23, 42, 0.07), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:    0 4px 20px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.05);
+  --shadow-lg:    0 12px 40px rgba(15, 23, 42, 0.10), 0 4px 12px rgba(15, 23, 42, 0.06);
+
+  /* Typography — kept from original */
+  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --sans:  'DM Sans', system-ui, -apple-system, sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, monospace;
+
+  --max:    1520px;
+  --gutter: clamp(22px, 4.4vw, 72px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 02 — html, body base
+   WHY: Switches to the light background. font-weight bumped from 300 → 400
+        because 300 is too thin and airy on bright white; 400 reads crisper
+        and more professional (matches Stripe, Vercel body copy weight).
+
+   OLD:
+     background: var(--bg);      → was dark
+     font-weight: 300;
+
+   NEW:
+   --------------------------------------------------------------------------- */
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+html.lenis { height: auto; }
+html.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+em {
+  font-style: italic;
+  font-family: var(--serif);
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 41 — ::selection
+   WHY: Accent rebrand — blue selection feels modern and intentional.
+
+   OLD: background: var(--accent); color: var(--bg);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 03 — .grain
+   WHY: Film grain at mix-blend-mode: overlay was atmospheric on dark bg.
+        On white it reads as dirt/noise. opacity: 0 disables it visually
+        without touching any HTML or removing the element from the DOM.
+
+   OLD: opacity: 0.08;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;          /* disabled on light theme */
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+}
+
+/* ---------------------------------------------------------------------------
+   Nav
+   --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   CHANGE 04 — .nav
+   WHY: mix-blend-mode: difference inverts colors — fine on dark, but
+        produces bizarre colour reversals on white/light backgrounds.
+        Removed entirely. Added a subtle frosted-glass backdrop for
+        premium feel (matches Linear's nav treatment). Padding tightened
+        slightly for a more refined, compact nav bar.
+
+   OLD:
+     color: var(--fg);
+     mix-blend-mode: difference;
+     padding: 22px var(--gutter);
+
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 18px var(--gutter);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(1.8);
+  -webkit-backdrop-filter: blur(16px) saturate(1.8);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--fg);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 05 — .nav__mark
+   WHY: Gold accent → blue accent. Inner dot uses gradient for depth.
+
+   OLD: background: var(--accent); box-shadow: 0 0 12px var(--accent-dim);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.nav__mark {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  position: relative;
+}
+
+.nav__mark::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--accent-grad);
+  box-shadow: 0 0 8px var(--accent-dim);
+}
+
+.nav__links {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 06 — .nav__links hover
+   WHY: opacity-only hover lacks feedback on light bg. Color transition to
+        the blue accent makes hover state clear and premium.
+
+   OLD: opacity: 0.85 → 1
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.nav__links a {
+  color: var(--fg-sec);
+  font-weight: 500;
+  transition: color 0.22s ease;
+}
+
+.nav__links a:hover {
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 07 — .nav__status dot
+   WHY: Gold glow → blue glow matching accent system.
+
+   OLD: background: var(--accent); box-shadow: 0 0 10px var(--accent);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.nav__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: end;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--fg-dim);
+}
+
+.nav__status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.82); }
+}
+
+@media (max-width: 820px) {
+  .nav { grid-template-columns: 1fr auto; }
+  .nav__links, .nav__status { display: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------------- */
+
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 640px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 96px var(--gutter) 36px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 40 — .page-stack
+   WHY: Was var(--bg) = dark. Now correctly white.
+   --------------------------------------------------------------------------- */
+
+.page-stack {
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease 0.15s;
+}
+
+.hero__canvas.is-ready { opacity: 1; }
+
+/* ---------------------------------------------------------------------------
+   CHANGE 08 — .hero::after vignette
+   WHY: Old radial vignette used dark rgba values that created heavy dark
+        patches over a light canvas. Replaced with a very subtle light-bg
+        fade-out at the bottom only — keeps the canvas-to-content transition
+        smooth on white.
+
+   OLD:
+     background:
+       radial-gradient(ellipse at center, transparent 35%, rgba(11,10,8,0.7) 100%),
+       linear-gradient(to bottom, rgba(11,10,8,0.35) 0%, transparent 18%, transparent 72%, var(--bg) 100%);
+
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+}
+
+.hero__topbar,
+.hero__core,
+.hero__bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.hero__topbar > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ---------------------------------------------------------------------------
+   Topbar rule line — accent rebrand
+   --------------------------------------------------------------------------- */
+.hero__topbar > span:first-child::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero__core {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  text-align: center;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 09 — .hero__eyebrow
+   WHY: Gold → blue accent for consistency.
+
+   OLD: color: var(--accent); (was gold)
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.hero__eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(54px, 9.6vw, 160px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+  color: var(--fg);
+}
+
+.hero__line { display: block; }
+
+/* ---------------------------------------------------------------------------
+   CHANGE 10 — .hero__line--italic
+   WHY: Gold → gradient accent text for a modern premium feel (common on
+        Framer, Linear headline treatments).
+
+   OLD: color: var(--accent); font-weight: 500;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.hero__line--italic {
+  font-style: italic;
+  font-weight: 500;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 11 — .hero__caption
+   WHY: Was fg (near-white) at 0.78 opacity. Now uses explicit --fg-sec for
+        clean secondary text contrast on white.
+
+   OLD: color: var(--fg); opacity: 0.78;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.hero__caption {
+  font-family: var(--sans);
+  letter-spacing: 0.01em;
+  text-transform: none;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--fg-sec);
+  max-width: 380px;
+}
+
+.hero__scroll {
+  justify-self: center;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 12 — .hero__scroll-line
+   WHY: Gold gradient → blue-cyan gradient accent.
+
+   OLD: background: linear-gradient(to bottom, transparent, var(--accent));
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.hero__scroll-line {
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(to bottom, transparent, var(--accent));
+  animation: drip 2.4s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes drip {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+.hero__signoff {
+  justify-self: end;
+  text-align: right;
+  line-height: 1.7;
+  color: var(--fg-dim);
+}
+
+@media (max-width: 820px) {
+  .hero__bottom {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .hero__scroll, .hero__signoff {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Section scaffolding
+   --------------------------------------------------------------------------- */
+
+section {
+  position: relative;
+  padding: clamp(96px, 14vh, 200px) var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 13 — .section-tag
+   WHY: Text was --fg-dim (warm grey). Now uses the calibrated light-palette
+        muted colour. Rule line accent rebrand.
+
+   OLD: color: var(--fg-dim); (warm dark-theme grey)
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  margin-bottom: 56px;
+}
+
+.section-tag::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Manifesto (about)
+   --------------------------------------------------------------------------- */
+
+.manifesto__lede {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 78px);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  max-width: 18ch;
+  margin-bottom: 80px;
+  color: var(--fg);
+}
+
+/* CHANGE 14 — accent rebrand */
+.manifesto__lede em { color: var(--accent); }
+
+.manifesto__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 6vw, 120px);
+  border-top: 1px solid var(--rule);
+  padding-top: 48px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 15 — .manifesto__col h3
+   WHY: Gold → blue accent. Letter-spacing reduced slightly for modern feel.
+
+   OLD: color: var(--accent); (gold)
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.manifesto__col h3 {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 16 — .manifesto__col p
+   WHY: Was --fg at 0.82 opacity (near-white). Now explicit secondary text
+        colour for proper contrast on white background.
+
+   OLD: color: var(--fg); opacity: 0.82;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.manifesto__col p {
+  font-size: 16px;
+  line-height: 1.78;
+  color: var(--fg-sec);
+}
+
+.manifesto__col p + p {
+  margin-top: 20px;
+}
+
+@media (max-width: 820px) {
+  .manifesto__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Practice (services)
+   --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   CHANGE 17 — practice borders
+   WHY: --rule was rgba(241,236,225,0.10) — near-invisible dark-mode rule.
+        Now uses --rule: #E2E8F0 which is crisp and perfectly visible on white.
+   --------------------------------------------------------------------------- */
+
+.practice__list {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.practice__row {
+  display: grid;
+  grid-template-columns: 60px 1.4fr 2fr 1fr;
+  gap: 28px;
+  padding: 42px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+  transition: background 0.35s ease, padding 0.35s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 18 — .practice__row hover
+   WHY: rgba(255,255,255,0.015) is imperceptible on white — effectively zero.
+        Replace with a light --bg-soft tint for a tangible hover state.
+
+   OLD: background: rgba(255, 255, 255, 0.015);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.practice__row:hover {
+  background: var(--bg-soft);
+  padding-left: 20px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 19 — .practice__num
+   WHY: Gold → blue accent.
+   --------------------------------------------------------------------------- */
+
+.practice__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.practice__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(28px, 3.2vw, 44px);
+  letter-spacing: -0.012em;
+  color: var(--fg);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 20 — .practice__body
+   WHY: Was --fg at 0.74 opacity. Explicit secondary text is more reliable.
+
+   OLD: color: var(--fg); opacity: 0.74;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.practice__body {
+  color: var(--fg-sec);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 420px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 21 — .practice__tags
+   WHY: --fg-dim rebrand (warm dark-theme grey → calibrated light muted).
+   --------------------------------------------------------------------------- */
+
+.practice__tags {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  text-align: right;
+  line-height: 1.9;
+}
+
+@media (max-width: 900px) {
+  .practice__row {
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+  }
+  .practice__body, .practice__tags {
+    grid-column: 2;
+  }
+  .practice__tags { text-align: left; }
+}
+
+/* ---------------------------------------------------------------------------
+   Field (selected works grid)
+   --------------------------------------------------------------------------- */
+
+.field__head {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.field__heading {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 5.4vw, 84px);
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+  max-width: 16ch;
+  color: var(--fg);
+}
+
+/* CHANGE 25 — accent rebrand */
+.field__heading em { color: var(--accent); }
+
+/* ---------------------------------------------------------------------------
+   CHANGE 26 — .field__lede
+   WHY: opacity-based lightening replaced with explicit secondary text colour.
+
+   OLD: color: var(--fg); opacity: 0.74;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.field__lede {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg-sec);
+  max-width: 460px;
+}
+
+.field__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(16px, 2.4vw, 32px);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 22 — .field__card
+   WHY: --bg-soft was near-black. Now white card with a subtle border and
+        shadow. border-radius bumped from 2px → 10px for modern SaaS feel.
+
+   OLD: background: var(--bg-soft); border-radius: 2px;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.field__card {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-soft);
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.field__card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.field__card--lg { grid-column: span 7; aspect-ratio: 4 / 5; }
+.field__card--sm { grid-column: span 5; aspect-ratio: 4 / 5; }
+.field__card--wide { grid-column: span 8; aspect-ratio: 16 / 10; }
+.field__card--tall { grid-column: span 4; aspect-ratio: 16 / 20; }
+
+/* ---------------------------------------------------------------------------
+   CHANGE 23 — .field__card img filter
+   WHY: brightness(0.78) was tuned for dark card bg. On light cards with
+        white overlays, slight desaturation is enough; no darkening needed.
+
+   OLD: filter: brightness(0.78) saturate(0.92);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.field__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9);
+  transform: scale(1.03);
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+              filter 0.5s ease;
+}
+
+.field__card:hover img {
+  transform: scale(1);
+  filter: saturate(1.05);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 24 — .field__caption
+   WHY: Old gradient used dark rgba(11,10,8,…) which is invisible on the
+        new card bg. Using a neutral dark overlay so captions stay readable
+        regardless of image content — same technique used by Awwwards, Behance.
+
+   OLD: background: linear-gradient(to top, rgba(11,10,8,0.9), transparent);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.field__caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 28px 24px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.88) 0%, transparent 100%);
+  color: #f8fafc;
+}
+
+.field__caption span:last-child { color: var(--accent-cyan); }
+
+@media (max-width: 820px) {
+  .field__head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .field__card--lg,
+  .field__card--sm,
+  .field__card--wide,
+  .field__card--tall {
+    grid-column: span 12;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Approach (process)
+   --------------------------------------------------------------------------- */
+
+/* CHANGE 32 — accent rebrand */
+.approach__intro {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.8vw, 52px);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  max-width: 22ch;
+  margin-bottom: 80px;
+  color: var(--fg);
+}
+
+.approach__intro em { color: var(--accent); }
+
+.approach__steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2.6vw, 28px);
+  counter-reset: step;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 27 — .approach__step card redesign
+   WHY: On dark bg, the near-invisible gradient + hairline border created
+        subtle depth. On white, this simply looks blank. A proper white card
+        with shadow, a visible border, and slightly increased radius gives
+        each step the visual weight it needs.
+
+   OLD:
+     border: 1px solid var(--rule);  (was near-invisible)
+     border-radius: 2px;
+     background: linear-gradient(180deg, rgba(255,255,255,0.018), transparent);
+
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.approach__step {
+  position: relative;
+  padding: 36px 28px 30px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 28 — .approach__step hover
+   WHY: translateY(-2px) alone was the only feedback. Now combined with
+        shadow elevation and accent border for a clear, tactile hover state.
+
+   OLD: border-color: var(--accent-dim); transform: translateY(-2px);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.approach__step:hover {
+  border-color: var(--accent-dim);
+  box-shadow: var(--shadow-md), 0 0 0 1px var(--accent-dim);
+  transform: translateY(-3px);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 29 — .approach__step::before counter
+   WHY: Gold → blue accent.
+   --------------------------------------------------------------------------- */
+
+.approach__step::before {
+  counter-increment: step;
+  content: '0' counter(step);
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 30 — step h4 and p
+   WHY: Text colours rebrand. p was --fg at 0.74 opacity; explicit --fg-sec
+        is cleaner and more accessible.
+   --------------------------------------------------------------------------- */
+
+.approach__step h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.approach__step p {
+  color: var(--fg-sec);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 31 — .approach__step-line
+   WHY: Accent rebrand. Uses gradient for richer look.
+
+   OLD: background: var(--accent);
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.approach__step-line {
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--accent-grad);
+  border-radius: 2px;
+  margin-top: auto;
+}
+
+@media (max-width: 900px) {
+  .approach__steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .approach__steps { grid-template-columns: 1fr; }
+}
+
+/* ---------------------------------------------------------------------------
+   Conversation (contact CTA)
+   --------------------------------------------------------------------------- */
+
+.conversation__headline {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(56px, 10.5vw, 180px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  margin-bottom: 72px;
+  max-width: 12ch;
+  color: var(--fg);
+}
+
+/* CHANGE 33 — accent rebrand */
+.conversation__headline em { color: var(--accent); }
+
+/* ---------------------------------------------------------------------------
+   CHANGE 34 — .conversation__row border
+   WHY: --rule rebrand makes the border visible on white.
+   --------------------------------------------------------------------------- */
+
+.conversation__row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 36px;
+  border-top: 1px solid var(--rule);
+  padding-top: 40px;
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 35 — .conversation__email hover
+   WHY: Gold hover → blue accent hover.
+   --------------------------------------------------------------------------- */
+
+.conversation__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(26px, 3.2vw, 44px);
+  letter-spacing: -0.012em;
+  color: var(--fg);
+  transition: color 0.25s ease;
+}
+
+.conversation__email span {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.conversation__email:hover {
+  color: var(--accent);
+}
+
+.conversation__email:hover span {
+  transform: translate(3px, -3px);
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 36 — .conversation__col h5
+   WHY: Muted label rebrand.
+   --------------------------------------------------------------------------- */
+
+.conversation__col h5 {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  margin-bottom: 14px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 37 — .conversation__col text + links
+   WHY: Was --fg at 0.82 opacity. Explicit --fg-sec is cleaner.
+
+   OLD: color: var(--fg); opacity: 0.82;
+   NEW:
+   --------------------------------------------------------------------------- */
+
+.conversation__col p,
+.conversation__col a {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--fg-sec);
+}
+
+.conversation__col a:hover { color: var(--accent); }
+
+@media (max-width: 820px) {
+  .conversation__row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Footer
+   --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   CHANGE 38 — .footer border
+   WHY: --rule rebrand.
+   --------------------------------------------------------------------------- */
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 32px var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------------------
+   CHANGE 38 (cont.) — .footer__row
+   WHY: Was --fg-dim (warm dark-theme muted). Now calibrated light muted.
+   --------------------------------------------------------------------------- */
+
+.footer__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+/* CHANGE 39 — footer accent rebrand */
+.footer__row > :nth-child(2) {
+  text-align: center;
+  color: var(--accent);
+}
+
+.footer__row > :last-child {
+  text-align: right;
+}
+
+.footer__row a:hover { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .footer__row {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .footer__row > :nth-child(2),
+  .footer__row > :last-child {
+    text-align: left;
+  }
+}/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-trigger {
+  position: relative;
+  
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #00395d;
+  min-width: 220px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid #00395d;
+  border-radius: 6px;
+  padding: 12px 0;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 24px;
+  color: #ddd;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #00395d;
+  color: white;
+  padding-left: 28px;
+}
+
+/* Services linkine özel renk */
+.dropdown-trigger {
+  color: #fff;
+}
+
+.dropdown-trigger:hover {
+  color: #00395d;
+}
+/* Navigation Links */
+.nav__links a {
+  color: #00395d !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;        /* Bir tık küçülttüm */
+  letter-spacing: -0.01em;
+}
+
+.nav__links a:hover {
+  color: #00395d !important;
+}/* Hero Title - Küçültme */
+.hero__title {
+  font-size: 4.6rem !important;
+  line-height: 1.05 !important;
+}
+
+.hero__title .hero__line {
+  font-size: 4.6rem !important;
+}/* Section Tags - Nav ile aynı stil */
+.section-tag {
+  color: #00395d !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}/* Premium Sectors Cards - Numarasız */
+.Sectors__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.Sectors__card {
+  background: white;
+  padding: 48px 36px 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.07);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 57, 93, 0.08);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.Sectors__card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 60px rgba(0, 57, 93, 0.13);
+  border-color: rgba(0, 174, 239, 0.25);
+}
+
+/* Başlık - Büyük ve Ortada */
+.Sectors__card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: #00395d;
+  line-height: 1.12;
+  margin-bottom: 22px;
+  flex-grow: 1;
+}
+
+/* Açıklama */
+.Sectors__card-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #555;
+  margin-top: auto;
+}/* Services Dropdown - Şeffaf Beyaz */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-trigger {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.95);   /* Hafif şeffaf beyaz */
+  min-width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(0, 57, 93, 0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 16px 28px;
+  color: #00395d;           /* Yazı rengi aynı kaldı */
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: rgba(0, 57, 93, 0.08);
+  padding-left: 38px;
+}.nav {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}.nav__links a, .dropdown-menu a {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}/* ===========================================================================
+   YENİLİKÇİ NAV HOVER EFEKTLERİ
+   =========================================================================== */
+
+.nav__links a {
+  position: relative;
+  color: #00395d;
+  font-weight: 700;
+  transition: color 0.3s ease;
+  padding-bottom: 4px;
+}
+
+/* Hover'da renk değişimi */
+.nav__links a:hover {
+  color: #2563EB;
+}
+
+/* Yenilikçi Alt Çizgi Animasyonu */
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2.5px;
+  background: linear-gradient(to right, #2563EB, #06B6D4);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+/* Hover'da çizgi soldan sağa açılıyor + hafif yukarı kalkma */
+.nav__links a:hover::after {
+  width: 100%;
+}
+
+.nav__links a:hover {
+  transform: translateY(-2px);
+}
+
+/* Aktif sayfa için (opsiyonel - şu an bulunduğun sayfayı vurgular) */
+.nav__links a.active {
+  color: #2563EB;
+}
+
+.nav__links a.active::after {
+  width: 100%;
+}/* SPIRAL BOYUT ve MOBIL KONTROL */
+.hero__canvas,
+canvas {
+  transform: scale(0.55);           /* Buradan oynayarak küçült/büyüt */
+  transform-origin: center center;
+  opacity: 0.95;
+}
+/* ============================================
+   MOBİLDE 3D SPİRALİ TAMAMEN KAPAT
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .hero__canvas,
+  canvas {
+    display: none !important;
+  }
+}
+.hero__title {
+  position: relative;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #0F172A;
+  transform: perspective(1000px) rotateX(5deg) rotateY(-3deg);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
+}
+
+.hero__title:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) scale(1.025);
+}
+
+.hero__title .hero__line--italic {
+  display: block;
+  font-style: italic;
+  background: linear-gradient(100deg, #185FA5 0%, #0F6E56 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}/* ============================================
+   YENİ MODERN CONTACT — AKICI & PROFESYONEL
+   ============================================ */
+
+.contact {
+  background: #000000;
+  padding: 140px 5% 120px;
+}
+
+.contact-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.contact-eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #00aeef;
+  margin-bottom: 1rem;
+}
+
+.contact-title {
+  font-size: clamp(3.2rem, 6.5vw, 4.8rem);
+  color: #fff;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00aeef, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Ana Email Butonu */
+.contact-main-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  padding: 24px 55px;
+  margin: 0 auto 70px;
+  max-width: 520px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.contact-main-btn:hover {
+  background: rgba(0, 174, 239, 0.12);
+  border-color: #00aeef;
+  transform: translateY(-3px);
+}
+
+.contact-main-btn span:first-child {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.contact-main-btn .arrow {
+  color: #00aeef;
+  font-size: 1.7rem;
+}
+
+/* Kartlar */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px 30px;
+  transition: all 0.35s ease;
+}
+
+.contact-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(0, 174, 239, 0.3);
+  transform: translateY(-5px);
+}
+
+.contact-card h4 {
+  color: #00aeef;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.contact-card p,
+.contact-card a {
+  color: #ccc;
+  line-height: 1.75;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.contact-card a:hover {
+  color: #00aeef;
+}.contact {
+  background: linear-gradient(
+    145deg,
+    #1F2937 0%,
+    #2D3748 45%,
+    #1F2937 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite;
+  padding: 140px 5% 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* Growth Through Precision. için */
+.hero__title {
+  color: #00aeef;
+}
+
+.hero__title .hero__line--italic {
+  color: #00aeef !important;
+}
+.hero__bottom {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.hero__scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, #00aeef);
+  animation: drip 2.2s ease-in-out infinite;
+}
+
+@keyframes drip {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+@media (max-width: 820px) {
+  .nav__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 100;
+  }
+
+  .nav__hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #00395d;
+    transition: all 0.4s ease;
+  }
+
+  .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #00395d;
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    color: white;
+    padding-top: 80px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  /* KAPATMA BUTONU */
+  .mobile-close-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 2.2rem;
+    color: rgba(255,255,255,0.85);
+    background: none;
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000;
+  }
+
+  .mobile-menu__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 100%;
+  }
+
+  .mobile-menu__content a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 0;
+    width: 85%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* Services Dropdown */
+  .mobile-services {
+    width: 85%;
+    text-align: center;
+  }
+
+  .mobile-services-header {
+    padding: 12px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .mobile-services-header::after {
+    content: "▾";
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-services.open .mobile-services-header::after {
+    transform: rotate(180deg);
+  }
+
+  .mobile-services-content {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .mobile-services.open .mobile-services-content {
+    display: flex;
+  }
+}
+/* =====================================================
+   TÜM SİTE - MOBİL RESPONSIVE DÜZELTMELER
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+  /* Genel section padding küçült */
+  section {
+    padding: 70px 20px !important;
+  }
+
+  /* Header */
+  .nav {
+    padding: 14px 20px !important;
+  }
+
+  .nav__brand img {
+    height: 38px !important;
+  }
+
+  /* Desktop nav linklerini gizle */
+  .nav__links,
+  .nav__status {
+    display: none !important;
+  }
+
+  /* Hamburger butonu */
+  .nav__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .nav__hamburger span {
+    width: 26px;
+    height: 3px;
+    background: #00395d;
+    transition: all 0.3s ease;
+  }
+
+  /* Dil switcher küçült */
+  .lang-switcher {
+    padding-left: 10px !important;
+    gap: 3px !important;
+  }
+
+  .lang-btn {
+    font-size: 0.62rem !important;
+    padding: 3px 7px !important;
+  }
+
+  /* Hero */
+  .hero__title {
+    font-size: 2.6rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .hero__caption {
+    font-size: 15px !important;
+    max-width: 100% !important;
+  }
+
+  /* Grid'leri tek sütun yap */
+  .manifesto__grid,
+  .approach__steps,
+  .conversation__row,
+  .field__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sektör kartları */
+  .reveal-list,
+  .Sectors__grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .sector-card,
+  .Sectors__card {
+    padding: 26px 22px !important;
+  }
+
+  .sector-card h3,
+  .Sectors__card-name {
+    font-size: 1.6rem !important;
+  }
+
+  /* Practice (hizmetler) satırları */
+  .practice__row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 30px 0 !important;
+  }
+
+  .practice__tags {
+    text-align: left !important;
+  }
+
+  /* Approach adımları */
+  .approach__step {
+    padding: 28px 22px !important;
+    min-height: auto !important;
+  }
+
+  /* Footer */
+  .footer__row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    text-align: left !important;
+  }
+
+  .footer__row > * {
+    text-align: left !important;
+  }
+}
+
+/* Daha küçük ekranlar (telefon) */
+@media (max-width: 600px) {
+
+  section {
+    padding: 60px 16px !important;
+  }
+
+  .hero__title {
+    font-size: 2.3rem !important;
+  }
+
+  .sector-card,
+  .Sectors__card {
+    padding: 22px 18px !important;
+  }
+
+  .contact {
+    padding: 100px 16px 80px !important;
+  }
+}
+
+/* =====================================================
+   MOBİL MENÜ (Hamburger)
+   ===================================================== */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #00395d;
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  padding: 100px 30px 40px;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-close-btn {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  font-size: 2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-menu__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.mobile-menu__content a {
+  color: white;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  text-decoration: none;
+}
+
+.mobile-menu__content a:last-child {
+  border-bottom: none;
+}
+
+/* Services dropdown mobil'de */
+.mobile-services {
+  width: 100%;
+}
+
+.mobile-services-header {
+  padding: 14px 0;
+  color: white;
+  font-size: 1.35rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+}
+
+.mobile-services-content {
+  display: none;
+  flex-direction: column;
+  padding-left: 20px;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.mobile-services.open .mobile-services-content {
+  display: flex;
+}
+
+.mobile-services-content a {
+  font-size: 1.15rem;
+  padding: 8px 0;
+  border-bottom: none;
+}
+/* Logo mobil'de büyüsün */
+@media (max-width: 900px) {
+  .nav__brand img {
+    height: 95px !important;   /* Şu an 38px idi, bunu 52px yaptım */
+  }
+}
+/* Mobil için dil butonları - daha büyük ve tıklanabilir */
+@media (max-width: 900px) {
+  .lang-switcher {
+    padding-left: 0.8rem;
+    gap: 3px;
+    margin-left: 0.5rem;
+  }
+  
+  .lang-btn {
+    padding: 6px 10px !important;
+    font-size: 0.68rem !important;
+    min-width: 32px;
+    text-align: center;
+  }
+}
+/* ============================================
+   MOBİLDE 3D SPİRALİ TAMAMEN KAPAT
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .hero__canvas,
+  canvas {
+    display: none !important;
+  }
+}

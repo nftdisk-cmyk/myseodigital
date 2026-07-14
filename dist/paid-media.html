@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Paid Media | MySEO Digital</title>
+  <meta name="description" content="Strategic paid media campaigns across Google, Meta, LinkedIn and programmatic that deliver measurable ROI and scalable growth." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== Tokens ===== */
+    .paid-page {
+      --navy:    #00395d;
+      --sky:     #00aeef;
+      --sky-10:  rgba(0,174,239,0.10);
+      --sky-20:  rgba(0,174,239,0.20);
+      --muted:   #5c7587;
+      --line:    #e1e9ee;
+      --soft:    #f4f8fb;
+
+      font-family: "DM Sans", sans-serif;
+      color: var(--navy);
+      background: #fff;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 3;
+    }
+
+    .paid-page *, .paid-page *::before, .paid-page *::after {
+      box-sizing: border-box;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 1.5px;
+      background: var(--sky);
+      flex-shrink: 0;
+    }
+
+    /* ===== HERO ===== */
+    .paid-hero {
+      position: relative;
+      padding: 190px 0 110px;
+      overflow: hidden;
+    }
+
+    .paid-hero__blob {
+      position: absolute;
+      top: -80px;
+      right: -6%;
+      width: 640px;
+      height: 640px;
+      background: radial-gradient(ellipse at 60% 40%, rgba(0,174,239,0.13) 0%, rgba(0,174,239,0) 68%);
+      pointer-events: none;
+    }
+
+    .paid-hero__blob2 {
+      position: absolute;
+      bottom: -60px;
+      left: -8%;
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(ellipse, rgba(0,57,93,0.06) 0%, rgba(0,57,93,0) 70%);
+      pointer-events: none;
+    }
+
+    .paid-hero .wrap {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 0.46fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .paid-hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 16px 0 28px;
+    }
+
+    .paid-hero h1 em {
+      font-style: normal;
+      color: var(--sky);
+    }
+
+    .paid-hero__desc {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 40px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--navy);
+      color: #fff;
+      text-decoration: none;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .cta-btn:hover {
+      background: #002a45;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,57,93,0.28);
+    }
+
+    /* ===== STATS BAR (KALDIRILDI) ===== */
+
+    /* ===== SERVICES ===== */
+    .paid-services {
+      padding: 70px 0 100px;
+    }
+
+    .paid-services__head {
+      margin-bottom: 32px;
+    }
+
+    .paid-services__head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+      margin: 14px 0 0;
+    }
+
+    .paid-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .paid-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px 26px 28px;
+      cursor: default;
+      transition: box-shadow 0.28s ease, border-color 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paid-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--sky-10) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .paid-card:hover::before {
+      opacity: 1;
+    }
+
+    .paid-card:hover {
+      border-color: var(--sky-20);
+      box-shadow: 0 24px 56px -16px rgba(0,57,93,0.18), 0 0 0 1px var(--sky-20);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--sky-10);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .paid-card:hover .card-icon {
+      background: var(--sky-20);
+      transform: translateZ(10px) scale(1.08);
+    }
+
+    .paid-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--navy);
+      margin: 0 0 12px;
+    }
+
+    .paid-card p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ===== CAMPAIGN VISUAL ===== */
+    .campaign-visual {
+      padding: 60px 0 100px;
+    }
+
+    .campaign-visual img {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+      display: block;
+      border-radius: 24px;
+      box-shadow: 0 30px 80px -20px rgba(0, 57, 93, 0.25);
+    }
+
+    /* ===== WHY PAID MEDIA ===== */
+    .paid-why {
+      padding: 0 0 120px;
+    }
+
+    .paid-why__inner {
+      background: linear-gradient(155deg, var(--navy) 0%, #002740 100%);
+      border-radius: 28px;
+      padding: 80px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paid-why__inner::after {
+      content: "";
+      position: absolute;
+      bottom: -120px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,174,239,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .paid-why__inner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sky), transparent 60%);
+    }
+
+    .paid-why__left {
+      position: relative;
+      z-index: 1;
+    }
+
+    .paid-why__left .eyebrow {
+      color: #6fd6f9;
+    }
+
+    .paid-why__left .eyebrow::before {
+      background: #6fd6f9;
+    }
+
+    .paid-why__left h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      line-height: 1.15;
+      color: #fff;
+      margin: 16px 0 0;
+    }
+
+    .paid-why__left h2 span {
+      color: var(--sky);
+    }
+
+    .paid-why__right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .paid-why__right p {
+      font-size: 1.05rem;
+      line-height: 1.78;
+      color: rgba(234,246,252,0.82);
+      margin: 0 0 20px;
+    }
+
+    .paid-why__right p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1020px) {
+      .paid-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { padding-left: 22px; padding-right: 22px; }
+      .paid-hero { padding: 150px 0 72px; }
+      .paid-hero .wrap { grid-template-columns: 1fr; }
+      .paid-hero__visual { display: none; }
+      .paid-stats .wrap { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+      .stat-item:nth-child(2n) { border-bottom: none; }
+      .paid-grid { grid-template-columns: 1fr; }
+      .paid-why__inner { grid-template-columns: 1fr; padding: 48px 32px; gap: 32px; }
+    }
+
+    /* ===== HEADER STYLES (INDEX İLE BİREBİR AYNI) ===== */
+    header.nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-left {
+      justify-self: start;
+    }
+
+    .nav__links {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Header Navigation Link Fontları (INDEX İLE BİREBİR AYNI) */
+    header .nav__links a {
+      font-family: 'DM Sans', system-ui, sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem !important;
+      letter-spacing: 0.4px !important;
+      color: #00395d !important;
+      text-decoration: none !important;
+      display: flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      padding: 8px 0 !important;
+    }
+
+    header .nav__links a:hover {
+      color: #00aeef !important;
+    }
+
+    /* Language Switcher (INDEX İLE BİREBİR AYNI) */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      border-left: 1px solid rgba(0, 57, 93, 0.15);
+      padding-left: 1.5rem;
+    }
+
+    .lang-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 5px 11px;
+      border: 1px solid rgba(0, 57, 93, 0.2);
+      background: transparent;
+      color: #00395d;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+      background: rgba(0, 174, 239, 0.08);
+      border-color: #00aeef;
+    }
+
+    .lang-btn.active {
+      background: #00395d;
+      color: #fff;
+      border-color: #00395d;
+    }
+
+    /* ============================================= */
+    /* === MOBILE HAMBURGER MENU (≤1024px only) === */
+    /* ============================================= */
+
+    /* Hamburger button: hidden by default (desktop) */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      justify-self: end;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #00395d;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger-btn.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-btn.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-btn.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown menu panel */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid rgba(0, 57, 93, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 57, 93, 0.12);
+      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+      max-height: 80vh;
+      opacity: 1;
+      overflow-y: auto;
+    }
+
+    .mobile-menu__list {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1.5rem 1.5rem;
+    }
+
+    .mobile-menu__list a {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__list a:hover,
+    .mobile-menu__list a:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__services-label {
+      display: block;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0 0.4rem;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__services-label:hover,
+    .mobile-menu__services-label:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__sublist {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+    }
+
+    .mobile-menu__sublist a {
+      font-size: 0.92rem;
+      font-weight: 400;
+      padding: 0.65rem 0;
+    }
+
+    /* Show hamburger + hide desktop nav links on tablets/mobile */
+    @media (max-width: 1024px) {
+      header.nav {
+        position: relative;
+        grid-template-columns: auto 1fr auto auto;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+  </style>
+  <link rel="stylesheet" crossorigin href="/assets/styles-Cw6pPLgl.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER (INDEX İLE BİREBİR AYNI) -->
+  <header class="nav">
+    <!-- SOL: Logo -->
+    <div class="nav-left">
+      <a href="/" class="nav__brand" aria-label="MySEO">
+        <img src="/images/logo.png" alt="MySEO" height="145" />
+      </a>
+    </div>
+
+    <!-- ORTA: Navigation linkleri (TAM ORTADA) -->
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="dropdown">
+        <a href="#Services" class="dropdown-trigger" data-i18n="nav.services">Services</a>
+        <div class="dropdown-menu">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+      </div>
+
+      <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <!-- SAĞ: Dil butonları (EN SAĞDA) -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="bg">BG</button>
+    </div>
+
+    <!-- MOBILE ONLY: Hamburger button (≤1024px) -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MOBILE ONLY: Dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__list" aria-label="Mobile Primary">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+
+        <a href="/#Services" class="mobile-menu__services-label" data-i18n="nav.services">Services</a>
+        <div class="mobile-menu__sublist">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+
+        <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="paid-page">
+
+    <!-- HERO (3D VISUAL KALDIRILDI) -->
+    <section class="paid-hero">
+      <div class="paid-hero__blob" aria-hidden="true"></div>
+      <div class="paid-hero__blob2" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="paid-hero__left">
+          <span class="eyebrow reveal" data-i18n="paid.hero.eyebrow">Paid Media</span>
+          <h1 class="reveal" data-i18n="paid.hero.title">Paid Media That<br><em>Delivers Real Results.</em></h1>
+          <p class="paid-hero__desc reveal" data-i18n="paid.hero.desc">
+            We maximise your ad spend across Google, Meta, LinkedIn and programmatic — turning every pound into qualified traffic, leads and revenue.
+          </p>
+          <a href="contact.html" class="cta-btn reveal" data-i18n="paid.hero.cta">
+            Start a campaign
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="paid-services">
+      <div class="wrap">
+        <div class="paid-services__head">
+          <span class="eyebrow reveal" data-i18n="paid.services.eyebrow">What we deliver</span>
+          <h2 class="reveal" data-i18n="paid.services.title">Our Paid Media Services</h2>
+        </div>
+
+        <div class="paid-grid">
+
+          <div class="paid-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <h3 data-i18n="paid.card.google.title">Google Ads</h3>
+            <p data-i18n="paid.card.google.text">Capture high-intent demand with precision Search, Shopping, Performance Max and Display campaigns built for growth.</p>
+          </div>
+
+          <div class="paid-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3 data-i18n="paid.card.meta.title">Meta Ads</h3>
+            <p data-i18n="paid.card.meta.text">Creative-led Facebook & Instagram campaigns that reach and convert your ideal audience at scale.</p>
+          </div>
+
+          <div class="paid-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <h3 data-i18n="paid.card.linkedin.title">LinkedIn Ads</h3>
+            <p data-i18n="paid.card.linkedin.text">Precision B2B targeting that reaches decision-makers and drives qualified pipeline and brand authority.</p>
+          </div>
+
+          <div class="paid-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 data-i18n="paid.card.programmatic.title">Programmatic</h3>
+            <p data-i18n="paid.card.programmatic.text">Real-time bidding across premium inventory with data-driven strategies that maximise reach and efficiency.</p>
+          </div>
+
+          <div class="paid-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 data-i18n="paid.card.retargeting.title">Retargeting</h3>
+            <p data-i18n="paid.card.retargeting.text">Personalised sequences that re-engage high-intent visitors and turn interest into conversions.</p>
+          </div>
+
+          <div class="paid-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h3 data-i18n="paid.card.analytics.title">Analytics & Reporting</h3>
+            <p data-i18n="paid.card.analytics.text">Full-funnel tracking and transparent performance reporting so you always know exactly where your budget works hardest.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPAIGN VISUAL -->
+    <section class="campaign-visual">
+      <div class="wrap">
+        <div class="reveal" style="max-width: 820px; margin: 0 auto;">
+          <img src="/images/paidmedia.png" alt="Paid Media Campaign Example" style="width:100%; border-radius: 24px; box-shadow: 0 30px 80px -20px rgba(0,57,93,0.25);">
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY PAID MEDIA -->
+    <section class="paid-why">
+      <div class="wrap">
+        <div class="paid-why__inner reveal">
+          <div class="paid-why__left">
+            <span class="eyebrow" data-i18n="paid.why.eyebrow">Why paid media?</span>
+            <h2 data-i18n="paid.why.title">Instant visibility.<br>Measurable <span>growth.</span></h2>
+          </div>
+          <div class="paid-why__right">
+            <p data-i18n="paid.why.text1">Paid media gives you speed and control that organic channels can’t match. When you need results now — product launches, market entry, seasonal pushes — the right paid strategy puts your brand in front of the right people at exactly the right moment.</p>
+            <p data-i18n="paid.why.text2">Every pound is tracked, every click is measured, and every campaign is continuously optimised. That’s how we turn ad spend into predictable, scalable revenue.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MULTILINGUAL SCRIPT -->
+  <script>
+    const translations = {
+      en: {
+        "nav.home": "Home",
+        "nav.about": "About",
+        "nav.services": "Services",
+        "nav.sectors": "Sectors",
+        "nav.contact": "Contact",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Social Media Management",
+        "dropdown.strategy": "Digital Strategy",
+        "paid.hero.eyebrow": "Paid Media",
+        "paid.hero.title": "Paid Media That<br><em>Delivers Real Results.</em>",
+        "paid.hero.desc": "We maximise your ad spend across Google, Meta, LinkedIn and programmatic — turning every pound into qualified traffic, leads and revenue.",
+        "paid.hero.cta": "Start a campaign",
+        "paid.services.eyebrow": "What we deliver",
+        "paid.services.title": "Our Paid Media Services",
+        "paid.card.google.title": "Google Ads",
+        "paid.card.google.text": "Capture high-intent demand with precision Search, Shopping, Performance Max and Display campaigns built for growth.",
+        "paid.card.meta.title": "Meta Ads",
+        "paid.card.meta.text": "Creative-led Facebook & Instagram campaigns that reach and convert your ideal audience at scale.",
+        "paid.card.linkedin.title": "LinkedIn Ads",
+        "paid.card.linkedin.text": "Precision B2B targeting that reaches decision-makers and drives qualified pipeline and brand authority.",
+        "paid.card.programmatic.title": "Programmatic",
+        "paid.card.programmatic.text": "Real-time bidding across premium inventory with data-driven strategies that maximise reach and efficiency.",
+        "paid.card.retargeting.title": "Retargeting",
+        "paid.card.retargeting.text": "Personalised sequences that re-engage high-intent visitors and turn interest into conversions.",
+        "paid.card.analytics.title": "Analytics & Reporting",
+        "paid.card.analytics.text": "Full-funnel tracking and transparent performance reporting so you always know exactly where your budget works hardest.",
+        "paid.why.eyebrow": "Why paid media?",
+        "paid.why.title": "Instant visibility.<br>Measurable <span>growth.</span>",
+        "paid.why.text1": "Paid media gives you speed and control that organic channels can’t match. When you need results now — product launches, market entry, seasonal pushes — the right paid strategy puts your brand in front of the right people at exactly the right moment.",
+        "paid.why.text2": "Every pound is tracked, every click is measured, and every campaign is continuously optimised. That’s how we turn ad spend into predictable, scalable revenue."
+      },
+      tr: {
+        "nav.home": "Ana Sayfa",
+        "nav.about": "Hakkımızda",
+        "nav.services": "Hizmetler",
+        "nav.sectors": "Sektörler",
+        "nav.contact": "İletişim",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Sosyal Medya Yönetimi",
+        "dropdown.strategy": "Dijital Strateji",
+        "paid.hero.eyebrow": "Paid Media",
+        "paid.hero.title": "Gerçek Sonuçlar<br><em>Getiren Paid Media.</em>",
+        "paid.hero.desc": "Google, Meta, LinkedIn ve Programmatic'teki reklam harcamalarınızı maksimize ederek her poundu nitelikli trafik, lead ve gelire dönüştürüyoruz.",
+        "paid.hero.cta": "Kampanya başlatın",
+        "paid.services.eyebrow": "Neler sunuyoruz",
+        "paid.services.title": "Paid Media Hizmetlerimiz",
+        "paid.card.google.title": "Google Ads",
+        "paid.card.google.text": "Yüksek niyetli talebi yakalayın — büyüme için tasarlanmış hassas Search, Shopping, Performance Max ve Display kampanyaları.",
+        "paid.card.meta.title": "Meta Ads",
+        "paid.card.meta.text": "İdeal kitlenize ölçekte ulaşan ve dönüştüren yaratıcı Facebook & Instagram kampanyaları.",
+        "paid.card.linkedin.title": "LinkedIn Ads",
+        "paid.card.linkedin.text": "Karar vericilere ulaşan ve nitelikli pipeline ile marka otoritesi sağlayan hassas B2B hedefleme.",
+        "paid.card.programmatic.title": "Programmatic",
+        "paid.card.programmatic.text": "Premium envanterde gerçek zamanlı teklif verme ile veri odaklı stratejilerle erişimi ve verimliliği maksimize edin.",
+        "paid.card.retargeting.title": "Retargeting",
+        "paid.card.retargeting.text": "Yüksek niyetli ziyaretçileri yeniden etkileşime sokan ve ilgiyi dönüşüme çeviren kişiselleştirilmiş diziler.",
+        "paid.card.analytics.title": "Analiz & Raporlama",
+        "paid.card.analytics.text": "Bütçenizin tam olarak nerede en çok çalıştığını her zaman bilmeniz için tam huni takibi ve şeffaf performans raporlaması.",
+        "paid.why.eyebrow": "Neden paid media?",
+        "paid.why.title": "Anında görünürlük.<br>Ölçülebilir <span>büyüme.</span>",
+        "paid.why.text1": "Paid media, organik kanalların eşleşemeyeceği hız ve kontrol sağlar. Şimdi sonuçlara ihtiyacınız olduğunda — ürün lansmanları, pazara giriş, mevsimsel itişler — doğru paid strateji markanızı tam doğru anda doğru insanların önüne koyar.",
+        "paid.why.text2": "Her pound takip edilir, her tıklama ölçülür ve her kampanya sürekli optimize edilir. Bu yüzden reklam harcamasını öngörülebilir, ölçeklenebilir gelire dönüştürüyoruz."
+      },
+      bg: {
+        "nav.home": "Начало",
+        "nav.about": "За нас",
+        "nav.services": "Услуги",
+        "nav.sectors": "Сектори",
+        "nav.contact": "Контакти",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Платени Медии",
+        "dropdown.social": "Управление на социални медии",
+        "dropdown.strategy": "Дигитална стратегия",
+        "paid.hero.eyebrow": "Платени медии",
+        "paid.hero.title": "Платени медии, които<br><em>доставят реални резултати.</em>",
+        "paid.hero.desc": "Максимизираме вашите разходи за реклама в Google, Meta, LinkedIn и programmatic — превръщайки всяка лира в квалифициран трафик, лийдове и приходи.",
+        "paid.hero.cta": "Започнете кампания",
+        "paid.services.eyebrow": "Какво предлагаме",
+        "paid.services.title": "Нашите услуги за платени медии",
+        "paid.card.google.title": "Google Ads",
+        "paid.card.google.text": "Уловете високо намерение с прецизни Search, Shopping, Performance Max и Display кампании, изградени за растеж.",
+        "paid.card.meta.title": "Meta Ads",
+        "paid.card.meta.text": "Креативни Facebook & Instagram кампании, които достигат и конвертират вашата идеална аудитория в мащаб.",
+        "paid.card.linkedin.title": "LinkedIn Ads",
+        "paid.card.linkedin.text": "Прецизно B2B таргетиране, което достига до вземащите решения и генерира квалифициран pipeline и бранд авторитет.",
+        "paid.card.programmatic.title": "Programmatic",
+        "paid.card.programmatic.text": "Наддаване в реално време в премиум инвентар с базирани на данни стратегии, които максимизират обхвата и ефективността.",
+        "paid.card.retargeting.title": "Retargeting",
+        "paid.card.retargeting.text": "Персонализирани последователности, които ангажират отново посетители с високо намерение и превръщат интереса в конверсии.",
+        "paid.card.analytics.title": "Анализи и отчети",
+        "paid.card.analytics.text": "Пълно фунийно проследяване и прозрачно отчитане на представянето, така че винаги да знаете точно къде работи най-добре вашият бюджет.",
+        "paid.why.eyebrow": "Защо платени медии?",
+        "paid.why.title": "Мигновена видимост.<br>Измерим <span>растеж.</span>",
+        "paid.why.text1": "Платените медии ви дават скорост и контрол, които органичните канали не могат да предложат. Когато имате нужда от резултати сега — продуктови лансирания, навлизане на пазара, сезонни кампании — правилната платена стратегия поставя вашия бранд пред правилните хора в точното време.",
+        "paid.why.text2": "Всяка лира се проследява, всяко кликване се измерва и всяка кампания се оптимизира непрекъснато. Така превръщаме разходите за реклама в предвидим, мащабируем приход."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      try {
+        localStorage.setItem('preferredLang', lang);
+      } catch (e) {}
+
+      document.documentElement.lang = lang;
+    }
+
+    function initLanguageSwitcher() {
+      const buttons = document.querySelectorAll('.lang-btn');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      setLanguage(savedLang);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+    } else {
+      initLanguageSwitcher();
+    }
+  </script>
+
+  <!-- MOBILE HAMBURGER MENU LOGIC -->
+  <script>
+    (function () {
+      function initHamburgerMenu() {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (!hamburgerBtn || !mobileMenu) return;
+
+        function openMenu() {
+          hamburgerBtn.classList.add('is-open');
+          mobileMenu.classList.add('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+          hamburgerBtn.classList.remove('is-open');
+          mobileMenu.classList.remove('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu() {
+          if (mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        hamburgerBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when a link inside it is clicked
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function (e) {
+          if (
+            mobileMenu.classList.contains('is-open') &&
+            !mobileMenu.contains(e.target) &&
+            !hamburgerBtn.contains(e.target)
+          ) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on resize back to desktop
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 1024) {
+            closeMenu();
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+      } else {
+        initHamburgerMenu();
+      }
+    })();
+  </script>
+</body>
+</html>

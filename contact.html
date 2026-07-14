@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Contact | MySEO Digital Growth</title>
+  <meta
+    name="description"
+    content="Get in touch with MySEO Digital Growth for SEO, paid media, and social strategy that compounds. Tell us about your project and we'll reply within 24 hours."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <style>
+    /* =========================================================
+       MySEO — Contact page, namespaced "gw-" (growth) styles.
+       Header above is untouched and styled by /src/styles.css.
+       Light theme: white background, brand navy #00395d.
+       ========================================================= */
+
+    :root {
+      --gw-bg: #ffffff;
+      --gw-bg-soft: #f5f8fb;
+      --gw-navy: #00395d;
+      --gw-navy-2: #2f6f9e;
+      --gw-navy-3: #0a2740;
+      --gw-text: #1c2b3a;
+      --gw-mute: #5c6c7d;
+      --gw-line: rgba(0, 57, 93, 0.14);
+    }
+
+    .gw-page {
+      background: var(--gw-bg);
+      color: var(--gw-text);
+      position: relative;
+      overflow: hidden;
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .gw-page * { box-sizing: border-box; }
+
+    /* ---- animated ambient background, brand navy ---- */
+    .gw-blob-field {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .gw-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      mix-blend-mode: multiply;
+      will-change: transform;
+    }
+
+    .gw-blob--a {
+      width: 560px; height: 560px;
+      top: -180px; left: -140px;
+      background: var(--gw-navy);
+      opacity: 0.12;
+      animation: gwBlobA 24s ease-in-out infinite alternate;
+    }
+
+    .gw-blob--b {
+      width: 520px; height: 520px;
+      top: 60px; right: -200px;
+      background: var(--gw-navy-2);
+      opacity: 0.14;
+      animation: gwBlobB 28s ease-in-out infinite alternate;
+    }
+
+    .gw-blob--c {
+      width: 460px; height: 460px;
+      bottom: -220px; left: 28%;
+      background: var(--gw-navy);
+      opacity: 0.10;
+      animation: gwBlobC 32s ease-in-out infinite alternate;
+    }
+
+    @keyframes gwBlobA {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(70px, 50px) scale(1.18); }
+    }
+    @keyframes gwBlobB {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-60px, 70px) scale(0.88); }
+    }
+    @keyframes gwBlobC {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, -40px) scale(1.12); }
+    }
+
+    .gw-grid-floor {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 57, 93, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 57, 93, 0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(1100px 600px at 50% 0%, black, transparent 75%);
+    }
+
+    .gw-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .gw-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gw-navy);
+    }
+
+    .gw-eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gw-navy);
+      box-shadow: 0 0 12px 2px rgba(0, 57, 93, 0.45);
+    }
+
+    /* =========================== HERO =========================== */
+
+    .gw-hero {
+      padding: 150px 0 90px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .gw-hero__copy h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: clamp(2.5rem, 4.6vw, 4.3rem);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      margin: 22px 0 22px;
+      color: var(--gw-navy);
+    }
+
+    .gw-hero__copy h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--gw-navy), var(--gw-navy-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .gw-hero__copy p {
+      max-width: 480px;
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: var(--gw-mute);
+      margin-bottom: 38px;
+    }
+
+    .gw-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .gw-btn {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 999px;
+      padding: 16px 30px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .gw-btn--primary {
+      background: linear-gradient(135deg, var(--gw-navy), var(--gw-navy-2));
+      color: #ffffff;
+      box-shadow: 0 14px 34px -12px rgba(0, 57, 93, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    .gw-btn--primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -12px rgba(0, 57, 93, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .gw-btn--primary:active { transform: translateY(0px); }
+
+    .gw-btn--ghost {
+      background: rgba(0, 57, 93, 0.04);
+      border-color: var(--gw-line);
+      color: var(--gw-navy);
+    }
+
+    .gw-btn--ghost:hover {
+      background: rgba(0, 57, 93, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .gw-stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .gw-stat {
+      border-top: 1px solid var(--gw-line);
+      padding-top: 12px;
+      min-width: 120px;
+    }
+
+    .gw-stat strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gw-navy);
+    }
+
+    .gw-stat span {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gw-mute);
+    }
+
+    /* ---- 3D cube cluster (signature element) ---- */
+
+    .gw-cube-scene {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      height: 340px;
+      margin: 0 auto;
+      perspective: 1000px;
+      will-change: transform;
+    }
+
+    .gw-cube-glow {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 90px;
+      background: radial-gradient(ellipse at center, rgba(0, 57, 93, 0.30), transparent 72%);
+      filter: blur(4px);
+      z-index: 0;
+    }
+
+    .gw-cube-stage {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transform: rotateX(52deg) rotateZ(-38deg);
+      animation: gwSway 9s ease-in-out infinite;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    @keyframes gwSway {
+      0%, 100% { transform: rotateX(52deg) rotateZ(-38deg); }
+      50%      { transform: rotateX(49deg) rotateZ(-33deg); }
+    }
+
+    .gw-cube-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 22px;
+      transform-style: preserve-3d;
+    }
+
+    .gw-cube {
+      position: relative;
+      width: 56px;
+      transform-style: preserve-3d;
+      animation: gwBob 4.5s ease-in-out infinite;
+    }
+
+    .gw-cube:nth-child(1) { animation-delay: 0s; }
+    .gw-cube:nth-child(2) { animation-delay: 0.25s; }
+    .gw-cube:nth-child(3) { animation-delay: 0.5s; }
+    .gw-cube:nth-child(4) { animation-delay: 0.75s; }
+    .gw-cube:nth-child(5) { animation-delay: 1s; }
+
+    @keyframes gwBob {
+      0%, 100% { transform: translateZ(0); }
+      50%      { transform: translateZ(6px); }
+    }
+
+    .gw-cube__face {
+      position: absolute;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .gw-cube__front { inset: 0; transform: translateZ(13px); }
+
+    .gw-cube__right {
+      top: 0; right: -26px; width: 26px; height: 100%;
+      transform-origin: left center;
+      transform: rotateY(90deg);
+    }
+
+    .gw-cube__top {
+      top: -26px; left: 0; width: 100%; height: 26px;
+      transform-origin: bottom center;
+      transform: rotateX(90deg);
+    }
+
+    .gw-cube--c1 .gw-cube__front { background: linear-gradient(180deg, #1c3f5c, #163046); }
+    .gw-cube--c1 .gw-cube__right { background: #0c2235; }
+    .gw-cube--c1 .gw-cube__top   { background: #2a4f70; }
+
+    .gw-cube--c2 .gw-cube__front { background: linear-gradient(180deg, #1f4a6c, #173b56); }
+    .gw-cube--c2 .gw-cube__right { background: #0e2a3f; }
+    .gw-cube--c2 .gw-cube__top   { background: #2f5d83; }
+
+    .gw-cube--c3 .gw-cube__front { background: linear-gradient(180deg, #21557d, #194264); }
+    .gw-cube--c3 .gw-cube__right { background: #103149; }
+    .gw-cube--c3 .gw-cube__top   { background: #366c95; }
+
+    .gw-cube--c4 .gw-cube__front { background: linear-gradient(180deg, #25618f, #1c4c73); }
+    .gw-cube--c4 .gw-cube__right { background: #123754; }
+    .gw-cube--c4 .gw-cube__top   { background: #3e7ba6; }
+
+    .gw-cube--c5 .gw-cube__front { background: linear-gradient(180deg, #2c70a3, #1f5582); }
+    .gw-cube--c5 .gw-cube__right { background: #14405f; }
+    .gw-cube--c5 .gw-cube__top   {
+      background: #4f93c2;
+      box-shadow: 0 0 26px rgba(47, 111, 158, 0.55);
+    }
+
+    /* =========================== FORM =========================== */
+
+    .gw-section { padding: 70px 0; }
+
+    .gw-section__head {
+      max-width: 560px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .gw-section__head h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      letter-spacing: -0.01em;
+      margin: 16px 0 14px;
+      color: var(--gw-navy);
+    }
+
+    .gw-section__head p {
+      color: var(--gw-mute);
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    .gw-panel {
+      max-width: 880px;
+      margin: 0 auto;
+      background: linear-gradient(165deg, rgba(0, 57, 93, 0.035), rgba(0, 57, 93, 0.01));
+      border: 1px solid var(--gw-line);
+      border-radius: 28px;
+      padding: 48px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 50px 90px -55px rgba(0, 57, 93, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .gw-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .gw-field { grid-column: span 1; }
+    .gw-field--full { grid-column: 1 / -1; }
+
+    .gw-field label {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gw-navy);
+      margin-bottom: 10px;
+    }
+
+    .gw-field label .gw-optional {
+      text-transform: none;
+      letter-spacing: 0;
+      color: rgba(92, 108, 125, 0.7);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .gw-field input,
+    .gw-field select,
+    .gw-field textarea {
+      width: 100%;
+      background: rgba(0, 57, 93, 0.035);
+      border: 1px solid var(--gw-line);
+      border-radius: 14px;
+      padding: 15px 16px;
+      color: var(--gw-text);
+      font: 400 0.98rem/1.4 "DM Sans", sans-serif;
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .gw-field textarea { resize: vertical; min-height: 130px; }
+
+    .gw-field select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'><path d='M1 1L7 7L13 1' stroke='%2300395D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    .gw-field select option { background: #ffffff; color: var(--gw-text); }
+
+    .gw-field input::placeholder,
+    .gw-field textarea::placeholder { color: rgba(92, 108, 125, 0.65); }
+
+    .gw-field input:focus,
+    .gw-field select:focus,
+    .gw-field textarea:focus {
+      outline: none;
+      border-color: var(--gw-navy);
+      background: rgba(0, 57, 93, 0.06);
+      box-shadow: 0 0 0 4px rgba(0, 57, 93, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .gw-submit-row {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .gw-submit {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      border-radius: 999px;
+      padding: 17px 36px;
+      cursor: pointer;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--gw-navy), var(--gw-navy-2));
+      box-shadow: 0 16px 34px -12px rgba(0, 57, 93, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gw-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 40px -12px rgba(0, 57, 93, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    }
+
+    .gw-submit:active { transform: translateY(1px); box-shadow: 0 8px 18px -8px rgba(0, 57, 93, 0.4); }
+
+    .gw-submit-note { font-size: 0.85rem; color: var(--gw-mute); }
+
+    /* =========================== ALT CONTACT CARDS =========================== */
+
+    .gw-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 1080px;
+      margin: 56px auto 0;
+      perspective: 1200px;
+    }
+
+    .gw-card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(0, 57, 93, 0.03), rgba(0, 57, 93, 0.005));
+      border: 1px solid var(--gw-line);
+      border-radius: 22px;
+      padding: 30px 26px;
+      transition: transform 0.12s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .gw-card:hover {
+      border-color: rgba(0, 57, 93, 0.4);
+      box-shadow: 0 30px 60px -32px rgba(0, 57, 93, 0.35);
+    }
+
+    .gw-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(0, 57, 93, 0.12), rgba(47, 111, 158, 0.12));
+      border: 1px solid var(--gw-line);
+      margin-bottom: 18px;
+    }
+
+    .gw-card__icon svg { width: 20px; height: 20px; stroke: var(--gw-navy); }
+
+    .gw-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--gw-navy);
+    }
+
+    .gw-card p {
+      font-size: 0.92rem;
+      color: var(--gw-mute);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .gw-card a.gw-card__link {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--gw-navy);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.35);
+      padding-bottom: 2px;
+    }
+
+    .gw-card a.gw-card__link:hover { border-color: var(--gw-navy); }
+
+    /* =========================== FOOTER STRIP =========================== */
+
+    .gw-footer {
+      border-top: 1px solid var(--gw-line);
+      padding: 32px 0 56px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.85rem;
+      color: var(--gw-mute);
+    }
+
+    .gw-footer strong { color: var(--gw-navy); font-weight: 500; }
+
+    /* =========================== FOCUS / MOTION =========================== */
+
+    .gw-page a:focus-visible,
+    .gw-page button:focus-visible,
+    .gw-page input:focus-visible,
+    .gw-page select:focus-visible,
+    .gw-page textarea:focus-visible {
+      outline: 2px solid var(--gw-navy);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gw-page * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    /* =========================== RESPONSIVE =========================== */
+
+    @media (max-width: 980px) {
+      .gw-hero { grid-template-columns: 1fr; padding-top: 130px; }
+      .gw-hero__copy { text-align: center; margin: 0 auto; }
+      .gw-hero__copy p { margin-left: auto; margin-right: auto; }
+      .gw-cta-row, .gw-stats { justify-content: center; }
+      .gw-cube-scene { max-width: 320px; height: 280px; }
+      .gw-cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .gw-shell { padding: 0 20px; }
+      .gw-panel { padding: 30px 22px; border-radius: 22px; }
+      .gw-form-grid { grid-template-columns: 1fr; }
+      .gw-hero { padding-top: 120px; }
+      .gw-footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ===== HEADER STYLES (INDEX İLE BİREBİR) ===== */
+    header.nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-left {
+      justify-self: start;
+    }
+
+    .nav__links {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    header .nav__links a {
+      font-family: 'DM Sans', system-ui, sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem !important;
+      letter-spacing: 0.4px !important;
+      color: #00395d !important;
+      text-decoration: none !important;
+      display: flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      padding: 8px 0 !important;
+    }
+
+    header .nav__links a:hover {
+      color: #00aeef !important;
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      border-left: 1px solid rgba(0, 57, 93, 0.15);
+      padding-left: 1.5rem;
+    }
+
+    .lang-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 5px 11px;
+      border: 1px solid rgba(0, 57, 93, 0.2);
+      background: transparent;
+      color: #00395d;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+      background: rgba(0, 174, 239, 0.08);
+      border-color: #00aeef;
+    }
+
+    .lang-btn.active {
+      background: #00395d;
+      color: #fff;
+      border-color: #00395d;
+    }
+
+    /* ============================================= */
+    /* === MOBILE HAMBURGER MENU (≤1024px only) === */
+    /* ============================================= */
+
+    /* Hamburger button: hidden by default (desktop) */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      justify-self: end;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #00395d;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger-btn.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-btn.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-btn.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown menu panel */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid rgba(0, 57, 93, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 57, 93, 0.12);
+      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+      max-height: 80vh;
+      opacity: 1;
+      overflow-y: auto;
+    }
+
+    .mobile-menu__list {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1.5rem 1.5rem;
+    }
+
+    .mobile-menu__list a {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__list a:hover,
+    .mobile-menu__list a:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__services-label {
+      display: block;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0 0.4rem;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__services-label:hover,
+    .mobile-menu__services-label:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__sublist {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+    }
+
+    .mobile-menu__sublist a {
+      font-size: 0.92rem;
+      font-weight: 400;
+      padding: 0.65rem 0;
+    }
+
+    /* Show hamburger + hide desktop nav links on tablets/mobile */
+    @media (max-width: 1024px) {
+      header.nav {
+        position: relative;
+        grid-template-columns: auto 1fr auto auto;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body class="gw-page">
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER (INDEX İLE BİREBİR AYNI) -->
+  <header class="nav">
+    <!-- SOL: Logo -->
+    <div class="nav-left">
+      <a href="/" class="nav__brand" aria-label="MySEO">
+        <img src="/images/logo.png" alt="MySEO" height="145" />
+      </a>
+    </div>
+
+    <!-- ORTA: Navigation linkleri (TAM ORTADA) -->
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="dropdown">
+        <a href="#Services" class="dropdown-trigger" data-i18n="nav.services">Services</a>
+        <div class="dropdown-menu">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+      </div>
+
+      <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <!-- SAĞ: Dil butonları (EN SAĞDA) -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="bg">BG</button>
+    </div>
+
+    <!-- MOBILE ONLY: Hamburger button (≤1024px) -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MOBILE ONLY: Dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__list" aria-label="Mobile Primary">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+
+        <a href="/#Services" class="mobile-menu__services-label" data-i18n="nav.services">Services</a>
+        <div class="mobile-menu__sublist">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+
+        <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="gw-blob-field" aria-hidden="true">
+    <div class="gw-blob gw-blob--a"></div>
+    <div class="gw-blob gw-blob--b"></div>
+    <div class="gw-blob gw-blob--c"></div>
+  </div>
+  <div class="gw-grid-floor" aria-hidden="true"></div>
+
+  <!-- ============== HERO ============== -->
+  <section class="gw-shell gw-hero">
+    <div class="gw-hero__copy">
+      <span class="gw-eyebrow">Contact — MySEO Digital</span>
+      <h1>Let's build your<br />next <em>growth</em> chapter.</h1>
+      <p>
+        SEO, paid media and social strategy for brands that want results to compound,
+        not just spike. Tell us where you're starting and we'll map the fastest route up.
+      </p>
+      <div class="gw-cta-row">
+        <a href="#project-form" class="gw-btn gw-btn--primary">Start the conversation →</a>
+        <a href="mailto:info@myseodigital.com" class="gw-btn gw-btn--ghost">Email us directly</a>
+      </div>
+      <div class="gw-stats">
+        <div class="gw-stat"><strong>24H</strong><span>Avg. first response</span></div>
+        <div class="gw-stat"><strong>6+</strong><span>Channels, one roof</span></div>
+        <div class="gw-stat"><strong>0</strong><span>Cookie-cutter strategies</span></div>
+      </div>
+    </div>
+
+    <div class="gw-cube-scene" id="gwCubeScene">
+      <div class="gw-cube-glow" aria-hidden="true"></div>
+      <div class="gw-cube-stage">
+        <div class="gw-cube-row">
+          <div class="gw-cube gw-cube--c1" style="height:56px">
+            <div class="gw-cube__face gw-cube__top"></div>
+            <div class="gw-cube__face gw-cube__right"></div>
+            <div class="gw-cube__face gw-cube__front"></div>
+          </div>
+          <div class="gw-cube gw-cube--c2" style="height:92px">
+            <div class="gw-cube__face gw-cube__top"></div>
+            <div class="gw-cube__face gw-cube__right"></div>
+            <div class="gw-cube__face gw-cube__front"></div>
+          </div>
+          <div class="gw-cube gw-cube--c3" style="height:128px">
+            <div class="gw-cube__face gw-cube__top"></div>
+            <div class="gw-cube__face gw-cube__right"></div>
+            <div class="gw-cube__face gw-cube__front"></div>
+          </div>
+          <div class="gw-cube gw-cube--c4" style="height:164px">
+            <div class="gw-cube__face gw-cube__top"></div>
+            <div class="gw-cube__face gw-cube__right"></div>
+            <div class="gw-cube__face gw-cube__front"></div>
+          </div>
+          <div class="gw-cube gw-cube--c5" style="height:210px">
+            <div class="gw-cube__face gw-cube__top"></div>
+            <div class="gw-cube__face gw-cube__right"></div>
+            <div class="gw-cube__face gw-cube__front"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FORM ============== -->
+  <section class="gw-shell gw-section" id="project-form">
+    <div class="gw-section__head">
+      <span class="gw-eyebrow">Project intake</span>
+      <h2>Tell us where you're starting.</h2>
+      <p>A few details now means a sharper plan the moment we talk.</p>
+    </div>
+
+    <form class="gw-panel" id="gwForm">
+      <div class="gw-form-grid">
+        <div class="gw-field">
+          <label for="gwName">Full name</label>
+          <input id="gwName" name="name" type="text" placeholder="Jane Carter" required />
+        </div>
+        <div class="gw-field">
+          <label for="gwEmail">Email address</label>
+          <input id="gwEmail" name="email" type="email" placeholder="jane@company.com" required />
+        </div>
+        <div class="gw-field">
+          <label for="gwCompany">Company name</label>
+          <input id="gwCompany" name="company" type="text" placeholder="Company, Inc." />
+        </div>
+        <div class="gw-field">
+          <label for="gwWebsite">Website <span class="gw-optional">(optional)</span></label>
+          <input id="gwWebsite" name="website" type="url" placeholder="yourwebsite.com" />
+        </div>
+        <div class="gw-field">
+          <label for="gwService">Service you need</label>
+          <select id="gwService" name="service">
+            <option value="">Select a service</option>
+            <option value="seo">SEO</option>
+            <option value="paid-media">Paid Media — Google &amp; Meta Ads</option>
+            <option value="social">Social Media Management</option>
+            <option value="strategy">Digital Strategy</option>
+            <option value="not-sure">Not sure yet</option>
+          </select>
+        </div>
+        <div class="gw-field">
+          <label for="gwBudget">Monthly budget <span class="gw-optional">(optional)</span></label>
+          <select id="gwBudget" name="budget">
+            <option value="">Select a range</option>
+            <option value="lt-2k">Under $2k</option>
+            <option value="2-5k">$2k – $5k</option>
+            <option value="5-15k">$5k – $15k</option>
+            <option value="15k-plus">$15k+</option>
+          </select>
+        </div>
+        <div class="gw-field gw-field--full">
+          <label for="gwMessage">Tell us about your project or goals</label>
+          <textarea id="gwMessage" name="message" placeholder="What are you trying to grow, and what's slowing you down right now?"></textarea>
+        </div>
+        <div class="gw-submit-row">
+          <button type="submit" class="gw-submit">
+            Send project details
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="gw-submit-note">We typically reply within one business day.</span>
+        </div>
+      </div>
+    </form>
+
+    <!-- ============== ALT CONTACT CARDS ============== -->
+    <div class="gw-cards">
+      <div class="gw-card" data-tilt>
+        <div class="gw-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+        </div>
+        <h3>Email</h3>
+        <p>For proposals, partnerships and press inquiries.</p>
+        <a class="gw-card__link" href="mailto:info@myseodigital.com">info@myseodigital.com</a>
+      </div>
+
+      <div class="gw-card" data-tilt>
+        <div class="gw-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+        </div>
+        <h3>Book a strategy call</h3>
+        <p>Prefer to talk it through? Grab a slot on our calendar.</p>
+        <a class="gw-card__link" href="#">View availability →</a>
+      </div>
+
+      <div class="gw-card" data-tilt>
+        <div class="gw-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-6-3.8-9s1.3-6.4 3.8-9z"/></svg>
+        </div>
+        <h3>Where we work</h3>
+        <p>Remote-first, partnering with brands across time zones.</p>
+        <span class="gw-card__link" style="border:none;cursor:default;">Worldwide</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="gw-shell gw-footer">
+    <span><strong>MySEO Digital Growth</strong> — SEO, Paid Media, Social &amp; Strategy.</span>
+    <span>&copy; <span id="gwYear"></span> MySEO Digital. All rights reserved.</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    document.getElementById("gwYear").textContent = new Date().getFullYear();
+
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // ---- Scroll reveals ----
+    if (window.gsap) {
+      gsap.registerPlugin(ScrollTrigger);
+      var revealTargets = document.querySelectorAll(
+        ".gw-hero__copy > *, .gw-cube-scene, .gw-section__head, .gw-panel, .gw-card, .gw-footer"
+      );
+      revealTargets.forEach(function (el, i) {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 36 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: prefersReduced ? 0.01 : 0.8,
+            delay: prefersReduced ? 0 : Math.min(i * 0.03, 0.2),
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 88%" },
+          }
+        );
+      });
+    }
+
+    // ---- 3D cube cluster parallax ----
+    var scene = document.getElementById("gwCubeScene");
+    if (scene && !prefersReduced) {
+      scene.addEventListener("mousemove", function (e) {
+        var rect = scene.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width - 0.5;
+        var py = (e.clientY - rect.top) / rect.height - 0.5;
+        scene.style.transform = "rotateX(" + (-py * 14) + "deg) rotateY(" + (px * 18) + "deg)";
+      });
+      scene.addEventListener("mouseleave", function () {
+        scene.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
+    }
+
+    // ---- Tilt cards ----
+    if (!prefersReduced) {
+      document.querySelectorAll("[data-tilt]").forEach(function (card) {
+        card.addEventListener("mousemove", function (e) {
+          var r = card.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5;
+          var py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform =
+            "perspective(700px) rotateX(" + (-py * 8) + "deg) rotateY(" + (px * 8) + "deg) translateY(-4px)";
+        });
+        card.addEventListener("mouseleave", function () {
+          card.style.transform = "perspective(700px) rotateX(0) rotateY(0) translateY(0)";
+        });
+      });
+    }
+
+    // ---- Form (front-end only placeholder) ----
+    var form = document.getElementById("gwForm");
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = form.querySelector(".gw-submit");
+        var original = btn.innerHTML;
+        btn.innerHTML = "Sent — thank you";
+        btn.style.opacity = "0.85";
+        setTimeout(function () {
+          btn.innerHTML = original;
+          btn.style.opacity = "1";
+        }, 3000);
+      });
+    }
+
+    // ===== MULTILINGUAL SCRIPT =====
+    const translations = {
+      en: {
+        "nav.home": "Home",
+        "nav.about": "About",
+        "nav.services": "Services",
+        "nav.sectors": "Sectors",
+        "nav.contact": "Contact",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Social Media Management",
+        "dropdown.strategy": "Digital Strategy"
+      },
+      tr: {
+        "nav.home": "Ana Sayfa",
+        "nav.about": "Hakkımızda",
+        "nav.services": "Hizmetler",
+        "nav.sectors": "Sektörler",
+        "nav.contact": "İletişim",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Sosyal Medya Yönetimi",
+        "dropdown.strategy": "Dijital Strateji"
+      },
+      bg: {
+        "nav.home": "Начало",
+        "nav.about": "За нас",
+        "nav.services": "Услуги",
+        "nav.sectors": "Сектори",
+        "nav.contact": "Контакти",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Платени Медии",
+        "dropdown.social": "Управление на социални медии",
+        "dropdown.strategy": "Дигитална стратегия"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      try {
+        localStorage.setItem('preferredLang', lang);
+      } catch (e) {}
+
+      document.documentElement.lang = lang;
+    }
+
+    function initLanguageSwitcher() {
+      const buttons = document.querySelectorAll('.lang-btn');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      setLanguage(savedLang);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+    } else {
+      initLanguageSwitcher();
+    }
+  </script>
+
+  <!-- MOBILE HAMBURGER MENU LOGIC -->
+  <script>
+    (function () {
+      function initHamburgerMenu() {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (!hamburgerBtn || !mobileMenu) return;
+
+        function openMenu() {
+          hamburgerBtn.classList.add('is-open');
+          mobileMenu.classList.add('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+          hamburgerBtn.classList.remove('is-open');
+          mobileMenu.classList.remove('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu() {
+          if (mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        hamburgerBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when a link inside it is clicked
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function (e) {
+          if (
+            mobileMenu.classList.contains('is-open') &&
+            !mobileMenu.contains(e.target) &&
+            !hamburgerBtn.contains(e.target)
+          ) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on resize back to desktop
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 1024) {
+            closeMenu();
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+      } else {
+        initHamburgerMenu();
+      }
+    })();
+  </script>
+</body>
+</html>

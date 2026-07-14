@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Social Media Management | MySEO Digital</title>
+  <meta name="description" content="Strategic social media management that builds real connections, grows engaged communities, and turns followers into loyal customers." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+
+  <style>
+    /* ===== Tokens ===== */
+    .social-page {
+      --navy:    #00395d;
+      --sky:     #00aeef;
+      --sky-10:  rgba(0,174,239,0.10);
+      --sky-20:  rgba(0,174,239,0.20);
+      --muted:   #5c7587;
+      --line:    #e1e9ee;
+      --soft:    #f4f8fb;
+
+      font-family: "DM Sans", sans-serif;
+      color: var(--navy);
+      background: #fff;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 3;
+    }
+
+    .social-page *, .social-page *::before, .social-page *::after {
+      box-sizing: border-box;
+    }
+
+    /* ===== Utility ===== */
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 1.5px;
+      background: var(--sky);
+      flex-shrink: 0;
+    }
+
+    /* ===== HERO ===== */
+    .social-hero {
+      position: relative;
+      padding: 190px 0 110px;
+      overflow: hidden;
+    }
+
+    .social-hero__blob {
+      position: absolute;
+      top: -80px;
+      right: -6%;
+      width: 640px;
+      height: 640px;
+      background: radial-gradient(ellipse at 60% 40%, rgba(0,174,239,0.13) 0%, rgba(0,174,239,0) 68%);
+      pointer-events: none;
+    }
+
+    .social-hero__blob2 {
+      position: absolute;
+      bottom: -60px;
+      left: -8%;
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(ellipse, rgba(0,57,93,0.06) 0%, rgba(0,57,93,0) 70%);
+      pointer-events: none;
+    }
+
+    .social-hero .wrap {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 0.46fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .social-hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 16px 0 28px;
+    }
+
+    .social-hero h1 em {
+      font-style: normal;
+      color: var(--sky);
+    }
+
+    .social-hero__desc {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 40px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--navy);
+      color: #fff;
+      text-decoration: none;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .cta-btn:hover {
+      background: #002a45;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,57,93,0.28);
+    }
+
+    /* ===== STATS BAR (KALDIRILDI) ===== */
+
+    /* ===== SERVICES GRID ===== */
+    .social-services {
+      padding: 70px 0 100px;
+    }
+
+    .social-services__head {
+      margin-bottom: 32px;
+    }
+
+    .social-services__head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+      margin: 14px 0 0;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .social-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px 26px 28px;
+      cursor: default;
+      transition: box-shadow 0.28s ease, border-color 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--sky-10) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .social-card:hover::before {
+      opacity: 1;
+    }
+
+    .social-card:hover {
+      border-color: var(--sky-20);
+      box-shadow: 0 24px 56px -16px rgba(0,57,93,0.18), 0 0 0 1px var(--sky-20);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--sky-10);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .social-card:hover .card-icon {
+      background: var(--sky-20);
+      transform: translateZ(10px) scale(1.08);
+    }
+
+    .social-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--navy);
+      margin: 0 0 12px;
+    }
+
+    .social-card p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ===== WHY SOCIAL ===== */
+    .social-why {
+      padding: 0 0 120px;
+    }
+
+    .social-why__inner {
+      background: linear-gradient(155deg, var(--navy) 0%, #002740 100%);
+      border-radius: 28px;
+      padding: 80px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-why__inner::after {
+      content: "";
+      position: absolute;
+      bottom: -120px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,174,239,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .social-why__inner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sky), transparent 60%);
+    }
+
+    .social-why__left {
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-why__left .eyebrow {
+      color: #6fd6f9;
+    }
+
+    .social-why__left .eyebrow::before {
+      background: #6fd6f9;
+    }
+
+    .social-why__left h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      line-height: 1.15;
+      color: #fff;
+      margin: 16px 0 0;
+    }
+
+    .social-why__left h2 span {
+      color: var(--sky);
+    }
+
+    .social-why__right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-why__right p {
+      font-size: 1.05rem;
+      line-height: 1.78;
+      color: rgba(234,246,252,0.82);
+      margin: 0 0 20px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1020px) {
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { padding-left: 22px; padding-right: 22px; }
+      .social-hero { padding: 150px 0 72px; }
+      .social-hero .wrap { grid-template-columns: 1fr; }
+      .social-hero__visual { display: none; }
+      .social-stats .wrap { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+      .stat-item:nth-child(2n) { border-bottom: none; }
+      .social-grid { grid-template-columns: 1fr; }
+      .social-why__inner { grid-template-columns: 1fr; padding: 48px 32px; gap: 32px; }
+    }
+
+    /* ===== HEADER STYLES (INDEX İLE BİREBİR AYNI) ===== */
+    header.nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-left {
+      justify-self: start;
+    }
+
+    .nav__links {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Header Navigation Link Fontları (INDEX İLE BİREBİR AYNI) */
+    header .nav__links a {
+      font-family: 'DM Sans', system-ui, sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem !important;
+      letter-spacing: 0.4px !important;
+      color: #00395d !important;
+      text-decoration: none !important;
+      display: flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      padding: 8px 0 !important;
+    }
+
+    header .nav__links a:hover {
+      color: #00aeef !important;
+    }
+
+    /* Language Switcher (INDEX İLE BİREBİR AYNI) */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      border-left: 1px solid rgba(0, 57, 93, 0.15);
+      padding-left: 1.5rem;
+    }
+
+    .lang-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 5px 11px;
+      border: 1px solid rgba(0, 57, 93, 0.2);
+      background: transparent;
+      color: #00395d;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+      background: rgba(0, 174, 239, 0.08);
+      border-color: #00aeef;
+    }
+
+    .lang-btn.active {
+      background: #00395d;
+      color: #fff;
+      border-color: #00395d;
+    }
+
+    /* ============================================= */
+    /* === MOBILE HAMBURGER MENU (≤1024px only) === */
+    /* ============================================= */
+
+    /* Hamburger button: hidden by default (desktop) */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      justify-self: end;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #00395d;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger-btn.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-btn.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-btn.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown menu panel */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid rgba(0, 57, 93, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 57, 93, 0.12);
+      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+      max-height: 80vh;
+      opacity: 1;
+      overflow-y: auto;
+    }
+
+    .mobile-menu__list {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1.5rem 1.5rem;
+    }
+
+    .mobile-menu__list a {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__list a:hover,
+    .mobile-menu__list a:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__services-label {
+      display: block;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0 0.4rem;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__services-label:hover,
+    .mobile-menu__services-label:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__sublist {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+    }
+
+    .mobile-menu__sublist a {
+      font-size: 0.92rem;
+      font-weight: 400;
+      padding: 0.65rem 0;
+    }
+
+    /* Show hamburger + hide desktop nav links on tablets/mobile */
+    @media (max-width: 1024px) {
+      header.nav {
+        position: relative;
+        grid-template-columns: auto 1fr auto auto;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER (INDEX İLE BİREBİR AYNI) -->
+  <header class="nav">
+    <!-- SOL: Logo -->
+    <div class="nav-left">
+      <a href="/" class="nav__brand" aria-label="MySEO">
+        <img src="/images/logo.png" alt="MySEO" height="145" />
+      </a>
+    </div>
+
+    <!-- ORTA: Navigation linkleri (TAM ORTADA) -->
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="dropdown">
+        <a href="#Services" class="dropdown-trigger" data-i18n="nav.services">Services</a>
+        <div class="dropdown-menu">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+      </div>
+
+      <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <!-- SAĞ: Dil butonları (EN SAĞDA) -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="bg">BG</button>
+    </div>
+
+    <!-- MOBILE ONLY: Hamburger button (≤1024px) -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MOBILE ONLY: Dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__list" aria-label="Mobile Primary">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+
+        <a href="/#Services" class="mobile-menu__services-label" data-i18n="nav.services">Services</a>
+        <div class="mobile-menu__sublist">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+
+        <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="social-page">
+
+    <!-- HERO (3D CUBE KALDIRILDI) -->
+    <section class="social-hero">
+      <div class="social-hero__blob" aria-hidden="true"></div>
+      <div class="social-hero__blob2" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="social-hero__left">
+          <span class="eyebrow reveal" data-i18n="social.hero.eyebrow">Social Media Management</span>
+          <h1 class="reveal" data-i18n="social.hero.title">Social Media That<br><em>Builds Real Connections.</em></h1>
+          <p class="social-hero__desc reveal" data-i18n="social.hero.desc">
+            We help brands create meaningful relationships with their audience through strategic content, authentic engagement, and data-driven growth.
+          </p>
+          <a href="contact.html" class="cta-btn reveal" data-i18n="social.hero.cta">
+            Start a conversation
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="social-services">
+      <div class="wrap">
+        <div class="social-services__head">
+          <span class="eyebrow reveal" data-i18n="social.services.eyebrow">What we deliver</span>
+          <h2 class="reveal" data-i18n="social.services.title">Our Social Media Services</h2>
+        </div>
+
+        <div class="social-grid">
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3 data-i18n="social.card.strategy.title">Strategy & Planning</h3>
+            <p data-i18n="social.card.strategy.text">Custom social media strategies aligned with your brand voice, goals, and target audience across every platform.</p>
+          </div>
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h3 data-i18n="social.card.content.title">Content Creation</h3>
+            <p data-i18n="social.card.content.text">Scroll-stopping visuals, captions, Reels, Stories and carousels crafted to reflect your brand and drive engagement.</p>
+          </div>
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 data-i18n="social.card.community.title">Community Management</h3>
+            <p data-i18n="social.card.community.text">Daily engagement, comment moderation, DM handling and building genuine relationships with your audience.</p>
+          </div>
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+            </div>
+            <h3 data-i18n="social.card.calendar.title">Content Calendar</h3>
+            <p data-i18n="social.card.calendar.text">Strategic monthly calendars that keep your feed consistent, on-brand and optimized for each platform’s algorithm.</p>
+          </div>
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 data-i18n="social.card.paid.title">Paid Social Support</h3>
+            <p data-i18n="social.card.paid.text">Amplifying organic reach with targeted Meta, TikTok and LinkedIn campaigns that convert and scale.</p>
+          </div>
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+            </div>
+            <h3 data-i18n="social.card.analytics.title">Analytics & Reporting</h3>
+            <p data-i18n="social.card.analytics.text">Clear monthly reports showing what’s working, audience growth, and actionable insights to improve performance.</p>
+          </div>
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3 data-i18n="social.card.platform.title">Platform Optimization</h3>
+            <p data-i18n="social.card.platform.text">Profile audits, bio optimization, highlight covers, pinned posts and full account health checks.</p>
+          </div>
+
+          <div class="social-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+            </div>
+            <h3 data-i18n="social.card.reputation.title">Reputation & Crisis</h3>
+            <p data-i18n="social.card.reputation.text">Proactive monitoring and rapid response strategies to protect and strengthen your brand reputation online.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY SOCIAL MEDIA -->
+    <section class="social-why">
+      <div class="wrap">
+        <div class="social-why__inner reveal">
+          <div class="social-why__left">
+            <span class="eyebrow" data-i18n="social.why.eyebrow">Why social media?</span>
+            <h2 data-i18n="social.why.title">The channel that turns<br>followers into <span>advocates.</span></h2>
+          </div>
+          <div class="social-why__right">
+            <p data-i18n="social.why.text1">Social media is where your customers already spend their time. Done right, it becomes more than a marketing channel — it becomes a relationship engine that builds trust, loyalty and word-of-mouth growth.</p>
+            <p data-i18n="social.why.text2">Unlike one-off campaigns, consistent social presence compounds over time. Every post, story and interaction adds to your brand equity and keeps you top-of-mind when buying decisions are made.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MULTILINGUAL SCRIPT -->
+  <script>
+    const translations = {
+      en: {
+        "nav.home": "Home",
+        "nav.about": "About",
+        "nav.services": "Services",
+        "nav.sectors": "Sectors",
+        "nav.contact": "Contact",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Social Media Management",
+        "dropdown.strategy": "Digital Strategy",
+        "social.hero.eyebrow": "Social Media Management",
+        "social.hero.title": "Social Media That<br><em>Builds Real Connections.</em>",
+        "social.hero.desc": "We help brands create meaningful relationships with their audience through strategic content, authentic engagement, and data-driven growth.",
+        "social.hero.cta": "Start a conversation",
+        "social.services.eyebrow": "What we deliver",
+        "social.services.title": "Our Social Media Services",
+        "social.card.strategy.title": "Strategy & Planning",
+        "social.card.strategy.text": "Custom social media strategies aligned with your brand voice, goals, and target audience across every platform.",
+        "social.card.content.title": "Content Creation",
+        "social.card.content.text": "Scroll-stopping visuals, captions, Reels, Stories and carousels crafted to reflect your brand and drive engagement.",
+        "social.card.community.title": "Community Management",
+        "social.card.community.text": "Daily engagement, comment moderation, DM handling and building genuine relationships with your audience.",
+        "social.card.calendar.title": "Content Calendar",
+        "social.card.calendar.text": "Strategic monthly calendars that keep your feed consistent, on-brand and optimized for each platform’s algorithm.",
+        "social.card.paid.title": "Paid Social Support",
+        "social.card.paid.text": "Amplifying organic reach with targeted Meta, TikTok and LinkedIn campaigns that convert and scale.",
+        "social.card.analytics.title": "Analytics & Reporting",
+        "social.card.analytics.text": "Clear monthly reports showing what’s working, audience growth, and actionable insights to improve performance.",
+        "social.card.platform.title": "Platform Optimization",
+        "social.card.platform.text": "Profile audits, bio optimization, highlight covers, pinned posts and full account health checks.",
+        "social.card.reputation.title": "Reputation & Crisis",
+        "social.card.reputation.text": "Proactive monitoring and rapid response strategies to protect and strengthen your brand reputation online.",
+        "social.why.eyebrow": "Why social media?",
+        "social.why.title": "The channel that turns<br>followers into <span>advocates.</span>",
+        "social.why.text1": "Social media is where your customers already spend their time. Done right, it becomes more than a marketing channel — it becomes a relationship engine that builds trust, loyalty and word-of-mouth growth.",
+        "social.why.text2": "Unlike one-off campaigns, consistent social presence compounds over time. Every post, story and interaction adds to your brand equity and keeps you top-of-mind when buying decisions are made."
+      },
+      tr: {
+        "nav.home": "Ana Sayfa",
+        "nav.about": "Hakkımızda",
+        "nav.services": "Hizmetler",
+        "nav.sectors": "Sektörler",
+        "nav.contact": "İletişim",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Sosyal Medya Yönetimi",
+        "dropdown.strategy": "Dijital Strateji",
+        "social.hero.eyebrow": "Sosyal Medya Yönetimi",
+        "social.hero.title": "Gerçek Bağlantılar<br><em>Kuran Sosyal Medya.</em>",
+        "social.hero.desc": "Markaların hedef kitleleriyle anlamlı ilişkiler kurmasına stratejik içerik, samimi etkileşim ve veri odaklı büyüme ile yardımcı oluyoruz.",
+        "social.hero.cta": "Sohbete başlayın",
+        "social.services.eyebrow": "Neler sunuyoruz",
+        "social.services.title": "Sosyal Medya Hizmetlerimiz",
+        "social.card.strategy.title": "Strateji & Planlama",
+        "social.card.strategy.text": "Marka sesiniz, hedefleriniz ve kitlenizle uyumlu, her platformda özel sosyal medya stratejileri.",
+        "social.card.content.title": "İçerik Üretimi",
+        "social.card.content.text": "Markanızı yansıtan ve etkileşim yaratan scroll durdurucu görseller, caption'lar, Reels ve karuseller.",
+        "social.card.community.title": "Topluluk Yönetimi",
+        "social.card.community.text": "Günlük etkileşim, yorum moderasyonu, DM yönetimi ve kitlenizle samimi ilişkiler kurma.",
+        "social.card.calendar.title": "İçerik Takvimi",
+        "social.card.calendar.text": "Feed'inizi tutarlı, markanıza uygun ve her platformun algoritmasına optimize edilmiş aylık stratejik takvimler.",
+        "social.card.paid.title": "Ücretli Sosyal Destek",
+        "social.card.paid.text": "Organik erişimi Meta, TikTok ve LinkedIn hedefli kampanyalarla güçlendirerek dönüştürme ve ölçeklendirme.",
+        "social.card.analytics.title": "Analiz & Raporlama",
+        "social.card.analytics.text": "Neyin işe yaradığını, kitlenin nasıl büyüdüğünü ve performansı artırmak için ne yapılması gerektiğini gösteren net aylık raporlar.",
+        "social.card.platform.title": "Platform Optimizasyonu",
+        "social.card.platform.text": "Profil denetimleri, bio optimizasyonu, highlight kapakları, sabitlenmiş gönderiler ve tam hesap sağlık kontrolleri.",
+        "social.card.reputation.title": "İtibar & Kriz",
+        "social.card.reputation.text": "Markanızın çevrimiçi itibarını korumak ve güçlendirmek için proaktif izleme ve hızlı müdahale stratejileri.",
+        "social.why.eyebrow": "Neden sosyal medya?",
+        "social.why.title": "Takipçileri<br><span>savunuculara</span> dönüştüren kanal.",
+        "social.why.text1": "Sosyal medya, müşterilerinizin zaten zaman geçirdiği yer. Doğru yapıldığında sadece bir pazarlama kanalı değil, güven, sadakat ve ağızdan ağıza büyüme yaratan bir ilişki motoru haline gelir.",
+        "social.why.text2": "Tek seferlik kampanyaların aksine, tutarlı sosyal varlık zamanla birikir. Her gönderi, hikaye ve etkileşim marka değerinize eklenir ve satın alma kararları verilirken aklınızda kalmanızı sağlar."
+      },
+      bg: {
+        "nav.home": "Начало",
+        "nav.about": "За нас",
+        "nav.services": "Услуги",
+        "nav.sectors": "Сектори",
+        "nav.contact": "Контакти",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Платени Медии",
+        "dropdown.social": "Управление на социални медии",
+        "dropdown.strategy": "Дигитална стратегия",
+        "social.hero.eyebrow": "Управление на социални медии",
+        "social.hero.title": "Социални медии, които<br><em>изграждат реални връзки.</em>",
+        "social.hero.desc": "Помагаме на брандовете да създават смислени отношения с аудиторията си чрез стратегическо съдържание, автентична ангажираност и растеж, базиран на данни.",
+        "social.hero.cta": "Започнете разговор",
+        "social.services.eyebrow": "Какво предлагаме",
+        "social.services.title": "Нашите услуги за социални медии",
+        "social.card.strategy.title": "Стратегия и планиране",
+        "social.card.strategy.text": "Персонализирани стратегии за социални медии, съобразени с гласа на вашия бранд, целите и целевата аудитория на всяка платформа.",
+        "social.card.content.title": "Създаване на съдържание",
+        "social.card.content.text": "Спиращи скрола визуализации, описания, Reels, Stories и карусели, създадени да отразяват вашия бранд и да стимулират ангажираност.",
+        "social.card.community.title": "Управление на общността",
+        "social.card.community.text": "Ежедневна ангажираност, модериране на коментари, обработка на DM и изграждане на истински отношения с вашата аудитория.",
+        "social.card.calendar.title": "Календар за съдържание",
+        "social.card.calendar.text": "Стратегически месечни календари, които поддържат вашия feed последователен, в съответствие с бранда и оптимизиран за алгоритъма на всяка платформа.",
+        "social.card.paid.title": "Поддръжка на платени социални медии",
+        "social.card.paid.text": "Усилване на органичния обхват с targeted Meta, TikTok и LinkedIn кампании, които конвертират и мащабират.",
+        "social.card.analytics.title": "Анализи и отчети",
+        "social.card.analytics.text": "Ясни месечни отчети, показващи какво работи, растежа на аудиторията и приложими прозрения за подобряване на представянето.",
+        "social.card.platform.title": "Оптимизация на платформата",
+        "social.card.platform.text": "Одити на профили, оптимизация на био, cover-и за highlight, pinned постове и пълни проверки на здравето на акаунта.",
+        "social.card.reputation.title": "Репутация и кризи",
+        "social.card.reputation.text": "Проактивно наблюдение и стратегии за бърза реакция за защита и укрепване на репутацията на вашия бранд онлайн.",
+        "social.why.eyebrow": "Защо социални медии?",
+        "social.why.title": "Каналът, който превръща<br>последователите в <span>защитници.</span>",
+        "social.why.text1": "Социалните медии са мястото, където клиентите ви вече прекарват времето си. Правилно направени, те се превръщат в нещо повече от маркетингов канал — стават двигател на отношения, който изгражда доверие, лоялност и растеж чрез препоръки.",
+        "social.why.text2": "За разлика от еднократните кампании, последователното присъствие в социалните медии се натрупва с времето. Всеки пост, история и взаимодействие добавя към стойността на вашия бранд и ви държи на върха на ума, когато се вземат решения за покупка."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      try {
+        localStorage.setItem('preferredLang', lang);
+      } catch (e) {}
+
+      document.documentElement.lang = lang;
+    }
+
+    function initLanguageSwitcher() {
+      const buttons = document.querySelectorAll('.lang-btn');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      setLanguage(savedLang);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+    } else {
+      initLanguageSwitcher();
+    }
+  </script>
+
+  <!-- MOBILE HAMBURGER MENU LOGIC -->
+  <script>
+    (function () {
+      function initHamburgerMenu() {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (!hamburgerBtn || !mobileMenu) return;
+
+        function openMenu() {
+          hamburgerBtn.classList.add('is-open');
+          mobileMenu.classList.add('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+          hamburgerBtn.classList.remove('is-open');
+          mobileMenu.classList.remove('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu() {
+          if (mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        hamburgerBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when a link inside it is clicked
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function (e) {
+          if (
+            mobileMenu.classList.contains('is-open') &&
+            !mobileMenu.contains(e.target) &&
+            !hamburgerBtn.contains(e.target)
+          ) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on resize back to desktop
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 1024) {
+            closeMenu();
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+      } else {
+        initHamburgerMenu();
+      }
+    })();
+  </script>
+</body>
+</html>

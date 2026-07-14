@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Sectors | MySEO Digital</title>
+  <meta name="description" content="Deep expertise across Ecommerce, Hospitality, Travel, B2B, Finance and SaaS." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+
+  <style>
+    .sectors-page {
+      font-family: "DM Sans", sans-serif;
+      color: #00395d;
+      background: #fff;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #00aeef;
+    }
+
+    .sector-card {
+      background: #fff;
+      padding: 40px 32px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .sector-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .sector-card h3 {
+      font-size: 2rem;
+      color: #00395d;
+      margin-bottom: 16px;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+    }
+
+    .sector-card p {
+      color: #555;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    /* ===== HEADER STYLES (INDEX İLE BİREBİR) ===== */
+    header.nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-left {
+      justify-self: start;
+    }
+
+    .nav__links {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    header .nav__links a {
+      font-family: 'DM Sans', system-ui, sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem !important;
+      letter-spacing: 0.4px !important;
+      color: #00395d !important;
+      text-decoration: none !important;
+      display: flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      padding: 8px 0 !important;
+    }
+
+    header .nav__links a:hover {
+      color: #00aeef !important;
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      border-left: 1px solid rgba(0, 57, 93, 0.15);
+      padding-left: 1.5rem;
+    }
+
+    .lang-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 5px 11px;
+      border: 1px solid rgba(0, 57, 93, 0.2);
+      background: transparent;
+      color: #00395d;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+      background: rgba(0, 174, 239, 0.08);
+      border-color: #00aeef;
+    }
+
+    .lang-btn.active {
+      background: #00395d;
+      color: #fff;
+      border-color: #00395d;
+    }
+
+    /* ============================================= */
+    /* === MOBILE HAMBURGER MENU (≤1024px only) === */
+    /* ============================================= */
+
+    /* Hamburger button: hidden by default (desktop) */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      justify-self: end;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #00395d;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger-btn.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-btn.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-btn.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown menu panel */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid rgba(0, 57, 93, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 57, 93, 0.12);
+      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+      max-height: 80vh;
+      opacity: 1;
+      overflow-y: auto;
+    }
+
+    .mobile-menu__list {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1.5rem 1.5rem;
+    }
+
+    .mobile-menu__list a {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__list a:hover,
+    .mobile-menu__list a:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__services-label {
+      display: block;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0 0.4rem;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__services-label:hover,
+    .mobile-menu__services-label:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__sublist {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+    }
+
+    .mobile-menu__sublist a {
+      font-size: 0.92rem;
+      font-weight: 400;
+      padding: 0.65rem 0;
+    }
+
+    /* Show hamburger + hide desktop nav links on tablets/mobile */
+    @media (max-width: 1024px) {
+      header.nav {
+        position: relative;
+        grid-template-columns: auto 1fr auto auto;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER (INDEX İLE BİREBİR AYNI) -->
+  <header class="nav">
+    <!-- SOL: Logo -->
+    <div class="nav-left">
+      <a href="/" class="nav__brand" aria-label="MySEO">
+        <img src="/images/logo.png" alt="MySEO" height="145" />
+      </a>
+    </div>
+
+    <!-- ORTA: Navigation linkleri (TAM ORTADA) -->
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="dropdown">
+        <a href="#Services" class="dropdown-trigger" data-i18n="nav.services">Services</a>
+        <div class="dropdown-menu">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+      </div>
+
+      <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <!-- SAĞ: Dil butonları (EN SAĞDA) -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="bg">BG</button>
+    </div>
+
+    <!-- MOBILE ONLY: Hamburger button (≤1024px) -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MOBILE ONLY: Dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__list" aria-label="Mobile Primary">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+
+        <a href="/#Services" class="mobile-menu__services-label" data-i18n="nav.services">Services</a>
+        <div class="mobile-menu__sublist">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+
+        <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="sectors-page">
+
+    <section style="padding: 240px 5% 80px; background: #ffffff;">
+      <div class="wrap">
+        
+        <p class="reveal" style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.34em; text-transform:uppercase; color:#00aeef; margin-bottom:24px;" data-i18n="sectors.eyebrow">
+          Sectors
+        </p>
+
+        <h1 class="reveal" style="font-size: clamp(2.8rem, 6vw, 4.4rem); color: #00395d; margin-bottom: 35px; font-family:'Cormorant Garamond',serif; font-weight:400; line-height:1.05; letter-spacing:-0.02em;" data-i18n="sectors.title">
+          Deep expertise.<br><span style="color:#00aeef;">Every industry.</span>
+        </h1>
+
+        <p class="reveal" style="font-size: 1.25rem; line-height: 1.8; color: #00395d; max-width: 780px; margin-bottom: 60px;" data-i18n="sectors.desc">
+          We craft sector-specific digital marketing strategies that deliver measurable results. 
+          With deep expertise in Ecommerce, Hospitality, Travel, B2B, Finance, and SaaS, 
+          we understand your industry — and know exactly how to win in it.
+        </p>
+
+        <!-- Sectors Grid -->
+        <div class="reveal-list" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:32px; margin-top: 40px;">
+          
+          <div class="sector-card reveal">
+            <h3 data-i18n="sectors.ecommerce.title">Ecommerce</h3>
+            <p data-i18n="sectors.ecommerce.text">Scale revenue with precision targeting and conversion-led campaigns.</p>
+          </div>
+
+          <div class="sector-card reveal">
+            <h3 data-i18n="sectors.hospitality.title">Hospitality</h3>
+            <p data-i18n="sectors.hospitality.text">Fill rooms and tables with guests who return.</p>
+          </div>
+
+          <div class="sector-card reveal">
+            <h3 data-i18n="sectors.travel.title">Travel</h3>
+            <p data-i18n="sectors.travel.text">Inspire the right travellers at every stage of the journey.</p>
+          </div>
+
+          <div class="sector-card reveal">
+            <h3 data-i18n="sectors.b2b.title">B2B</h3>
+            <p data-i18n="sectors.b2b.text">Generate qualified pipeline and shorten the sales cycle.</p>
+          </div>
+
+          <div class="sector-card reveal">
+            <h3 data-i18n="sectors.finance.title">Financial & Professional</h3>
+            <p data-i18n="sectors.finance.text">Build authority and trust in regulated, high-stakes markets.</p>
+          </div>
+
+          <div class="sector-card reveal">
+            <h3 data-i18n="sectors.saas.title">SaaS</h3>
+            <p data-i18n="sectors.saas.text">Drive trials, reduce churn, and compound product-led growth.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MULTILINGUAL SCRIPT -->
+  <script>
+    const translations = {
+      en: {
+        "nav.home": "Home",
+        "nav.about": "About",
+        "nav.services": "Services",
+        "nav.sectors": "Sectors",
+        "nav.contact": "Contact",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Social Media Management",
+        "dropdown.strategy": "Digital Strategy",
+        "sectors.eyebrow": "Sectors",
+        "sectors.title": "Deep expertise.<br><span style=\"color:#00aeef;\">Every industry.</span>",
+        "sectors.desc": "We craft sector-specific digital marketing strategies that deliver measurable results. With deep expertise in Ecommerce, Hospitality, Travel, B2B, Finance, and SaaS, we understand your industry — and know exactly how to win in it.",
+        "sectors.ecommerce.title": "Ecommerce",
+        "sectors.ecommerce.text": "Scale revenue with precision targeting and conversion-led campaigns.",
+        "sectors.hospitality.title": "Hospitality",
+        "sectors.hospitality.text": "Fill rooms and tables with guests who return.",
+        "sectors.travel.title": "Travel",
+        "sectors.travel.text": "Inspire the right travellers at every stage of the journey.",
+        "sectors.b2b.title": "B2B",
+        "sectors.b2b.text": "Generate qualified pipeline and shorten the sales cycle.",
+        "sectors.finance.title": "Financial & Professional",
+        "sectors.finance.text": "Build authority and trust in regulated, high-stakes markets.",
+        "sectors.saas.title": "SaaS",
+        "sectors.saas.text": "Drive trials, reduce churn, and compound product-led growth."
+      },
+      tr: {
+        "nav.home": "Ana Sayfa",
+        "nav.about": "Hakkımızda",
+        "nav.services": "Hizmetler",
+        "nav.sectors": "Sektörler",
+        "nav.contact": "İletişim",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Sosyal Medya Yönetimi",
+        "dropdown.strategy": "Dijital Strateji",
+        "sectors.eyebrow": "Sektörler",
+        "sectors.title": "Derin uzmanlık.<br><span style=\"color:#00aeef;\">Her sektörde.</span>",
+        "sectors.desc": "Her sektöre özel dijital pazarlama stratejileri üretiyoruz. E-ticaret, Otelcilik, Seyahat, B2B, Finans ve SaaS alanlarında derin uzmanlığımızla sektörünüzü anlıyor ve nasıl kazanacağınızı biliyoruz.",
+        "sectors.ecommerce.title": "E-ticaret",
+        "sectors.ecommerce.text": "Hassas hedefleme ve dönüşüm odaklı kampanyalarla geliri ölçeklendirin.",
+        "sectors.hospitality.title": "Otelcilik",
+        "sectors.hospitality.text": "Odaları ve masaları geri dönen misafirlerle doldurun.",
+        "sectors.travel.title": "Seyahat",
+        "sectors.travel.text": "Her aşamada doğru gezginleri ilhamlandırın.",
+        "sectors.b2b.title": "B2B",
+        "sectors.b2b.text": "Nitelikli pipeline oluşturun ve satış döngüsünü kısaltın.",
+        "sectors.finance.title": "Finans & Profesyonel Hizmetler",
+        "sectors.finance.text": "Düzenlenmiş, yüksek riskli pazarlarda otorite ve güven oluşturun.",
+        "sectors.saas.title": "SaaS",
+        "sectors.saas.text": "Denemeleri artırın, churn'ü azaltın ve ürün odaklı büyümeyi katlayın."
+      },
+      bg: {
+        "nav.home": "Начало",
+        "nav.about": "За нас",
+        "nav.services": "Услуги",
+        "nav.sectors": "Сектори",
+        "nav.contact": "Контакти",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Платени Медии",
+        "dropdown.social": "Управление на социални медии",
+        "dropdown.strategy": "Дигитална стратегия",
+        "sectors.eyebrow": "Сектори",
+        "sectors.title": "Дълбока експертиза.<br><span style=\"color:#00aeef;\">Във всяка индустрия.</span>",
+        "sectors.desc": "Създаваме специфични за сектора дигитални маркетинг стратегии, които носят измерими резултати. С дълбока експертиза в Ecommerce, Hospitality, Travel, B2B, Finance и SaaS, разбираме вашата индустрия — и знаем точно как да спечелим в нея.",
+        "sectors.ecommerce.title": "Ecommerce",
+        "sectors.ecommerce.text": "Мащабирайте приходите с прецизно таргетиране и конверсионни кампании.",
+        "sectors.hospitality.title": "Hospitality",
+        "sectors.hospitality.text": "Запълнете стаите и масите с гости, които се връщат.",
+        "sectors.travel.title": "Travel",
+        "sectors.travel.text": "Вдъхновявайте правилните пътешественици на всеки етап от пътуването.",
+        "sectors.b2b.title": "B2B",
+        "sectors.b2b.text": "Генерирайте квалифициран pipeline и скъсете цикъла на продажбите.",
+        "sectors.finance.title": "Финансови & Професионални услуги",
+        "sectors.finance.text": "Изградете авторитет и доверие в регулирани, високорискови пазари.",
+        "sectors.saas.title": "SaaS",
+        "sectors.saas.text": "Увеличете пробните версии, намалете churn и умножете продуктовия растеж."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      try {
+        localStorage.setItem('preferredLang', lang);
+      } catch (e) {}
+
+      document.documentElement.lang = lang;
+    }
+
+    function initLanguageSwitcher() {
+      const buttons = document.querySelectorAll('.lang-btn');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      setLanguage(savedLang);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+    } else {
+      initLanguageSwitcher();
+    }
+  </script>
+
+  <!-- MOBILE HAMBURGER MENU LOGIC -->
+  <script>
+    (function () {
+      function initHamburgerMenu() {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (!hamburgerBtn || !mobileMenu) return;
+
+        function openMenu() {
+          hamburgerBtn.classList.add('is-open');
+          mobileMenu.classList.add('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+          hamburgerBtn.classList.remove('is-open');
+          mobileMenu.classList.remove('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu() {
+          if (mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        hamburgerBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when a link inside it is clicked
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function (e) {
+          if (
+            mobileMenu.classList.contains('is-open') &&
+            !mobileMenu.contains(e.target) &&
+            !hamburgerBtn.contains(e.target)
+          ) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on resize back to desktop
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 1024) {
+            closeMenu();
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+      } else {
+        initHamburgerMenu();
+      }
+    })();
+  </script>
+</body>
+</html>

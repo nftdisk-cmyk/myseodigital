@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Digital Strategy | MySEO Digital</title>
+  <meta name="description" content="Data-driven digital strategy that aligns your goals, audience and channels into one clear, scalable growth roadmap." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+
+  <style>
+    /* ===== Tokens ===== */
+    .strategy-page {
+      --navy:    #00395d;
+      --sky:     #00aeef;
+      --sky-10:  rgba(0,174,239,0.10);
+      --sky-20:  rgba(0,174,239,0.20);
+      --muted:   #5c7587;
+      --line:    #e1e9ee;
+      --soft:    #f4f8fb;
+
+      font-family: "DM Sans", sans-serif;
+      color: var(--navy);
+      background: #fff;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 3;
+    }
+
+    .strategy-page *, .strategy-page *::before, .strategy-page *::after {
+      box-sizing: border-box;
+    }
+
+    /* ===== Utility ===== */
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 1.5px;
+      background: var(--sky);
+      flex-shrink: 0;
+    }
+
+    /* ===== HERO ===== */
+    .strategy-hero {
+      position: relative;
+      padding: 190px 0 110px;
+      overflow: hidden;
+    }
+
+    .strategy-hero__blob {
+      position: absolute;
+      top: -80px;
+      right: -6%;
+      width: 640px;
+      height: 640px;
+      background: radial-gradient(ellipse at 60% 40%, rgba(0,174,239,0.13) 0%, rgba(0,174,239,0) 68%);
+      pointer-events: none;
+    }
+
+    .strategy-hero__blob2 {
+      position: absolute;
+      bottom: -60px;
+      left: -8%;
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(ellipse, rgba(0,57,93,0.06) 0%, rgba(0,57,93,0) 70%);
+      pointer-events: none;
+    }
+
+    .strategy-hero .wrap {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 0.46fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .strategy-hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 16px 0 28px;
+    }
+
+    .strategy-hero h1 em {
+      font-style: normal;
+      color: var(--sky);
+    }
+
+    .strategy-hero__desc {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 40px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--navy);
+      color: #fff;
+      text-decoration: none;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .cta-btn:hover {
+      background: #002a45;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,57,93,0.28);
+    }
+
+    /* ===== STATS BAR (KALDIRILDI) ===== */
+
+    /* ===== SERVICES GRID ===== */
+    .strategy-services {
+      padding: 70px 0 100px;
+    }
+
+    .strategy-services__head {
+      margin-bottom: 32px;
+    }
+
+    .strategy-services__head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+      margin: 14px 0 0;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .strategy-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px 26px 28px;
+      cursor: default;
+      transition: box-shadow 0.28s ease, border-color 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strategy-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--sky-10) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .strategy-card:hover::before {
+      opacity: 1;
+    }
+
+    .strategy-card:hover {
+      border-color: var(--sky-20);
+      box-shadow: 0 24px 56px -16px rgba(0,57,93,0.18), 0 0 0 1px var(--sky-20);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--sky-10);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .strategy-card:hover .card-icon {
+      background: var(--sky-20);
+      transform: translateZ(10px) scale(1.08);
+    }
+
+    .strategy-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 1.32rem;
+      line-height: 1.2;
+      color: var(--navy);
+      margin: 0 0 12px;
+    }
+
+    .strategy-card p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ===== WHY STRATEGY ===== */
+    .strategy-why {
+      padding: 0 0 120px;
+    }
+
+    .strategy-why__inner {
+      background: linear-gradient(155deg, var(--navy) 0%, #002740 100%);
+      border-radius: 28px;
+      padding: 80px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strategy-why__inner::after {
+      content: "";
+      position: absolute;
+      bottom: -120px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,174,239,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .strategy-why__inner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sky), transparent 60%);
+    }
+
+    .strategy-why__left {
+      position: relative;
+      z-index: 1;
+    }
+
+    .strategy-why__left .eyebrow {
+      color: #6fd6f9;
+    }
+
+    .strategy-why__left .eyebrow::before {
+      background: #6fd6f9;
+    }
+
+    .strategy-why__left h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      line-height: 1.15;
+      color: #fff;
+      margin: 16px 0 0;
+    }
+
+    .strategy-why__left h2 span {
+      color: var(--sky);
+    }
+
+    .strategy-why__right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .strategy-why__right p {
+      font-size: 1.05rem;
+      line-height: 1.78;
+      color: rgba(234,246,252,0.82);
+      margin: 0 0 20px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1020px) {
+      .strategy-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { padding-left: 22px; padding-right: 22px; }
+      .strategy-hero { padding: 150px 0 72px; }
+      .strategy-hero .wrap { grid-template-columns: 1fr; }
+      .strategy-hero__visual { display: none; }
+      .strategy-stats .wrap { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+      .stat-item:nth-child(2n) { border-bottom: none; }
+      .strategy-grid { grid-template-columns: 1fr; }
+      .strategy-why__inner { grid-template-columns: 1fr; padding: 48px 32px; gap: 32px; }
+    }
+
+    /* ===== HEADER STYLES (INDEX İLE BİREBİR AYNI) ===== */
+    header.nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-left {
+      justify-self: start;
+    }
+
+    .nav__links {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Header Navigation Link Fontları (INDEX İLE BİREBİR AYNI) */
+    header .nav__links a {
+      font-family: 'DM Sans', system-ui, sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem !important;
+      letter-spacing: 0.4px !important;
+      color: #00395d !important;
+      text-decoration: none !important;
+      display: flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      padding: 8px 0 !important;
+    }
+
+    header .nav__links a:hover {
+      color: #00aeef !important;
+    }
+
+    /* Language Switcher (INDEX İLE BİREBİR AYNI) */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      border-left: 1px solid rgba(0, 57, 93, 0.15);
+      padding-left: 1.5rem;
+    }
+
+    .lang-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 5px 11px;
+      border: 1px solid rgba(0, 57, 93, 0.2);
+      background: transparent;
+      color: #00395d;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+      background: rgba(0, 174, 239, 0.08);
+      border-color: #00aeef;
+    }
+
+    .lang-btn.active {
+      background: #00395d;
+      color: #fff;
+      border-color: #00395d;
+    }
+
+    /* ============================================= */
+    /* === MOBILE HAMBURGER MENU (≤1024px only) === */
+    /* ============================================= */
+
+    /* Hamburger button: hidden by default (desktop) */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      justify-self: end;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #00395d;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger-btn.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-btn.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-btn.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown menu panel */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid rgba(0, 57, 93, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 57, 93, 0.12);
+      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+      max-height: 80vh;
+      opacity: 1;
+      overflow-y: auto;
+    }
+
+    .mobile-menu__list {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1.5rem 1.5rem;
+    }
+
+    .mobile-menu__list a {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__list a:hover,
+    .mobile-menu__list a:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__services-label {
+      display: block;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      color: #00395d;
+      text-decoration: none;
+      padding: 0.85rem 0 0.4rem;
+      border-bottom: 1px solid rgba(0, 57, 93, 0.08);
+      transition: color 0.2s ease;
+    }
+
+    .mobile-menu__services-label:hover,
+    .mobile-menu__services-label:active {
+      color: #00aeef;
+    }
+
+    .mobile-menu__sublist {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+    }
+
+    .mobile-menu__sublist a {
+      font-size: 0.92rem;
+      font-weight: 400;
+      padding: 0.65rem 0;
+    }
+
+    /* Show hamburger + hide desktop nav links on tablets/mobile */
+    @media (max-width: 1024px) {
+      header.nav {
+        position: relative;
+        grid-template-columns: auto 1fr auto auto;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER (INDEX İLE BİREBİR AYNI) -->
+  <header class="nav">
+    <!-- SOL: Logo -->
+    <div class="nav-left">
+      <a href="/" class="nav__brand" aria-label="MySEO">
+        <img src="/images/logo.png" alt="MySEO" height="145" />
+      </a>
+    </div>
+
+    <!-- ORTA: Navigation linkleri (TAM ORTADA) -->
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="dropdown">
+        <a href="#Services" class="dropdown-trigger" data-i18n="nav.services">Services</a>
+        <div class="dropdown-menu">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+      </div>
+
+      <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <!-- SAĞ: Dil butonları (EN SAĞDA) -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="bg">BG</button>
+    </div>
+
+    <!-- MOBILE ONLY: Hamburger button (≤1024px) -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MOBILE ONLY: Dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__list" aria-label="Mobile Primary">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+
+        <a href="/#Services" class="mobile-menu__services-label" data-i18n="nav.services">Services</a>
+        <div class="mobile-menu__sublist">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+
+        <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="strategy-page">
+
+    <!-- HERO (3D VISUAL KALDIRILDI) -->
+    <section class="strategy-hero">
+      <div class="strategy-hero__blob" aria-hidden="true"></div>
+      <div class="strategy-hero__blob2" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="strategy-hero__left">
+          <span class="eyebrow reveal" data-i18n="strategy.hero.eyebrow">Digital Strategy</span>
+          <h1 class="reveal" data-i18n="strategy.hero.title">Strategy That Turns<br><em>Vision Into Growth.</em></h1>
+          <p class="strategy-hero__desc reveal" data-i18n="strategy.hero.desc">
+            We help ambitious brands build clear, data-driven roadmaps that align every channel, touchpoint and investment into one powerful growth engine.
+          </p>
+          <a href="contact.html" class="cta-btn reveal" data-i18n="strategy.hero.cta">
+            Let’s build your roadmap
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="strategy-services">
+      <div class="wrap">
+        <div class="strategy-services__head">
+          <span class="eyebrow reveal" data-i18n="strategy.services.eyebrow">What we deliver</span>
+          <h2 class="reveal" data-i18n="strategy.services.title">Our Digital Strategy Services</h2>
+        </div>
+
+        <div class="strategy-grid">
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.growth.title">Growth Strategy</h3>
+            <p data-i18n="strategy.card.growth.text">Comprehensive growth roadmaps that connect business goals with the right digital initiatives and priorities.</p>
+          </div>
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.market.title">Market & Competitor Analysis</h3>
+            <p data-i18n="strategy.card.market.text">In-depth research into your market, competitors, and opportunities to uncover where you can win.</p>
+          </div>
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.journey.title">Customer Journey Mapping</h3>
+            <p data-i18n="strategy.card.journey.text">Deep understanding of how your audience discovers, evaluates and converts — then optimizing every step.</p>
+          </div>
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.channel.title">Channel Strategy</h3>
+            <p data-i18n="strategy.card.channel.text">Deciding where to play and how to win across SEO, paid, social, content and email with clear priorities.</p>
+          </div>
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.positioning.title">Brand Positioning</h3>
+            <p data-i18n="strategy.card.positioning.text">Defining how you want to be perceived in the market and ensuring every touchpoint reinforces that position.</p>
+          </div>
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.funnel.title">Funnel & Conversion Planning</h3>
+            <p data-i18n="strategy.card.funnel.text">Designing high-converting customer journeys from awareness to purchase and advocacy.</p>
+          </div>
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.data.title">Data & Analytics Framework</h3>
+            <p data-i18n="strategy.card.data.text">Setting up the right measurement, dashboards and KPIs so you always know what’s working and why.</p>
+          </div>
+
+          <div class="strategy-card reveal" data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+            </div>
+            <h3 data-i18n="strategy.card.optimization.title">Ongoing Optimization</h3>
+            <p data-i18n="strategy.card.optimization.text">Quarterly strategy reviews, performance audits and continuous improvement recommendations.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY DIGITAL STRATEGY -->
+    <section class="strategy-why">
+      <div class="wrap">
+        <div class="strategy-why__inner reveal">
+          <div class="strategy-why__left">
+            <span class="eyebrow" data-i18n="strategy.why.eyebrow">Why strategy first?</span>
+            <h2 data-i18n="strategy.why.title">Without strategy,<br>marketing is just <span>noise.</span></h2>
+          </div>
+          <div class="strategy-why__right">
+            <p data-i18n="strategy.why.text1">Most businesses waste budget on disconnected tactics. A strong digital strategy ensures every euro, every post, every campaign works toward the same clear objective — sustainable, profitable growth.</p>
+            <p data-i18n="strategy.why.text2">We don’t just deliver a document. We build a living roadmap that aligns your team, guides your agencies, and gives you the confidence to invest in the right places at the right time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MULTILINGUAL SCRIPT -->
+  <script>
+    const translations = {
+      en: {
+        "nav.home": "Home",
+        "nav.about": "About",
+        "nav.services": "Services",
+        "nav.sectors": "Sectors",
+        "nav.contact": "Contact",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Social Media Management",
+        "dropdown.strategy": "Digital Strategy",
+        "strategy.hero.eyebrow": "Digital Strategy",
+        "strategy.hero.title": "Strategy That Turns<br><em>Vision Into Growth.</em>",
+        "strategy.hero.desc": "We help ambitious brands build clear, data-driven roadmaps that align every channel, touchpoint and investment into one powerful growth engine.",
+        "strategy.hero.cta": "Let’s build your roadmap",
+        "strategy.services.eyebrow": "What we deliver",
+        "strategy.services.title": "Our Digital Strategy Services",
+        "strategy.card.growth.title": "Growth Strategy",
+        "strategy.card.growth.text": "Comprehensive growth roadmaps that connect business goals with the right digital initiatives and priorities.",
+        "strategy.card.market.title": "Market & Competitor Analysis",
+        "strategy.card.market.text": "In-depth research into your market, competitors, and opportunities to uncover where you can win.",
+        "strategy.card.journey.title": "Customer Journey Mapping",
+        "strategy.card.journey.text": "Deep understanding of how your audience discovers, evaluates and converts — then optimizing every step.",
+        "strategy.card.channel.title": "Channel Strategy",
+        "strategy.card.channel.text": "Deciding where to play and how to win across SEO, paid, social, content and email with clear priorities.",
+        "strategy.card.positioning.title": "Brand Positioning",
+        "strategy.card.positioning.text": "Defining how you want to be perceived in the market and ensuring every touchpoint reinforces that position.",
+        "strategy.card.funnel.title": "Funnel & Conversion Planning",
+        "strategy.card.funnel.text": "Designing high-converting customer journeys from awareness to purchase and advocacy.",
+        "strategy.card.data.title": "Data & Analytics Framework",
+        "strategy.card.data.text": "Setting up the right measurement, dashboards and KPIs so you always know what’s working and why.",
+        "strategy.card.optimization.title": "Ongoing Optimization",
+        "strategy.card.optimization.text": "Quarterly strategy reviews, performance audits and continuous improvement recommendations.",
+        "strategy.why.eyebrow": "Why strategy first?",
+        "strategy.why.title": "Without strategy,<br>marketing is just <span>noise.</span>",
+        "strategy.why.text1": "Most businesses waste budget on disconnected tactics. A strong digital strategy ensures every euro, every post, every campaign works toward the same clear objective — sustainable, profitable growth.",
+        "strategy.why.text2": "We don’t just deliver a document. We build a living roadmap that aligns your team, guides your agencies, and gives you the confidence to invest in the right places at the right time."
+      },
+      tr: {
+        "nav.home": "Ana Sayfa",
+        "nav.about": "Hakkımızda",
+        "nav.services": "Hizmetler",
+        "nav.sectors": "Sektörler",
+        "nav.contact": "İletişim",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Sosyal Medya Yönetimi",
+        "dropdown.strategy": "Dijital Strateji",
+        "strategy.hero.eyebrow": "Dijital Strateji",
+        "strategy.hero.title": "Vizyonu Büyümeye<br><em>Dönüştüren Strateji.</em>",
+        "strategy.hero.desc": "İddialı markaların her kanalı, temas noktasını ve yatırımı tek bir güçlü büyüme motorunda birleştiren net, veri odaklı yol haritaları oluşturmasına yardımcı oluyoruz.",
+        "strategy.hero.cta": "Yol haritanızı oluşturalım",
+        "strategy.services.eyebrow": "Neler sunuyoruz",
+        "strategy.services.title": "Dijital Strateji Hizmetlerimiz",
+        "strategy.card.growth.title": "Büyüme Stratejisi",
+        "strategy.card.growth.text": "İş hedeflerini doğru dijital girişimlerle ve önceliklerle bağlayan kapsamlı büyüme yol haritaları.",
+        "strategy.card.market.title": "Pazar & Rakip Analizi",
+        "strategy.card.market.text": "Pazarınızı, rakiplerinizi ve fırsatları derinlemesine araştırarak nerede kazanabileceğinizi ortaya çıkarıyoruz.",
+        "strategy.card.journey.title": "Müşteri Yolculuğu Haritalama",
+        "strategy.card.journey.text": "Hedef kitlenizin nasıl keşfettiğini, değerlendirdiğini ve dönüştüğünü derinlemesine anlamak — sonra her adımı optimize etmek.",
+        "strategy.card.channel.title": "Kanal Stratejisi",
+        "strategy.card.channel.text": "SEO, ücretli, sosyal, içerik ve e-posta arasında nerede oynanacağını ve nasıl kazanılacağını net önceliklerle belirlemek.",
+        "strategy.card.positioning.title": "Marka Konumlandırma",
+        "strategy.card.positioning.text": "Pazarda nasıl algılanmak istediğinizi tanımlamak ve her temas noktasının bu konumu güçlendirmesini sağlamak.",
+        "strategy.card.funnel.title": "Huni & Dönüşüm Planlaması",
+        "strategy.card.funnel.text": "Farkındalıktan satın almaya ve savunuculuğa kadar yüksek dönüştürücü müşteri yolculukları tasarlamak.",
+        "strategy.card.data.title": "Veri & Analiz Çerçevesi",
+        "strategy.card.data.text": "Neyin işe yaradığını ve nedenini her zaman bilmeniz için doğru ölçüm, paneller ve KPI'lar kurmak.",
+        "strategy.card.optimization.title": "Sürekli Optimizasyon",
+        "strategy.card.optimization.text": "Çeyreklik strateji incelemeleri, performans denetimleri ve sürekli iyileştirme önerileri.",
+        "strategy.why.eyebrow": "Neden önce strateji?",
+        "strategy.why.title": "Strateji olmadan,<br>pazarlama sadece <span>gürültüdür.</span>",
+        "strategy.why.text1": "Çoğu işletme bağlantısız taktiklere bütçe harcar. Güçlü bir dijital strateji, her euronun, her gönderinin, her kampanyanın aynı net hedefe — sürdürülebilir, karlı büyümeye — çalışmasını sağlar.",
+        "strategy.why.text2": "Sadece bir belge teslim etmiyoruz. Ekibinizi hizalayan, ajanslarınızı yönlendiren ve doğru yerlere doğru zamanda yatırım yapma güveni veren yaşayan bir yol haritası oluşturuyoruz."
+      },
+      bg: {
+        "nav.home": "Начало",
+        "nav.about": "За нас",
+        "nav.services": "Услуги",
+        "nav.sectors": "Сектори",
+        "nav.contact": "Контакти",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Платени Медии",
+        "dropdown.social": "Управление на социални медии",
+        "dropdown.strategy": "Дигитална стратегия",
+        "strategy.hero.eyebrow": "Дигитална стратегия",
+        "strategy.hero.title": "Стратегия, която превръща<br><em>визията в растеж.</em>",
+        "strategy.hero.desc": "Помагаме на амбициозни брандове да изградят ясни, базирани на данни пътни карти, които обединяват всеки канал, точка на контакт и инвестиция в един мощен двигател за растеж.",
+        "strategy.hero.cta": "Нека изградим вашата пътна карта",
+        "strategy.services.eyebrow": "Какво предлагаме",
+        "strategy.services.title": "Нашите услуги за дигитална стратегия",
+        "strategy.card.growth.title": "Стратегия за растеж",
+        "strategy.card.growth.text": "Цялостни пътни карти за растеж, които свързват бизнес целите с правилните дигитални инициативи и приоритети.",
+        "strategy.card.market.title": "Анализ на пазара и конкурентите",
+        "strategy.card.market.text": "Задълбочено проучване на вашия пазар, конкуренти и възможности, за да открием къде можете да спечелите.",
+        "strategy.card.journey.title": "Картиране на клиентското пътуване",
+        "strategy.card.journey.text": "Дълбоко разбиране на това как вашата аудитория открива, оценява и конвертира — и след това оптимизиране на всяка стъпка.",
+        "strategy.card.channel.title": "Канална стратегия",
+        "strategy.card.channel.text": "Решаване къде да играете и как да спечелите в SEO, платени медии, социални мрежи, съдържание и имейл с ясни приоритети.",
+        "strategy.card.positioning.title": "Бранд позициониране",
+        "strategy.card.positioning.text": "Дефиниране как искате да бъдете възприемани на пазара и гарантиране, че всяка точка на контакт подсилва тази позиция.",
+        "strategy.card.funnel.title": "Планиране на фуния и конверсия",
+        "strategy.card.funnel.text": "Проектиране на висококонвертиращи клиентски пътувания от осъзнаване до покупка и застъпничество.",
+        "strategy.card.data.title": "Рамка за данни и анализи",
+        "strategy.card.data.text": "Настройване на правилното измерване, табла и KPI, така че винаги да знаете какво работи и защо.",
+        "strategy.card.optimization.title": "Непрекъсната оптимизация",
+        "strategy.card.optimization.text": "Тримесечни прегледи на стратегията, одити на представянето и препоръки за непрекъснато подобрение.",
+        "strategy.why.eyebrow": "Защо първо стратегия?",
+        "strategy.why.title": "Без стратегия,<br>маркетингът е просто <span>шум.</span>",
+        "strategy.why.text1": "Повечето бизнеси харчат бюджет за несвързани тактики. Силната дигитална стратегия гарантира, че всяко евро, всеки пост, всяка кампания работи към една ясна цел — устойчив, печеливш растеж.",
+        "strategy.why.text2": "Ние не просто доставяме документ. Ние изграждаме жива пътна карта, която обединява вашия екип, насочва вашите агенции и ви дава увереност да инвестирате в правилните места в правилното време."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      try {
+        localStorage.setItem('preferredLang', lang);
+      } catch (e) {}
+
+      document.documentElement.lang = lang;
+    }
+
+    function initLanguageSwitcher() {
+      const buttons = document.querySelectorAll('.lang-btn');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      setLanguage(savedLang);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+    } else {
+      initLanguageSwitcher();
+    }
+  </script>
+
+  <!-- MOBILE HAMBURGER MENU LOGIC -->
+  <script>
+    (function () {
+      function initHamburgerMenu() {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (!hamburgerBtn || !mobileMenu) return;
+
+        function openMenu() {
+          hamburgerBtn.classList.add('is-open');
+          mobileMenu.classList.add('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+          hamburgerBtn.classList.remove('is-open');
+          mobileMenu.classList.remove('is-open');
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu() {
+          if (mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        hamburgerBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when a link inside it is clicked
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function (e) {
+          if (
+            mobileMenu.classList.contains('is-open') &&
+            !mobileMenu.contains(e.target) &&
+            !hamburgerBtn.contains(e.target)
+          ) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on resize back to desktop
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 1024) {
+            closeMenu();
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+      } else {
+        initHamburgerMenu();
+      }
+    })();
+  </script>
+</body>
+</html>
