@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Design &amp; Development | MySEO</title>
+  <meta name="description" content="MySEO Digital web design and development services — structured, tested, and built to hold up under real traffic." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+
+  <link rel="stylesheet" href="webdesign.css" />
+</head>
+<body>
+
+  <!-- HEADER (Index.html ile birebir aynı yapı — user-authored, untouched) -->
+  <header class="nav">
+    <!-- SOL: Logo -->
+    <div class="nav-left">
+      <a href="/" class="nav__brand" aria-label="MySEO">
+        <img src="/images/logo.png" alt="MySEO" height="145" />
+      </a>
+    </div>
+
+    <!-- ORTA: Navigation linkleri (tam ortada) -->
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="dropdown">
+        <a href="#Services" class="dropdown-trigger" data-i18n="nav.services">Services</a>
+        <div class="dropdown-menu">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+      </div>
+
+      <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <!-- SAĞ: Dil butonları -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="bg">BG</button>
+    </div>
+
+    <!-- MOBILE ONLY: Hamburger button (≤1024px) -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MOBILE ONLY: Dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__list" aria-label="Mobile Primary">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+
+        <a href="/#Services" class="mobile-menu__services-label" data-i18n="nav.services">Services</a>
+        <div class="mobile-menu__sublist">
+          <a href="seo.html" data-i18n="dropdown.seo">SEO</a>
+          <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
+          <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
+          <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+        </div>
+
+        <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+<main class="wd-main">
+
+  <!-- ============ HERO ============ -->
+  <section class="wd-hero">
+    <div class="wd-container wd-hero__grid">
+      <div>
+        <span class="wd-eyebrow" data-i18n="webdesign.hero_eyebrow">Web Design &amp; Development</span>
+        <h1 class="wd-title wd-hero__title">
+          <span data-i18n="webdesign.hero_title_1">Design that thinks</span><br />
+          <em data-i18n="webdesign.hero_title_2">like a system.</em>
+        </h1>
+        <p class="wd-lead wd-hero__desc" data-i18n="webdesign.hero_desc">
+          We design and build websites the way engineers build products: structured, tested, and made to hold up under real traffic — not just to look good in a preview.
+        </p>
+        <div class="wd-hero__actions">
+          <a class="wd-btn" href="contact.html" data-i18n="webdesign.hero_cta_primary">Start a project</a>
+          <a class="wd-link" href="#wd-process">
+            <span data-i18n="webdesign.hero_cta_secondary">See how we work</span>
+            <span class="wd-link__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="wd-browser" id="wdBrowser">
+          <div class="wd-browser__bar">
+            <span></span><span></span><span></span>
+            <span class="wd-browser__url" data-i18n="webdesign.hero_visual_url">yoursite.com</span>
+          </div>
+          <svg class="wd-browser__grid" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wireframe layout resolving into a finished page">
+            <defs>
+              <linearGradient id="wdGradFill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" style="stop-color:var(--accent)" />
+                <stop offset="1" style="stop-color:var(--accent-cyan)" />
+              </linearGradient>
+            </defs>
+
+            <line class="wd-grid-line" x1="24" y1="24" x2="456" y2="24" style="animation-delay:0s" />
+            <line class="wd-grid-line" x1="24" y1="24" x2="24" y2="296" style="animation-delay:0.1s" />
+            <line class="wd-grid-line" x1="456" y1="24" x2="456" y2="296" style="animation-delay:0.1s" />
+            <line class="wd-grid-line" x1="24" y1="296" x2="456" y2="296" style="animation-delay:0.2s" />
+            <line class="wd-grid-line" x1="240" y1="106" x2="240" y2="210" style="animation-delay:0.3s" />
+
+            <rect class="wd-grid-block--accent" x="24" y="24" width="432" height="46" rx="5" style="animation-delay:1.3s" />
+            <circle class="wd-grid-dot" cx="44" cy="47" r="4" style="animation-delay:1.5s" fill="#fff" />
+            <rect class="wd-grid-block" x="70" y="41" width="70" height="12" rx="3" style="animation-delay:1.55s" fill="rgba(255,255,255,0.55)" stroke="none" />
+
+            <rect class="wd-grid-block" x="24" y="106" width="208" height="104" rx="5" style="animation-delay:1.7s" />
+            <rect class="wd-grid-dot" x="44" y="128" width="90" height="9" rx="2" style="animation-delay:1.9s" />
+            <rect class="wd-grid-dot" x="44" y="147" width="150" height="6" rx="2" style="animation-delay:1.95s" />
+            <rect class="wd-grid-dot" x="44" y="160" width="130" height="6" rx="2" style="animation-delay:2s" />
+
+            <rect class="wd-grid-block" x="248" y="106" width="208" height="104" rx="5" style="animation-delay:1.8s" />
+            <rect class="wd-grid-dot" x="268" y="128" width="90" height="9" rx="2" style="animation-delay:2s" />
+            <rect class="wd-grid-dot" x="268" y="147" width="150" height="6" rx="2" style="animation-delay:2.05s" />
+            <rect class="wd-grid-dot" x="268" y="160" width="130" height="6" rx="2" style="animation-delay:2.1s" />
+
+            <rect class="wd-grid-block" x="24" y="230" width="432" height="66" rx="5" style="animation-delay:2.1s" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="wd-process" id="wd-process">
+    <div class="wd-container">
+      <div class="wd-section__head wd-reveal">
+        <span class="wd-eyebrow" data-i18n="webdesign.process_eyebrow">Our Process</span>
+        <h2 class="wd-title wd-section__title" data-i18n="webdesign.process_title">From brief to launch, in four moves.</h2>
+      </div>
+
+      <div class="wd-timeline">
+        <div class="wd-timeline__line" aria-hidden="true"></div>
+
+        <div class="wd-step">
+          <div class="wd-step__num wd-reveal">01</div>
+          <div class="wd-step__body wd-reveal">
+            <span class="wd-step__tag" data-i18n="webdesign.process_1_tag">Week 1</span>
+            <h3 class="wd-step__title" data-i18n="webdesign.process_1_title">Discover</h3>
+            <p class="wd-step__desc" data-i18n="webdesign.process_1_desc">We audit your current site, map your competitors, and scope the technical requirements before a single pixel is placed.</p>
+          </div>
+        </div>
+
+        <div class="wd-step">
+          <div class="wd-step__num wd-reveal">02</div>
+          <div class="wd-step__body wd-reveal">
+            <span class="wd-step__tag" data-i18n="webdesign.process_2_tag">Weeks 2–3</span>
+            <h3 class="wd-step__title" data-i18n="webdesign.process_2_title">Design</h3>
+            <p class="wd-step__desc" data-i18n="webdesign.process_2_desc">Wireframes, art direction, and a reusable component system — designed for every screen size from the first draft.</p>
+          </div>
+        </div>
+
+        <div class="wd-step">
+          <div class="wd-step__num wd-reveal">03</div>
+          <div class="wd-step__body wd-reveal">
+            <span class="wd-step__tag" data-i18n="webdesign.process_3_tag">Weeks 4–6</span>
+            <h3 class="wd-step__title" data-i18n="webdesign.process_3_title">Build</h3>
+            <p class="wd-step__desc" data-i18n="webdesign.process_3_desc">Semantic markup, performance budgets, and CMS integration — engineered to standards, not patched afterward.</p>
+          </div>
+        </div>
+
+        <div class="wd-step">
+          <div class="wd-step__num wd-reveal">04</div>
+          <div class="wd-step__body wd-reveal">
+            <span class="wd-step__tag" data-i18n="webdesign.process_4_tag">Week 7</span>
+            <h3 class="wd-step__title" data-i18n="webdesign.process_4_title">Launch</h3>
+            <p class="wd-step__desc" data-i18n="webdesign.process_4_desc">Cross-device QA, analytics wired in, and clear documentation handed over so your team can run with it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE SHOWCASE ============ -->
+  <section class="wd-features">
+    <div class="wd-container">
+      <div class="wd-section__head wd-reveal">
+        <span class="wd-eyebrow" data-i18n="webdesign.features_eyebrow">What&#39;s Included</span>
+        <h2 class="wd-title wd-section__title" data-i18n="webdesign.features_title">Every build, held to the same standard.</h2>
+      </div>
+
+      <div class="wd-card-grid">
+        <div class="wd-card wd-reveal">
+          <span class="wd-card__index" data-i18n="webdesign.feature_1_index">01 / 04</span>
+          <h3 class="wd-card__title" data-i18n="webdesign.feature_1_title">Responsive by default</h3>
+          <p class="wd-card__desc" data-i18n="webdesign.feature_1_desc">Every layout is tested from 320px to ultra-wide displays — no breakpoint left to chance.</p>
+        </div>
+
+        <div class="wd-card wd-reveal">
+          <span class="wd-card__index" data-i18n="webdesign.feature_2_index">02 / 04</span>
+          <h3 class="wd-card__title" data-i18n="webdesign.feature_2_title">Performance engineered</h3>
+          <p class="wd-card__desc" data-i18n="webdesign.feature_2_desc">Core Web Vitals are a target from the first commit, not a fix squeezed in after launch.</p>
+        </div>
+
+        <div class="wd-card wd-reveal">
+          <span class="wd-card__index" data-i18n="webdesign.feature_3_index">03 / 04</span>
+          <h3 class="wd-card__title" data-i18n="webdesign.feature_3_title">SEO-ready architecture</h3>
+          <p class="wd-card__desc" data-i18n="webdesign.feature_3_desc">Semantic structure, clean metadata, and crawlable markup are built into every template.</p>
+        </div>
+
+        <div class="wd-card wd-reveal">
+          <span class="wd-card__index" data-i18n="webdesign.feature_4_index">04 / 04</span>
+          <h3 class="wd-card__title" data-i18n="webdesign.feature_4_title">Built to be maintained</h3>
+          <p class="wd-card__desc" data-i18n="webdesign.feature_4_desc">Clear documentation and a CMS your team can actually use, long after we hand it over.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="wd-cta">
+    <div class="wd-container">
+      <div class="wd-cta__inner wd-reveal">
+        <span class="wd-eyebrow" data-i18n="webdesign.cta_eyebrow">Start Here</span>
+        <h2 class="wd-title wd-cta__title" data-i18n="webdesign.cta_title">Have a site worth building well?</h2>
+        <p class="wd-lead wd-cta__desc" data-i18n="webdesign.cta_desc">Tell us about the project. We&#39;ll reply within one business day with next steps.</p>
+        <div class="wd-cta__actions">
+          <a class="wd-btn" href="contact.html" data-i18n="webdesign.cta_button">Start your project</a>
+          <a class="wd-link" href="mailto:hello@myseodigital.com">
+            <span data-i18n="webdesign.cta_email_link">Or email us directly</span>
+            <span class="wd-link__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER (page-local, minimal) ============ -->
+  <div class="wd-footer">
+    <div class="wd-container wd-footer__row">
+      <span class="wd-footer__mark" data-i18n="webdesign.footer_mark">MySEO Digital — Web Design &amp; Development</span>
+      <a href="#top" class="wd-footer__back" data-i18n="footer.back">Back to top ↑</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ============ LANGUAGE SYSTEM: self-sufficient, plays nice with an existing setup ============ -->
+<script>
+  (function () {
+    var wdTranslations = {
+      en: {
+        "nav.home": "Home",
+        "nav.about": "About",
+        "nav.services": "Services",
+        "nav.sectors": "Sectors",
+        "nav.contact": "Contact",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Social Media Management",
+        "dropdown.strategy": "Digital Strategy",
+        "dropdown.webdesign": "Web &amp; Design",
+        "footer.back": "Back to top ↑",
+        "webdesign.hero_eyebrow": "Web design &amp; development",
+        "webdesign.hero_title_1": "Design that thinks",
+        "webdesign.hero_title_2": "like a system.",
+        "webdesign.hero_desc": "We design and build websites the way engineers build products: structured, tested, and made to hold up under real traffic — not just to look good in a preview.",
+        "webdesign.hero_cta_primary": "Start a project",
+        "webdesign.hero_cta_secondary": "See how we work",
+        "webdesign.hero_visual_url": "yoursite.com",
+        "webdesign.process_eyebrow": "Our process",
+        "webdesign.process_title": "From brief to launch, in four moves.",
+        "webdesign.process_1_tag": "Week 1",
+        "webdesign.process_1_title": "Discover",
+        "webdesign.process_1_desc": "We audit your current site, map your competitors, and scope the technical requirements before a single pixel is placed.",
+        "webdesign.process_2_tag": "Weeks 2–3",
+        "webdesign.process_2_title": "Design",
+        "webdesign.process_2_desc": "Wireframes, art direction, and a reusable component system — designed for every screen size from the first draft.",
+        "webdesign.process_3_tag": "Weeks 4–6",
+        "webdesign.process_3_title": "Build",
+        "webdesign.process_3_desc": "Semantic markup, performance budgets, and CMS integration — engineered to standards, not patched afterward.",
+        "webdesign.process_4_tag": "Week 7",
+        "webdesign.process_4_title": "Launch",
+        "webdesign.process_4_desc": "Cross-device QA, analytics wired in, and clear documentation handed over so your team can run with it.",
+        "webdesign.features_eyebrow": "What's included",
+        "webdesign.features_title": "Every build, held to the same standard.",
+        "webdesign.feature_1_index": "01 / 04",
+        "webdesign.feature_1_title": "Responsive by default",
+        "webdesign.feature_1_desc": "Every layout is tested from 320px to ultra-wide displays — no breakpoint left to chance.",
+        "webdesign.feature_2_index": "02 / 04",
+        "webdesign.feature_2_title": "Performance engineered",
+        "webdesign.feature_2_desc": "Core Web Vitals are a target from the first commit, not a fix squeezed in after launch.",
+        "webdesign.feature_3_index": "03 / 04",
+        "webdesign.feature_3_title": "SEO-ready architecture",
+        "webdesign.feature_3_desc": "Semantic structure, clean metadata, and crawlable markup are built into every template.",
+        "webdesign.feature_4_index": "04 / 04",
+        "webdesign.feature_4_title": "Built to be maintained",
+        "webdesign.feature_4_desc": "Clear documentation and a CMS your team can actually use, long after we hand it over.",
+        "webdesign.cta_eyebrow": "Start here",
+        "webdesign.cta_title": "Have a site worth building well?",
+        "webdesign.cta_desc": "Tell us about the project. We'll reply within one business day with next steps.",
+        "webdesign.cta_button": "Start your project",
+        "webdesign.cta_email_link": "Or email us directly",
+        "webdesign.footer_mark": "MySEO Digital — Web design &amp; development"
+      },
+      tr: {
+        "nav.home": "Ana Sayfa",
+        "nav.about": "Hakkımızda",
+        "nav.services": "Hizmetler",
+        "nav.sectors": "Sektörler",
+        "nav.contact": "İletişim",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Paid Media",
+        "dropdown.social": "Sosyal Medya Yönetimi",
+        "dropdown.strategy": "Dijital Strateji",
+        "dropdown.webdesign": "Web &amp; Tasarım",
+        "footer.back": "Başa dön ↑",
+        "webdesign.hero_eyebrow": "Web tasarım &amp; geliştirme",
+        "webdesign.hero_title_1": "Bir sistem gibi",
+        "webdesign.hero_title_2": "düşünen tasarım.",
+        "webdesign.hero_desc": "Web sitelerini mühendislerin ürün geliştirdiği gibi tasarlıyor ve kuruyoruz: yapılandırılmış, test edilmiş ve gerçek trafik altında dayanıklı — sadece önizlemede iyi görünmesi için değil.",
+        "webdesign.hero_cta_primary": "Bir proje başlat",
+        "webdesign.hero_cta_secondary": "Nasıl çalıştığımızı gör",
+        "webdesign.hero_visual_url": "sizinsite.com",
+        "webdesign.process_eyebrow": "Sürecimiz",
+        "webdesign.process_title": "Brief'ten yayına, dört adımda.",
+        "webdesign.process_1_tag": "1. Hafta",
+        "webdesign.process_1_title": "Keşif",
+        "webdesign.process_1_desc": "Tek bir piksel yerleştirilmeden önce mevcut sitenizi denetler, rakiplerinizi haritalar ve teknik gereksinimleri kapsamlandırırız.",
+        "webdesign.process_2_tag": "2–3. Hafta",
+        "webdesign.process_2_title": "Tasarım",
+        "webdesign.process_2_desc": "Wireframe'ler, sanat yönetimi ve yeniden kullanılabilir bir bileşen sistemi — ilk taslaktan itibaren her ekran boyutu için tasarlanır.",
+        "webdesign.process_3_tag": "4–6. Hafta",
+        "webdesign.process_3_title": "Geliştirme",
+        "webdesign.process_3_desc": "Anlamsal (semantic) kod yapısı, performans bütçeleri ve CMS entegrasyonu — standartlara göre kurulur, sonradan yamanmaz.",
+        "webdesign.process_4_tag": "7. Hafta",
+        "webdesign.process_4_title": "Yayına Alma",
+        "webdesign.process_4_desc": "Tüm cihazlarda kalite kontrolü, analitik entegrasyonu ve ekibinizin devam ettirebileceği net dokümantasyon.",
+        "webdesign.features_eyebrow": "Neler dahil",
+        "webdesign.features_title": "Her proje, aynı standartla tamamlanır.",
+        "webdesign.feature_1_index": "01 / 04",
+        "webdesign.feature_1_title": "Varsayılan olarak duyarlı (responsive)",
+        "webdesign.feature_1_desc": "Her yerleşim 320px'ten ultra geniş ekranlara kadar test edilir — hiçbir kırılma noktası şansa bırakılmaz.",
+        "webdesign.feature_2_index": "02 / 04",
+        "webdesign.feature_2_title": "Performans odaklı mühendislik",
+        "webdesign.feature_2_desc": "Core Web Vitals ilk commit'ten itibaren hedeftir, yayından sonra sıkıştırılan bir düzeltme değil.",
+        "webdesign.feature_3_index": "03 / 04",
+        "webdesign.feature_3_title": "SEO'ya hazır mimari",
+        "webdesign.feature_3_desc": "Anlamsal yapı, temiz meta veriler ve taranabilir kod her şablona dahil edilir.",
+        "webdesign.feature_4_index": "04 / 04",
+        "webdesign.feature_4_title": "Sürdürülebilir olacak şekilde kurulur",
+        "webdesign.feature_4_desc": "Net dokümantasyon ve ekibinizin teslimden çok sonra bile gerçekten kullanabileceği bir CMS.",
+        "webdesign.cta_eyebrow": "Buradan başlayın",
+        "webdesign.cta_title": "İyi kurulmayı hak eden bir siteniz mi var?",
+        "webdesign.cta_desc": "Projenizden bahsedin. Bir iş günü içinde sonraki adımlarla size dönüş yaparız.",
+        "webdesign.cta_button": "Projenizi başlatın",
+        "webdesign.cta_email_link": "Ya da doğrudan e-posta gönderin",
+        "webdesign.footer_mark": "MySEO Digital — Web tasarım &amp; geliştirme"
+      },
+      bg: {
+        "nav.home": "Начало",
+        "nav.about": "За нас",
+        "nav.services": "Услуги",
+        "nav.sectors": "Сектори",
+        "nav.contact": "Контакти",
+        "dropdown.seo": "SEO",
+        "dropdown.paid": "Платени Медии",
+        "dropdown.social": "Управление на социални медии",
+        "dropdown.strategy": "Дигитална стратегия",
+        "dropdown.webdesign": "Уеб &amp; Дизайн",
+        "footer.back": "Към началото ↑",
+        "webdesign.hero_eyebrow": "Уеб дизайн &amp; разработка",
+        "webdesign.hero_title_1": "Дизайн, който мисли",
+        "webdesign.hero_title_2": "като система.",
+        "webdesign.hero_desc": "Проектираме и изграждаме уебсайтове по начина, по който инженерите изграждат продукти: структурирани, тествани и издръжливи при реален трафик — не просто красиви в предварителния преглед.",
+        "webdesign.hero_cta_primary": "Стартирайте проект",
+        "webdesign.hero_cta_secondary": "Вижте как работим",
+        "webdesign.hero_visual_url": "vashiiat-sait.com",
+        "webdesign.process_eyebrow": "Нашият процес",
+        "webdesign.process_title": "От бриф до пускане в експлоатация, в четири стъпки.",
+        "webdesign.process_1_tag": "Седмица 1",
+        "webdesign.process_1_title": "Проучване",
+        "webdesign.process_1_desc": "Проверяваме текущия ви сайт, картографираме конкурентите ви и определяме техническите изисквания, преди да поставим и един пиксел.",
+        "webdesign.process_2_tag": "Седмици 2–3",
+        "webdesign.process_2_title": "Дизайн",
+        "webdesign.process_2_desc": "Уайърфрейми, арт дирекция и система от компоненти за многократна употреба — проектирани за всеки размер екран от първата чернова.",
+        "webdesign.process_3_tag": "Седмици 4–6",
+        "webdesign.process_3_title": "Разработка",
+        "webdesign.process_3_desc": "Семантична маркировка, бюджети за производителност и интеграция с CMS — изградени по стандарт, а не закърпени по-късно.",
+        "webdesign.process_4_tag": "Седмица 7",
+        "webdesign.process_4_title": "Пускане в експлоатация",
+        "webdesign.process_4_desc": "Тестове на всички устройства, свързана аналитика и ясна документация, предадена на вашия екип.",
+        "webdesign.features_eyebrow": "Какво включва",
+        "webdesign.features_title": "Всеки проект, изграден по един и същ стандарт.",
+        "webdesign.feature_1_index": "01 / 04",
+        "webdesign.feature_1_title": "Адаптивност по подразбиране",
+        "webdesign.feature_1_desc": "Всеки layout се тества от 320px до свръхшироки екрани — нито една точка на прекъсване не е оставена на случайността.",
+        "webdesign.feature_2_index": "02 / 04",
+        "webdesign.feature_2_title": "Проектирана производителност",
+        "webdesign.feature_2_desc": "Core Web Vitals са цел от първия commit, а не поправка, добавена след пускането.",
+        "webdesign.feature_3_index": "03 / 04",
+        "webdesign.feature_3_title": "Архитектура, готова за SEO",
+        "webdesign.feature_3_desc": "Семантична структура, чисти метаданни и индексируема маркировка са вградени във всеки шаблон.",
+        "webdesign.feature_4_index": "04 / 04",
+        "webdesign.feature_4_title": "Изграден за лесна поддръжка",
+        "webdesign.feature_4_desc": "Ясна документация и CMS, който вашият екип реално може да използва дълго след предаването.",
+        "webdesign.cta_eyebrow": "Започнете тук",
+        "webdesign.cta_title": "Имате ли сайт, който заслужава да бъде изграден добре?",
+        "webdesign.cta_desc": "Разкажете ни за проекта. Ще отговорим в рамките на един работен ден със следващите стъпки.",
+        "webdesign.cta_button": "Стартирайте проекта си",
+        "webdesign.cta_email_link": "Или ни пишете директно",
+        "webdesign.footer_mark": "MySEO Digital — Уеб дизайн &amp; разработка"
+      }
+    };
+
+    // Reuse an existing shared translations object if this page's header script
+    // already created one (e.g. window.translations from a global i18n file).
+    // Otherwise, bootstrap it here so the page works standalone.
+    if (typeof window.translations === "object" && window.translations !== null) {
+      Object.keys(wdTranslations).forEach(function (lang) {
+        if (!window.translations[lang]) window.translations[lang] = {};
+        Object.assign(window.translations[lang], wdTranslations[lang]);
+      });
+    } else {
+      window.translations = wdTranslations;
+    }
+
+    var memoryLang = null;
+
+    function safeSetLang(lang) {
+      try {
+        localStorage.setItem("preferredLang", lang);
+      } catch (e) {
+        memoryLang = lang;
+      }
+    }
+
+    function safeGetLang() {
+      try {
+        return localStorage.getItem("preferredLang");
+      } catch (e) {
+        return memoryLang;
+      }
+    }
+
+    function applyLanguage(lang) {
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        var key = el.dataset.i18n;
+        if (window.translations[lang] && window.translations[lang][key]) {
+          el.innerHTML = window.translations[lang][key];
+        }
+      });
+      document.querySelectorAll(".lang-btn").forEach(function (btn) {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+      safeSetLang(lang);
+      document.documentElement.lang = lang;
+    }
+
+    // Reuse an existing setLanguage from the page's own header script if present,
+    // so we don't fight whatever system is already wired up. Otherwise, define
+    // one and wire up the buttons ourselves.
+    if (typeof window.setLanguage !== "function") {
+      window.setLanguage = applyLanguage;
+
+      document.querySelectorAll(".lang-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          window.setLanguage(btn.dataset.lang);
+        });
+      });
+    }
+
+    var current = safeGetLang() || document.documentElement.lang || "en";
+    window.setLanguage(current);
+  })();
+</script>
+
+<!-- MOBILE HAMBURGER MENU LOGIC -->
+<script>
+  (function () {
+    function initHamburgerMenu() {
+      var hamburgerBtn = document.getElementById('hamburgerBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      if (!hamburgerBtn || !mobileMenu) return;
+
+      function openMenu() {
+        hamburgerBtn.classList.add('is-open');
+        mobileMenu.classList.add('is-open');
+        hamburgerBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeMenu() {
+        hamburgerBtn.classList.remove('is-open');
+        mobileMenu.classList.remove('is-open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleMenu() {
+        if (mobileMenu.classList.contains('is-open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      }
+
+      hamburgerBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('click', function (e) {
+        if (
+          mobileMenu.classList.contains('is-open') &&
+          !mobileMenu.contains(e.target) &&
+          !hamburgerBtn.contains(e.target)
+        ) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 1024) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+    } else {
+      initHamburgerMenu();
+    }
+  })();
+</script>
+
+<script>
+  (function () {
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('.wd-reveal');
+    if ('IntersectionObserver' in window && !prefersReduced) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('wd-in');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      revealEls.forEach(function (el) { revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('wd-in'); });
+    }
+
+    // Timeline number highlight as each step enters view
+    var stepNums = document.querySelectorAll('.wd-step__num');
+    if ('IntersectionObserver' in window) {
+      var stepObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('wd-active');
+          }
+        });
+      }, { threshold: 0.6 });
+
+      stepNums.forEach(function (el) { stepObserver.observe(el); });
+    }
+
+    // Hero browser mockup — subtle pointer parallax (desktop, fine pointer, motion allowed only)
+    var browser = document.getElementById('wdBrowser');
+    var hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+    if (browser && hasFinePointer && !prefersReduced) {
+      var bounds;
+
+      browser.addEventListener('mouseenter', function () {
+        bounds = browser.getBoundingClientRect();
+      });
+
+      browser.addEventListener('mousemove', function (e) {
+        if (!bounds) bounds = browser.getBoundingClientRect();
+        var px = (e.clientX - bounds.left) / bounds.width - 0.5;
+        var py = (e.clientY - bounds.top) / bounds.height - 0.5;
+        var rotateY = px * 6;
+        var rotateX = py * -6;
+        browser.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+      });
+
+      browser.addEventListener('mouseleave', function () {
+        browser.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+      });
+    }
+  })();
+</script>
+
+<!-- ============ HEADER OFFSET FIX: prevents hero from rendering under a fixed/sticky header ============ -->
+<script>
+  (function () {
+    var header = document.querySelector('header.nav');
+    var main = document.querySelector('.wd-main');
+    if (!header || !main) return;
+
+    function adjustForHeader() {
+      var pos = window.getComputedStyle(header).position;
+      if (pos === 'fixed' || pos === 'sticky') {
+        main.style.paddingTop = header.offsetHeight + 'px';
+      } else {
+        main.style.paddingTop = '';
+      }
+    }
+
+    adjustForHeader();
+    window.addEventListener('resize', adjustForHeader);
+    window.addEventListener('load', adjustForHeader);
+
+    // Re-check once fonts finish loading, since a font swap can change header height
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(adjustForHeader);
+    }
+  })();
+</script>
+
+</body>
+</html>

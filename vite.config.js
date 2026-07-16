@@ -17,6 +17,7 @@ export default defineConfig({
         'digital-strategy': 'digital-strategy.html',
         'paid-media': 'paid-media.html',
         'social-media': 'social-media.html',
+        webdesign: 'webdesign.html' // Yeni Spline 3D sayfamızı buraya ekledik
       }
     }
   }
