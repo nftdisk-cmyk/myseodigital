@@ -1337,124 +1337,33 @@ section {
    --accent, --accent-cyan, --accent-grad, --fg, --fg-sec, --fg-dim, --rule,
    --bg, --bg-soft, --bg-card, --shadow-xs/sm/md/lg, --max, --gutter) and
    does not redeclare them.
+
+   NOTE (cleanup pass): the ".nav-left / .lang-switcher / .lang-btn /
+   .hamburger-btn / .mobile-menu" rule set that used to live here has been
+   REMOVED. It duplicated — with different, conflicting property values —
+   the header/mobile-menu styles already defined inline in index.html
+   (position: absolute dropdown vs. this section's position: fixed
+   full-screen overlay). Because both rule sets targeted the exact same
+   class names and this stylesheet loads before index.html's inline
+   <style> block, the browser was mixing properties from both definitions,
+   which is what broke the hamburger menu on mobile (partial white strip
+   instead of a full dropdown or a full overlay).
+
+   index.html already defines a complete, working version of:
+     .nav-left, .lang-switcher, .lang-btn, .lang-btn:hover, .lang-btn.active,
+     .hamburger-btn, .hamburger-btn span, .hamburger-btn.is-open span,
+     .mobile-menu, .mobile-menu.is-open, .mobile-menu__list,
+     .mobile-menu__services-label, .mobile-menu__sublist
+   so no replacement rules are needed here for index.html to work.
+
+   If webdesign.html specifically needs the fixed/full-screen centered
+   overlay style instead of the dropdown style, re-add a scoped version
+   here, e.g.:
+     body.webdesign-page .mobile-menu { ... }
+   and add class="webdesign-page" to <body> in webdesign.html only —
+   do NOT redeclare plain .mobile-menu / .hamburger-btn again, since that
+   recreates this exact conflict.
    --------------------------------------------------------------------------- */
-
-/* ---------------------------------------------------------------------------
-   Nav additions — this page's header markup uses a few class names that
-   aren't in styles.css yet (.nav-left, .lang-switcher, .lang-btn,
-   .hamburger-btn, .mobile-menu). Defined here so the shared header works
-   the same on this page as everywhere else.
-   --------------------------------------------------------------------------- */
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  justify-self: start;
-}
-
-.lang-switcher {
-  display: inline-flex;
-  gap: 6px;
-  justify-self: end;
-}
-
-.lang-btn {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--fg-dim);
-  background: none;
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 6px 11px;
-  cursor: pointer;
-  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-
-.lang-btn:hover {
-  color: var(--accent);
-  border-color: var(--accent-dim);
-}
-
-.lang-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-.hamburger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 101;
-}
-
-.hamburger-btn span {
-  width: 26px;
-  height: 2px;
-  background: var(--fg);
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-.hamburger-btn.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger-btn.is-open span:nth-child(2) { opacity: 0; }
-.hamburger-btn.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-14px);
-  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
-}
-
-.mobile-menu.is-open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.mobile-menu__list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 26px;
-  font-family: var(--serif);
-  font-size: 28px;
-  color: var(--fg);
-  text-align: center;
-}
-
-.mobile-menu__services-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-top: 6px;
-}
-
-.mobile-menu__sublist {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--sans);
-  font-size: 17px;
-  color: var(--fg-sec);
-}
 
 @media (max-width: 1024px) {
   .nav__links { display: none; }
@@ -1945,4 +1854,53 @@ header .nav__links a {
   color: #00395d !important;
   text-decoration: none !important;
   transition: color 0.2s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   HARD OVERRIDE — mobile dropdown menu
+   Previous version of this block forced `header.nav { position: relative }`
+   so the dropdown (position:absolute, top:100%) would anchor under it. That
+   had a side effect: the header stopped staying pinned while scrolling, so
+   the whole header+menu scrolled away with the page, making the menu look
+   like it was floating mid-content.
+
+   Fix: keep the header fixed (as originally designed), and make the menu
+   itself `position: fixed` too, anchored to the header's real rendered
+   height via the --header-h custom property (set by JS — see the
+   "MOBILE HAMBURGER MENU LOGIC" script in index.html). Body scroll is also
+   locked while the menu is open (via body.menu-open) so the page can't
+   scroll underneath it at all.
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  header.nav {
+    position: fixed !important;
+  }
+
+  .mobile-menu {
+    display: block !important;
+    position: fixed !important;
+    top: var(--header-h, 100px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    z-index: 999 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: visible !important;
+    transform: none !important;
+    background: #fff !important;
+    transition: max-height 0.3s ease, opacity 0.25s ease !important;
+  }
+
+  .mobile-menu.is-open {
+    max-height: calc(100vh - var(--header-h, 100px)) !important;
+    opacity: 1 !important;
+    overflow-y: auto !important;
+  }
+
+  body.menu-open {
+    overflow: hidden !important;
+  }
 }
