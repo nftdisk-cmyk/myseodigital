@@ -15,7 +15,6 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="MySEODigital">
     <link rel="canonical" href="https://myseodigital.com/">
-    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -475,14 +474,6 @@
     </header>
 
     <main>
-      <video 
-  autoplay 
-  muted 
-  loop 
-  playsinline
-  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
-  <source src="/videos/hero-loop.mp4" type="video/mp4">
-</video>
       <!--
   MOBILE-ONLY HERO — max-width: 1024px
   ------------------------------------------------------------
@@ -508,6 +499,11 @@
 
   <!-- ambient background -->
   <div class="m-hero__bg" aria-hidden="true">
+    <video 
+      autoplay muted loop playsinline
+      style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+      <source src="/videos/hero-loop.mp4" type="video/mp4">
+    </video>
     <div class="m-hero__grid"></div>
     <div class="m-hero__glow m-hero__glow--1"></div>
     <div class="m-hero__glow m-hero__glow--2"></div>
@@ -515,26 +511,20 @@
 
   <div class="m-hero__inner">
 
-    <p class="m-hero__eyebrow">
-      <span class="m-hero__dot" aria-hidden="true"></span>
-      Home
-    </p>
+<p class="m-hero__eyebrow">
+  <span class="m-hero__dot" aria-hidden="true"></span>
+  <span data-i18n="nav.home">Home</span>
+</p>
 
-   <h1 class="m-hero__title">
-  <span class="m-hero__line">
-    Digital
-  </span>
-
-  <span class="m-hero__line m-hero__line--accent">
-    Growth.
-  </span>
-
+<h1 class="m-hero__title">
+  <span class="m-hero__line" data-i18n="hero.digital">Digital</span>
+  <span class="m-hero__line m-hero__line--accent" data-i18n="hero.growth">Growth.</span>
   <span class="visually-hidden">
     Digital Marketing & SEO Agency in Varna, Bulgaria
   </span>
 </h1>
 
-    <p class="m-hero__caption">
+<p class="m-hero__caption" data-i18n="hero.caption">
   SEO, Google Ads, Meta Ads &amp; social strategies by a digital marketing agency in Varna, Bulgaria — built for measurable growth.
 </p>
 
@@ -599,7 +589,7 @@
   .m-hero__bg {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index:0;
     pointer-events: none;
   }
 
@@ -960,7 +950,7 @@
         </div>
 
         <!-- İki Fotoğraf -->
-        <div style="display: flex; gap: 32px; align-items: flex-start; margin-top: 10px;">
+<div class="About__images" style="display: flex; gap: 32px; align-items: flex-start; margin-top: 10px;">
           <div style="flex: 1;">
             <img src="/images/what-we-do.png"
                  alt="MySEO - About"
@@ -1300,14 +1290,20 @@
       <span>LinkedIn</span>
     </a>
     
-  </div>
 </div>
-<a href="#" 
-   onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
-   style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: #00aeef; text-decoration: none; float: right;"
-   data-i18n="footer.back">
-  Back to top ↑
-</a>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1080px; margin: 40px auto 0;">
+  <span data-i18n="footer.copyright" style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: #5c6c7d;">
+    © 2026 MySEO Digital. All rights reserved.
+  </span>
+  <a href="#" 
+     onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+     style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: #00aeef; text-decoration: none;"
+     data-i18n="footer.back">
+    Back to top ↑
+  </a>
+</div>
 
     </main>
 
@@ -1390,7 +1386,7 @@
     <!-- MULTILINGUAL SCRIPT -->
     <script>
       const translations = {
-        en: {
+en: {
           "nav.home": "Home",
           "nav.about": "About",
           "nav.services": "Services",
@@ -1404,6 +1400,10 @@
           "hero.growth": "Growth",
           "hero.scroll": "Scroll to explore",
           "hero.services": "SEO • Paid Media • Social Media • Digital Strategy",
+          "hero.caption": "SEO, Google Ads, Meta Ads &amp; social strategies by a digital marketing agency in Varna, Bulgaria — built for measurable growth.",
+          "hero.rank": "#1 SEO Rankings",
+          "hero.traffic_value": "+248%",
+          "hero.traffic_label": "Organic Traffic",
           "about.tag": "About",
           "about.text": "We help businesses grow their online presence, generate qualified leads, and scale through data-driven SEO, Google Ads, Meta Ads, and digital marketing strategies.",
           "services.tag": "Services",
@@ -1444,7 +1444,7 @@
           "contact.based.text": "Varna, Bulgaria<br>London, United Kingdom",
           "contact.follow.title": "Follow us",
           "contact.follow.instagram": "Instagram ↗",
-          "footer.copyright": "© MySEO Digital",
+          "footer.copyright": "© 2026 MySEO Digital. All rights reserved.",
           "footer.back": "Back to top ↑"
         },
         tr: {
@@ -1461,6 +1461,10 @@
           "hero.growth": "Büyüme",
           "hero.scroll": "Keşfetmek için kaydırın",
           "hero.services": "SEO • Ücretli Reklam • Sosyal Medya • Dijital Strateji",
+          "hero.caption": "Varna, Bulgaristan merkezli bir dijital pazarlama ajansından SEO, Google Ads, Meta Ads ve sosyal medya stratejileri — ölçülebilir büyüme için tasarlandı.",
+          "hero.rank": "#1 SEO Sıralaması",
+          "hero.traffic_value": "+248%",
+          "hero.traffic_label": "Organik Trafik",
           "about.tag": "Hakkımızda",
           "about.text": "Markaların görünürlüğünü artırmalarına, nitelikli potansiyel müşteriler oluşturmalarına ve veri odaklı dijital pazarlama ile ölçeklenmelerine yardımcı oluyoruz.",
           "services.tag": "Hizmetler",
@@ -1470,40 +1474,7 @@
           "services.seo.body": "Arama sonuçlarında üst sıralara çıkın ve rekabet avantajınızı güçlendirin. Teknik hassasiyet, yetkin içerik ve sürekli performans optimizasyonu ile sürdürülebilir organik büyüme sağlıyoruz.",
           "services.seo.tags": "Teknik SEO<br>İçerik Stratejisi<br>Anahtar Kelime Araştırması<br>Performans Takibi",
           "services.paid.title": "Paid Media",
-          "services.paid.body": "Sonuç odaklı medya yatırımları. Google ve Meta'da yüksek ROAS kampanyaları ile kalabalığı aşarak, alıcı niyetini dönüştürerek ve gelirinizi tutarlı bir şekilde ölçeklendiriyoruz.",
-          "services.paid.tags": "Google Ads<br>Meta Ads<br>Retargeting<br>Kampanya Optimizasyonu",
-          "services.social.title": "Sosyal Medya",
-          "services.social.body": "Sadakat kazandıran varlık. Kanallarınızı editoryal titizlikle yönetiyoruz — takipçileri satın alan, savunan ve geri dönen bir kitleye dönüştürüyoruz.",
-          "services.social.tags": "İçerik Üretimi<br>Topluluk Yönetimi<br>Platform Stratejisi<br>Analiz &amp; Raporlama",
-          "services.strategy.title": "Dijital Strateji",
-          "services.strategy.body": "Uygulamadan önce netlik. Pazar konumunuzu denetliyor, büyüme fırsatlarını haritalandırıyor ve her kanalı tek ölçülebilir bir hedefe hizalayan birleşik bir plan sunuyoruz.",
-          "services.strategy.tags": "Denetimler &amp; Danışmanlık<br>Pazar Araştırması<br>Medya Planlaması<br>Uluslararası Pazarlama",
-          "sectors.tag": "Sektörler",
-          "sectors.eyebrow": "Faaliyet Alanlarımız",
-          "sectors.heading": "Derin uzmanlık.<br><span style=\"font-style: italic; font-weight: 500; background: linear-gradient(135deg, #00395d 0%, #00aeef 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;\">Her sektörde.</span>",
-          "sectors.lede": "Ölçülebilir sonuçlar sağlayan sektöre özel dijital pazarlama stratejileri geliştiriyoruz. E-ticaret, Konaklama, Seyahat, B2B, Finans ve SaaS alanlarında derin uzmanlığımızla sektörünüzü anlıyor ve içinde nasıl kazanacağınızı biliyoruz.",
-          "sectors.ecommerce.name": "E-ticaret",
-          "sectors.ecommerce.desc": "Hassas hedefleme ve dönüşüm odaklı kampanyalarla geliri ölçeklendirin.",
-          "sectors.hospitality.name": "Konaklama",
-          "sectors.hospitality.desc": "Geri dönen misafirlerle odaları ve masaları doldurun.",
-          "sectors.travel.name": "Seyahat",
-          "sectors.travel.desc": "Yolculuğun her aşamasında doğru gezginleri ilham verin.",
-          "sectors.b2b.name": "B2B",
-          "sectors.b2b.desc": "Nitelikli pipeline oluşturun ve satış döngüsünü kısaltın.",
-          "sectors.finance.name": "Finans &amp; Profesyonel",
-          "sectors.finance.desc": "Düzenlenmiş, yüksek riskli pazarlarda otorite ve güven oluşturun.",
-          "sectors.saas.name": "SaaS",
-          "sectors.saas.desc": "Denemeleri artırın, churn'u azaltın ve ürün odaklı büyümeyi güçlendirin.",
-          "contact.eyebrow": "İletişime geçin",
-          "contact.title": "Büyümeye hazır mısınız?<br><span class=\"gradient-text\">Hadi gerçekleştirelim.</span>",
-          "contact.availability.title": "Müsaitlik",
-          "contact.availability.text": "Yeni projelere açığız<br>2026 Q3 &amp; Q4",
-          "contact.based.title": "Konum",
-          "contact.based.text": "Varna, Bulgaristan<br>Londra, Birleşik Krallık",
-          "contact.follow.title": "Bizi takip edin",
-          "contact.follow.instagram": "Instagram ↗",
-          "footer.copyright": "© MySEO Digital",
-          "footer.back": "Başa dön ↑"
+          "footer.copyright": "© 2026 MySEO Digital. Tüm hakları saklıdır.",
         },
         bg: {
           "nav.home": "Начало",
@@ -1519,6 +1490,10 @@
           "hero.growth": "Растеж",
           "hero.scroll": "Превъртете, за да разгледате",
           "hero.services": "SEO • Платени Медии • Социални Медии • Дигитална Стратегия",
+          "hero.caption": "SEO, Google Ads, Meta Ads и социални стратегии от дигитална маркетинг агенция във Варна, България — създадени за измерим растеж.",
+          "hero.rank": "#1 SEO Класиране",
+          "hero.traffic_value": "+248%",
+          "hero.traffic_label": "Органичен Трафик",
           "about.tag": "За нас",
           "about.text": "Помагаме на брандовете да увеличат видимостта си, да генерират квалифицирани лийдове и да се развиват чрез data-driven дигитален маркетинг.",
           "services.tag": "Услуги",
@@ -1560,7 +1535,7 @@
           "contact.based.text": "Варна, България<br>Лондон, Обединено кралство",
           "contact.follow.title": "Следвайте ни",
           "contact.follow.instagram": "Instagram ↗",
-          "footer.copyright": "© MySEO Digital",
+          "footer.copyright": "© 2026 MySEO Digital. Всички права запазени.",
           "footer.back": "Към началото ↑"
         }
       };
