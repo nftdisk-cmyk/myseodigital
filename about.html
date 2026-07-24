@@ -8,51 +8,89 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/src/styles.css" />
 
   <style>
     :root {
       --navy: #00395d;
+      --navy-deep: #002c49;
       --sky: #00aeef;
+      --sky-soft: #eaf8ff;
       --muted: #5c7587;
-      --line: #e1e9ee;
+      --line: #e4ebf0;
       --bg: #ffffff;
-      --bg-soft: #f4f8fa;
+      --bg-soft: #f7fafb;
     }
+
+    * { box-sizing: border-box; }
 
     .about-page {
       background: var(--bg);
       color: var(--navy);
       font-family: "DM Sans", sans-serif;
+      overflow-x: clip;
     }
 
     .wrap {
-      max-width: 1140px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 32px;
     }
 
     .eyebrow {
       font-family: "JetBrains Mono", monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--sky);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: var(--sky);
+    }
+
+    /* ==================== scroll reveal ==================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
     }
 
     /* ==================== HERO ==================== */
     .about-hero {
-      padding: 200px 0 100px;
+      padding: 200px 0 120px;
+      position: relative;
+    }
+
+    .about-hero__grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 60px;
+      align-items: end;
+      margin-top: 26px;
     }
 
     .about-hero h1 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
-      font-size: clamp(3rem, 6vw, 5.2rem);
-      line-height: 1.05;
+      font-size: clamp(3.2rem, 6.8vw, 6.4rem);
+      line-height: 0.98;
       letter-spacing: -0.03em;
-      margin: 0 0 28px;
+      margin: 0;
     }
 
     .about-hero h1 em {
@@ -61,16 +99,18 @@
     }
 
     .about-hero__intro {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       line-height: 1.75;
       color: var(--muted);
-      max-width: 42ch;
+      padding-left: 26px;
+      border-left: 1px solid var(--line);
+      margin: 0 0 6px;
     }
 
-    /* ==================== ROUTE ==================== */
+    /* ==================== ROUTE / signature journey diagram ==================== */
     .about-route {
       background: var(--bg-soft);
-      padding: 100px 0;
+      padding: 130px 0 110px;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
     }
@@ -78,87 +118,171 @@
     .about-route__head h2 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
-      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-size: clamp(1.9rem, 3.4vw, 2.7rem);
       line-height: 1.15;
-      margin-top: 12px;
+      margin: 14px 0 0;
+      max-width: 26ch;
     }
+
+    .journey {
+      margin: 80px 0 8px;
+    }
+
+    .journey__svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .journey__path {
+      fill: none;
+      stroke: var(--sky);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 1400;
+      stroke-dashoffset: 1400;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .journey.is-visible .journey__path {
+      stroke-dashoffset: 0;
+    }
+
+    .journey__dot {
+      fill: var(--bg-soft);
+      stroke: var(--navy);
+      stroke-width: 2;
+      opacity: 0;
+      transform-origin: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: scale(0.4);
+    }
+    .journey.is-visible .journey__dot {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .journey.is-visible .journey__dot--1 { transition-delay: 0.05s; }
+    .journey.is-visible .journey__dot--2 { transition-delay: 0.75s; }
+    .journey.is-visible .journey__dot--3 { transition-delay: 1.55s; }
+
+    .journey__dot--current {
+      fill: var(--sky);
+      stroke: var(--sky);
+    }
+
+    .journey__code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      fill: var(--navy);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .journey.is-visible .journey__code--1 { opacity: 1; transition-delay: 0.15s; }
+    .journey.is-visible .journey__code--2 { opacity: 1; transition-delay: 0.85s; }
+    .journey.is-visible .journey__code--3 { opacity: 1; transition-delay: 1.65s; }
 
     .about-route__stops {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      margin-top: 46px;
     }
 
     .route-stop {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 36px 30px;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 10px 30px rgba(0, 57, 93, 0.06);
+      background: transparent;
+      padding: 34px 28px 4px 0;
+      border-right: 1px solid var(--line);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .route-stop:last-child { border-right: none; padding-right: 0; }
 
-    .route-stop:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 30px 60px -20px rgba(0, 57, 93, 0.15);
-      border-color: var(--sky);
-    }
+    .route-stop:hover { transform: translateY(-6px); }
 
     .route-stop__index {
       font-family: "JetBrains Mono", monospace;
       font-size: 0.72rem;
       color: var(--sky);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
     }
 
     .route-stop h3 {
       font-family: "Cormorant Garamond", serif;
-      font-size: 1.55rem;
+      font-size: 1.6rem;
       font-weight: 500;
-      margin: 14px 0 14px;
+      margin: 12px 0 14px;
       color: var(--navy);
     }
 
     .route-stop p {
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       line-height: 1.75;
       color: var(--muted);
     }
 
     /* ==================== PHILOSOPHY ==================== */
     .about-philosophy {
-      padding: 110px 0;
+      padding: 140px 0;
+      position: relative;
     }
 
     .about-philosophy__grid {
       display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 70px;
-      align-items: center;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-philosophy__quote-wrap {
+      position: relative;
+    }
+
+    .about-philosophy__mark {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 9rem;
+      line-height: 1;
+      color: var(--sky-soft);
+      position: absolute;
+      top: -3.4rem;
+      left: -1.2rem;
+      z-index: 0;
+      user-select: none;
     }
 
     .about-philosophy blockquote {
+      position: relative;
+      z-index: 1;
+      margin: 0;
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
-      font-size: clamp(1.7rem, 3vw, 2.5rem);
-      line-height: 1.25;
+      font-style: italic;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.3;
       color: var(--navy);
     }
 
     .about-philosophy blockquote span {
+      font-style: normal;
       color: var(--sky);
     }
 
-    .about-philosophy__body p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--muted);
-      margin-bottom: 26px;
+    .about-philosophy__body {
+      padding-top: 8px;
     }
+
+    .about-philosophy__body p {
+      font-size: 1.03rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin: 0 0 26px;
+    }
+
+    .about-philosophy__body p:last-child { margin-bottom: 0; }
 
     /* ==================== FINAL CTA ==================== */
     .about-cta {
-      padding: 100px 0;
+      padding: 110px 0 130px;
       text-align: center;
       border-top: 1px solid var(--line);
     }
@@ -166,36 +290,61 @@
     .about-cta h2 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-size: clamp(2.1rem, 3.6vw, 3rem);
       color: var(--navy);
-      margin-bottom: 16px;
+      margin: 0 0 16px;
     }
 
     .about-cta p {
       color: var(--muted);
       max-width: 420px;
-      margin: 0 auto 40px;
+      margin: 0 auto 44px;
+      line-height: 1.7;
     }
 
     .about-cta .btn {
       display: inline-flex;
       align-items: center;
+      gap: 10px;
       justify-content: center;
       background: var(--navy);
       color: white;
-      padding: 20px 52px;
+      padding: 19px 44px;
       border-radius: 999px;
-      font-weight: 600;
-      font-size: 1.1rem;
+      font-weight: 500;
+      font-size: 1.02rem;
       text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 57, 93, 0.2);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .about-cta .btn__arrow {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .about-cta .btn:hover {
-      background: #002a45;
-      transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(0, 57, 93, 0.3);
+      background: var(--navy-deep);
+      box-shadow: 0 16px 40px -14px rgba(0, 57, 93, 0.45);
+    }
+
+    .about-cta .btn:hover .btn__arrow {
+      transform: translateX(5px);
+    }
+
+    /* ==================== responsive ==================== */
+    @media (max-width: 900px) {
+      .about-hero { padding: 160px 0 80px; }
+      .about-hero__grid { grid-template-columns: 1fr; gap: 30px; align-items: start; }
+      .about-hero__intro { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+
+      .about-route { padding: 90px 0 80px; }
+      .about-route__stops { grid-template-columns: 1fr; border-top: none; margin-top: 30px; }
+      .route-stop { border-right: none; border-top: 1px solid var(--line); padding: 28px 0 8px; }
+
+      .about-philosophy { padding: 90px 0; }
+      .about-philosophy__grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-philosophy__mark { font-size: 6rem; top: -2.2rem; }
+
+      .about-cta { padding: 80px 0 100px; }
     }
 
     /* === LANGUAGE SWITCHER (Header ile aynı) === */
@@ -267,7 +416,6 @@
     /* === MOBILE HAMBURGER MENU (≤1024px only) === */
     /* ============================================= */
 
-    /* Hamburger button: hidden by default (desktop) */
     .hamburger-btn {
       display: none;
       flex-direction: column;
@@ -303,7 +451,6 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* Mobile dropdown menu panel */
     .mobile-menu {
       display: none;
       position: absolute;
@@ -380,7 +527,6 @@
       padding: 0.65rem 0;
     }
 
-    /* Show hamburger + hide desktop nav links on tablets/mobile */
     @media (max-width: 1024px) {
       header.nav {
         position: relative;
@@ -422,6 +568,7 @@
           <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
           <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
           <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+          <a href="/webdesign.html" data-i18n="dropdown.webdesign">Web Design</a>
         </div>
       </div>
 
@@ -461,6 +608,7 @@
           <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
           <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
           <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+          <a href="/webdesign.html" data-i18n="dropdown.webdesign">Web Design</a>
         </div>
 
         <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
@@ -478,7 +626,7 @@
         <div class="about-hero__grid">
           <h1 class="reveal" data-i18n="about.hero.title">Strategy first.<br>Borders <em>second.</em></h1>
           <p class="about-hero__intro reveal" data-i18n="about.hero.intro">
-            Success today isn’t about where you’re based — it’s shaped by strategy, 
+            Success today isn’t about where you’re based — it’s shaped by strategy,
             vision, and the ability to connect brands with the right people at the right time.
           </p>
         </div>
@@ -491,6 +639,19 @@
         <div class="about-route__head">
           <span class="eyebrow" data-i18n="about.route.eyebrow">Our path</span>
           <h2 data-i18n="about.route.title">From Türkiye to the United Kingdom,<br>now building from Bulgaria.</h2>
+        </div>
+
+        <!-- Signature element: animated journey line connecting the three markets -->
+        <div class="journey" id="journey">
+          <svg class="journey__svg" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+            <path class="journey__path" d="M60,150 C 260,20 380,20 560,70 C 760,125 880,215 1140,150" />
+            <circle class="journey__dot journey__dot--1" cx="60" cy="150" r="7" />
+            <circle class="journey__dot journey__dot--2" cx="560" cy="70" r="7" />
+            <circle class="journey__dot journey__dot--3 journey__dot--current" cx="1140" cy="150" r="8" />
+            <text class="journey__code journey__code--1" x="34" y="185">TR</text>
+            <text class="journey__code journey__code--2" x="534" y="45">UK</text>
+            <text class="journey__code journey__code--3" x="1108" y="185">BG</text>
+          </svg>
         </div>
 
         <div class="about-route__stops">
@@ -516,8 +677,9 @@
     <!-- PHILOSOPHY -->
     <section class="about-philosophy">
       <div class="wrap about-philosophy__grid">
-        <div>
+        <div class="about-philosophy__quote-wrap">
           <span class="eyebrow" data-i18n="about.philosophy.eyebrow">Our approach</span>
+          <span class="about-philosophy__mark" aria-hidden="true">“</span>
           <blockquote class="reveal" data-i18n="about.philosophy.quote">
             Every market has its own <span>rhythm.</span><br>
             What works in one country may not work in another.
@@ -525,12 +687,12 @@
         </div>
         <div class="about-philosophy__body">
           <p class="reveal" data-i18n="about.philosophy.text1">
-            We don’t simply relocate — we study each market deeply: its culture, consumer behaviour, 
-            and digital habits. That’s why we build custom strategies that combine global best practices 
+            We don’t simply relocate — we study each market deeply: its culture, consumer behaviour,
+            and digital habits. That’s why we build custom strategies that combine global best practices
             with local insight.
           </p>
           <p class="reveal" data-i18n="about.philosophy.text2">
-            Our goal isn’t just to help brands be seen, but to make a real impact. We partner with 
+            Our goal isn’t just to help brands be seen, but to make a real impact. We partner with
             forward-thinking companies that want to grow, evolve, and lead.
           </p>
         </div>
@@ -542,7 +704,10 @@
       <div class="wrap">
         <h2 class="reveal" data-i18n="about.cta.title">Ready to grow together?</h2>
         <p class="reveal" data-i18n="about.cta.text">Let’s discuss how we can help your brand reach its next level.</p>
-        <a href="contact.html" class="btn reveal" data-i18n="about.cta.button">Get in touch →</a>
+        <a href="contact.html" class="btn reveal" data-i18n="about.cta.button">
+          <span class="btn__label">Get in touch</span>
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
 
@@ -653,6 +818,13 @@
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (translations[lang] && translations[lang][key]) {
+          if (el.classList.contains('btn')) {
+            const label = el.querySelector('.btn__label');
+            if (label) {
+              label.textContent = translations[lang][key].replace(/\s*→\s*$/, '');
+              return;
+            }
+          }
           el.innerHTML = translations[lang][key];
         }
       });
@@ -670,7 +842,7 @@
 
     function initLanguageSwitcher() {
       const buttons = document.querySelectorAll('.lang-btn');
-      
+
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
           const lang = btn.dataset.lang;
@@ -722,12 +894,10 @@
           toggleMenu();
         });
 
-        // Close menu when a link inside it is clicked
         mobileMenu.querySelectorAll('a').forEach(function (link) {
           link.addEventListener('click', closeMenu);
         });
 
-        // Close menu when clicking outside of it
         document.addEventListener('click', function (e) {
           if (
             mobileMenu.classList.contains('is-open') &&
@@ -738,14 +908,12 @@
           }
         });
 
-        // Close menu on resize back to desktop
         window.addEventListener('resize', function () {
           if (window.innerWidth > 1024) {
             closeMenu();
           }
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape') closeMenu();
         });
@@ -755,6 +923,35 @@
         document.addEventListener('DOMContentLoaded', initHamburgerMenu);
       } else {
         initHamburgerMenu();
+      }
+    })();
+  </script>
+
+  <!-- SCROLL REVEAL + JOURNEY DIAGRAM TRIGGER -->
+  <script>
+    (function () {
+      function initReveal() {
+        const targets = document.querySelectorAll('.reveal, .journey');
+        if (!('IntersectionObserver' in window) || targets.length === 0) {
+          targets.forEach(el => el.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+
+        targets.forEach(el => observer.observe(el));
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReveal);
+      } else {
+        initReveal();
       }
     })();
   </script>

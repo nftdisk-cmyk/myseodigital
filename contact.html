@@ -18,97 +18,30 @@
   <link rel="stylesheet" href="/src/styles.css" />
   <style>
     /* =========================================================
-       MySEO — Contact page, namespaced "gw-" (growth) styles.
-       Header above is untouched and styled by /src/styles.css.
-       Light theme: white background, brand navy #00395d.
+       MySEO — Contact page.
+       Header/footer are untouched and styled by /src/styles.css
+       plus the header-only rules below (kept exactly as-is).
+       Only the small set of variables the FOOTER needs are kept
+       here — everything else in the redesigned content pulls
+       directly from the shared tokens in /src/styles.css
+       (--serif, --sans, --mono, --accent, --accent-cyan,
+       --accent-grad, --fg, --fg-sec, --fg-dim, --rule, --bg,
+       --bg-soft, --bg-card, --shadow-sm/md/lg, --max, --gutter).
        ========================================================= */
 
     :root {
-      --gw-bg: #ffffff;
-      --gw-bg-soft: #f5f8fb;
       --gw-navy: #00395d;
-      --gw-navy-2: #2f6f9e;
-      --gw-navy-3: #0a2740;
-      --gw-text: #1c2b3a;
       --gw-mute: #5c6c7d;
       --gw-line: rgba(0, 57, 93, 0.14);
     }
 
     .gw-page {
-      background: var(--gw-bg);
-      color: var(--gw-text);
-      position: relative;
-      overflow: hidden;
-      font-family: "DM Sans", sans-serif;
+      background: #ffffff;
+      color: var(--fg);
+      font-family: var(--sans);
     }
 
     .gw-page * { box-sizing: border-box; }
-
-    /* ---- animated ambient background, brand navy ---- */
-    .gw-blob-field {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .gw-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(85px);
-      mix-blend-mode: multiply;
-      will-change: transform;
-    }
-
-    .gw-blob--a {
-      width: 560px; height: 560px;
-      top: -180px; left: -140px;
-      background: var(--gw-navy);
-      opacity: 0.12;
-      animation: gwBlobA 24s ease-in-out infinite alternate;
-    }
-
-    .gw-blob--b {
-      width: 520px; height: 520px;
-      top: 60px; right: -200px;
-      background: var(--gw-navy-2);
-      opacity: 0.14;
-      animation: gwBlobB 28s ease-in-out infinite alternate;
-    }
-
-    .gw-blob--c {
-      width: 460px; height: 460px;
-      bottom: -220px; left: 28%;
-      background: var(--gw-navy);
-      opacity: 0.10;
-      animation: gwBlobC 32s ease-in-out infinite alternate;
-    }
-
-    @keyframes gwBlobA {
-      0%   { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(70px, 50px) scale(1.18); }
-    }
-    @keyframes gwBlobB {
-      0%   { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-60px, 70px) scale(0.88); }
-    }
-    @keyframes gwBlobC {
-      0%   { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(50px, -40px) scale(1.12); }
-    }
-
-    .gw-grid-floor {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(0, 57, 93, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 57, 93, 0.045) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(1100px 600px at 50% 0%, black, transparent 75%);
-    }
 
     .gw-shell {
       position: relative;
@@ -118,451 +51,7 @@
       padding: 0 32px;
     }
 
-    .gw-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.74rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gw-navy);
-    }
-
-    .gw-eyebrow::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gw-navy);
-      box-shadow: 0 0 12px 2px rgba(0, 57, 93, 0.45);
-    }
-
-    /* =========================== HERO =========================== */
-
-    .gw-hero {
-      padding: 150px 0 90px;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .gw-hero__copy h1 {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 500;
-      font-size: clamp(2.5rem, 4.6vw, 4.3rem);
-      line-height: 1.04;
-      letter-spacing: -0.02em;
-      margin: 22px 0 22px;
-      color: var(--gw-navy);
-    }
-
-    .gw-hero__copy h1 em {
-      font-style: normal;
-      background: linear-gradient(120deg, var(--gw-navy), var(--gw-navy-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .gw-hero__copy p {
-      max-width: 480px;
-      font-size: 1.08rem;
-      line-height: 1.65;
-      color: var(--gw-mute);
-      margin-bottom: 38px;
-    }
-
-    .gw-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 56px;
-    }
-
-    .gw-btn {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      border-radius: 999px;
-      padding: 16px 30px;
-      cursor: pointer;
-      border: 1px solid transparent;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .gw-btn--primary {
-      background: linear-gradient(135deg, var(--gw-navy), var(--gw-navy-2));
-      color: #ffffff;
-      box-shadow: 0 14px 34px -12px rgba(0, 57, 93, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-    }
-
-    .gw-btn--primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px -12px rgba(0, 57, 93, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22);
-    }
-
-    .gw-btn--primary:active { transform: translateY(0px); }
-
-    .gw-btn--ghost {
-      background: rgba(0, 57, 93, 0.04);
-      border-color: var(--gw-line);
-      color: var(--gw-navy);
-    }
-
-    .gw-btn--ghost:hover {
-      background: rgba(0, 57, 93, 0.08);
-      transform: translateY(-3px);
-    }
-
-    .gw-stats {
-      display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
-
-    .gw-stat {
-      border-top: 1px solid var(--gw-line);
-      padding-top: 12px;
-      min-width: 120px;
-    }
-
-    .gw-stat strong {
-      display: block;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--gw-navy);
-    }
-
-    .gw-stat span {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gw-mute);
-    }
-
-    /* ---- 3D cube cluster (signature element) ---- */
-
-    .gw-cube-scene {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      height: 340px;
-      margin: 0 auto;
-      perspective: 1000px;
-      will-change: transform;
-    }
-
-    .gw-cube-glow {
-      position: absolute;
-      bottom: 38px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 320px;
-      height: 90px;
-      background: radial-gradient(ellipse at center, rgba(0, 57, 93, 0.30), transparent 72%);
-      filter: blur(4px);
-      z-index: 0;
-    }
-
-    .gw-cube-stage {
-      position: absolute;
-      inset: 0;
-      transform-style: preserve-3d;
-      transform: rotateX(52deg) rotateZ(-38deg);
-      animation: gwSway 9s ease-in-out infinite;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    @keyframes gwSway {
-      0%, 100% { transform: rotateX(52deg) rotateZ(-38deg); }
-      50%      { transform: rotateX(49deg) rotateZ(-33deg); }
-    }
-
-    .gw-cube-row {
-      display: flex;
-      align-items: flex-end;
-      gap: 22px;
-      transform-style: preserve-3d;
-    }
-
-    .gw-cube {
-      position: relative;
-      width: 56px;
-      transform-style: preserve-3d;
-      animation: gwBob 4.5s ease-in-out infinite;
-    }
-
-    .gw-cube:nth-child(1) { animation-delay: 0s; }
-    .gw-cube:nth-child(2) { animation-delay: 0.25s; }
-    .gw-cube:nth-child(3) { animation-delay: 0.5s; }
-    .gw-cube:nth-child(4) { animation-delay: 0.75s; }
-    .gw-cube:nth-child(5) { animation-delay: 1s; }
-
-    @keyframes gwBob {
-      0%, 100% { transform: translateZ(0); }
-      50%      { transform: translateZ(6px); }
-    }
-
-    .gw-cube__face {
-      position: absolute;
-      border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-    }
-
-    .gw-cube__front { inset: 0; transform: translateZ(13px); }
-
-    .gw-cube__right {
-      top: 0; right: -26px; width: 26px; height: 100%;
-      transform-origin: left center;
-      transform: rotateY(90deg);
-    }
-
-    .gw-cube__top {
-      top: -26px; left: 0; width: 100%; height: 26px;
-      transform-origin: bottom center;
-      transform: rotateX(90deg);
-    }
-
-    .gw-cube--c1 .gw-cube__front { background: linear-gradient(180deg, #1c3f5c, #163046); }
-    .gw-cube--c1 .gw-cube__right { background: #0c2235; }
-    .gw-cube--c1 .gw-cube__top   { background: #2a4f70; }
-
-    .gw-cube--c2 .gw-cube__front { background: linear-gradient(180deg, #1f4a6c, #173b56); }
-    .gw-cube--c2 .gw-cube__right { background: #0e2a3f; }
-    .gw-cube--c2 .gw-cube__top   { background: #2f5d83; }
-
-    .gw-cube--c3 .gw-cube__front { background: linear-gradient(180deg, #21557d, #194264); }
-    .gw-cube--c3 .gw-cube__right { background: #103149; }
-    .gw-cube--c3 .gw-cube__top   { background: #366c95; }
-
-    .gw-cube--c4 .gw-cube__front { background: linear-gradient(180deg, #25618f, #1c4c73); }
-    .gw-cube--c4 .gw-cube__right { background: #123754; }
-    .gw-cube--c4 .gw-cube__top   { background: #3e7ba6; }
-
-    .gw-cube--c5 .gw-cube__front { background: linear-gradient(180deg, #2c70a3, #1f5582); }
-    .gw-cube--c5 .gw-cube__right { background: #14405f; }
-    .gw-cube--c5 .gw-cube__top   {
-      background: #4f93c2;
-      box-shadow: 0 0 26px rgba(47, 111, 158, 0.55);
-    }
-
-    /* =========================== FORM =========================== */
-
-    .gw-section { padding: 70px 0; }
-
-    .gw-section__head {
-      max-width: 560px;
-      margin: 0 auto 48px;
-      text-align: center;
-    }
-
-    .gw-section__head h2 {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 500;
-      font-size: clamp(1.9rem, 3vw, 2.6rem);
-      letter-spacing: -0.01em;
-      margin: 16px 0 14px;
-      color: var(--gw-navy);
-    }
-
-    .gw-section__head p {
-      color: var(--gw-mute);
-      font-size: 1.02rem;
-      line-height: 1.6;
-    }
-
-    .gw-panel {
-      max-width: 880px;
-      margin: 0 auto;
-      background: linear-gradient(165deg, rgba(0, 57, 93, 0.035), rgba(0, 57, 93, 0.01));
-      border: 1px solid var(--gw-line);
-      border-radius: 28px;
-      padding: 48px;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 50px 90px -55px rgba(0, 57, 93, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    }
-
-    .gw-form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .gw-field { grid-column: span 1; }
-    .gw-field--full { grid-column: 1 / -1; }
-
-    .gw-field label {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gw-navy);
-      margin-bottom: 10px;
-    }
-
-    .gw-field label .gw-optional {
-      text-transform: none;
-      letter-spacing: 0;
-      color: rgba(92, 108, 125, 0.7);
-      font-family: "DM Sans", sans-serif;
-    }
-
-    .gw-field input,
-    .gw-field select,
-    .gw-field textarea {
-      width: 100%;
-      background: rgba(0, 57, 93, 0.035);
-      border: 1px solid var(--gw-line);
-      border-radius: 14px;
-      padding: 15px 16px;
-      color: var(--gw-text);
-      font: 400 0.98rem/1.4 "DM Sans", sans-serif;
-      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .gw-field textarea { resize: vertical; min-height: 130px; }
-
-    .gw-field select {
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'><path d='M1 1L7 7L13 1' stroke='%2300395D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
-    }
-
-    .gw-field select option { background: #ffffff; color: var(--gw-text); }
-
-    .gw-field input::placeholder,
-    .gw-field textarea::placeholder { color: rgba(92, 108, 125, 0.65); }
-
-    .gw-field input:focus,
-    .gw-field select:focus,
-    .gw-field textarea:focus {
-      outline: none;
-      border-color: var(--gw-navy);
-      background: rgba(0, 57, 93, 0.06);
-      box-shadow: 0 0 0 4px rgba(0, 57, 93, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .gw-submit-row {
-      grid-column: 1 / -1;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .gw-submit {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      border: none;
-      border-radius: 999px;
-      padding: 17px 36px;
-      cursor: pointer;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--gw-navy), var(--gw-navy-2));
-      box-shadow: 0 16px 34px -12px rgba(0, 57, 93, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      transition: transform 0.16s ease, box-shadow 0.16s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .gw-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 22px 40px -12px rgba(0, 57, 93, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-    }
-
-    .gw-submit:active { transform: translateY(1px); box-shadow: 0 8px 18px -8px rgba(0, 57, 93, 0.4); }
-
-    .gw-submit-note { font-size: 0.85rem; color: var(--gw-mute); }
-
-    /* =========================== ALT CONTACT CARDS =========================== */
-
-    .gw-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      max-width: 1080px;
-      margin: 56px auto 0;
-      perspective: 1200px;
-    }
-
-    .gw-card {
-      position: relative;
-      background: linear-gradient(160deg, rgba(0, 57, 93, 0.03), rgba(0, 57, 93, 0.005));
-      border: 1px solid var(--gw-line);
-      border-radius: 22px;
-      padding: 30px 26px;
-      transition: transform 0.12s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-
-    .gw-card:hover {
-      border-color: rgba(0, 57, 93, 0.4);
-      box-shadow: 0 30px 60px -32px rgba(0, 57, 93, 0.35);
-    }
-
-    .gw-card__icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(0, 57, 93, 0.12), rgba(47, 111, 158, 0.12));
-      border: 1px solid var(--gw-line);
-      margin-bottom: 18px;
-    }
-
-    .gw-card__icon svg { width: 20px; height: 20px; stroke: var(--gw-navy); }
-
-    .gw-card h3 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--gw-navy);
-    }
-
-    .gw-card p {
-      font-size: 0.92rem;
-      color: var(--gw-mute);
-      line-height: 1.55;
-      margin-bottom: 16px;
-    }
-
-    .gw-card a.gw-card__link {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
-      color: var(--gw-navy);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(0, 57, 93, 0.35);
-      padding-bottom: 2px;
-    }
-
-    .gw-card a.gw-card__link:hover { border-color: var(--gw-navy); }
-
-    /* =========================== FOOTER STRIP =========================== */
+    /* =========================== FOOTER STRIP (unchanged) =========================== */
 
     .gw-footer {
       border-top: 1px solid var(--gw-line);
@@ -596,25 +85,6 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
       }
-    }
-
-    /* =========================== RESPONSIVE =========================== */
-
-    @media (max-width: 980px) {
-      .gw-hero { grid-template-columns: 1fr; padding-top: 130px; }
-      .gw-hero__copy { text-align: center; margin: 0 auto; }
-      .gw-hero__copy p { margin-left: auto; margin-right: auto; }
-      .gw-cta-row, .gw-stats { justify-content: center; }
-      .gw-cube-scene { max-width: 320px; height: 280px; }
-      .gw-cards { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 640px) {
-      .gw-shell { padding: 0 20px; }
-      .gw-panel { padding: 30px 22px; border-radius: 22px; }
-      .gw-form-grid { grid-template-columns: 1fr; }
-      .gw-hero { padding-top: 120px; }
-      .gw-footer { flex-direction: column; align-items: flex-start; }
     }
 
     /* ===== HEADER STYLES (INDEX İLE BİREBİR) ===== */
@@ -819,6 +289,239 @@
         display: flex;
       }
     }
+
+    /* =========================================================
+       REDESIGNED MAIN CONTENT — namespaced "ct-" (contact).
+       Every value below is pulled from the shared tokens in
+       /src/styles.css so this page matches the rest of the site
+       (same fonts, colors, radii, shadows and button behavior).
+       Background is pure #FFFFFF per the site's --bg token.
+       ========================================================= */
+
+    /* ---- form + info section ---- */
+
+    .ct-form-section {
+      padding-top: clamp(150px, 22vh, 210px);
+    }
+
+    .ct-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(40px, 6vw, 88px);
+      align-items: start;
+    }
+
+    .ct-form {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      padding: clamp(32px, 4vw, 48px);
+    }
+
+    .ct-form__head { margin-bottom: 40px; }
+    .ct-form__head .section-tag { margin-bottom: 18px; }
+
+    .ct-form__title {
+      font-family: 'Space Grotesk', var(--serif);
+      font-weight: 600;
+      font-size: clamp(24px, 2.6vw, 32px);
+      letter-spacing: -0.01em;
+      background: linear-gradient(100deg, #00395d, #00aeef);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .ct-field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .ct-field { margin-bottom: 22px; }
+    .ct-field-row .ct-field { margin-bottom: 0; }
+    .ct-field:last-of-type { margin-bottom: 0; }
+
+    .ct-field label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .ct-field input,
+    .ct-field textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--fg);
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 14px 16px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .ct-field textarea { resize: vertical; min-height: 130px; }
+
+    .ct-field input::placeholder,
+    .ct-field textarea::placeholder { color: var(--fg-dim); }
+
+    .ct-field input:focus,
+    .ct-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--bg);
+      box-shadow: 0 0 0 4px var(--accent-dim);
+    }
+
+    .ct-form__footer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .ct-submit {
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+    }
+
+    .ct-form__note {
+      font-size: 13px;
+      color: var(--fg-dim);
+    }
+
+    /* ---- info column ---- */
+
+    .ct-info__head { margin-bottom: 4px; }
+    .ct-info__head .section-tag { margin-bottom: 18px; }
+
+    .ct-info__title {
+      font-family: 'Space Grotesk', var(--serif);
+      font-weight: 600;
+      font-size: clamp(24px, 2.6vw, 32px);
+      letter-spacing: -0.01em;
+      background: linear-gradient(100deg, #00395d, #00aeef);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 14px;
+    }
+
+    .ct-info__lede {
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--fg-sec);
+    }
+
+    .ct-info__list {
+      list-style: none;
+      border-top: 1px solid var(--rule);
+      margin-top: 32px;
+    }
+
+    .ct-info__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .ct-info__icon {
+      flex: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .ct-info__icon svg { width: 20px; height: 20px; }
+
+    .ct-info__item h3 {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: 6px;
+    }
+
+    .ct-info__item a,
+    .ct-info__item span {
+      font-family: var(--sans);
+      font-size: 16px;
+      color: var(--fg);
+      transition: color 0.25s ease;
+    }
+
+    .ct-info__item a:hover { color: var(--accent); }
+
+    .ct-info__hours {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .ct-info__hours h3 {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: 8px;
+    }
+
+    .ct-info__hours p {
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--fg-sec);
+    }
+
+    /* ---- scroll reveal ---- */
+
+    .ct-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .ct-reveal.ct-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ct-reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ---- responsive ---- */
+
+    @media (max-width: 900px) {
+      .ct-grid { grid-template-columns: 1fr; gap: 56px; }
+      .ct-field-row { grid-template-columns: 1fr; gap: 22px; }
+    }
+
+    @media (max-width: 600px) {
+      .ct-form-section { padding-top: 130px; }
+      .ct-form { padding: 28px 22px; }
+    }
   </style>
 </head>
 <body class="gw-page">
@@ -846,6 +549,7 @@
           <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
           <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
           <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+          <a href="/webdesign.html" data-i18n="dropdown.webdesign">Web Design</a>
         </div>
       </div>
 
@@ -885,6 +589,7 @@
           <a href="paid-media.html" data-i18n="dropdown.paid">Paid Media</a>
           <a href="social-media.html" data-i18n="dropdown.social">Social Media Management</a>
           <a href="digital-strategy.html" data-i18n="dropdown.strategy">Digital Strategy</a>
+          <a href="/webdesign.html" data-i18n="dropdown.webdesign">Web Design</a>
         </div>
 
         <a href="sectors.html" data-i18n="nav.sectors">Sectors</a>
@@ -893,160 +598,121 @@
     </div>
   </header>
 
-  <div class="gw-blob-field" aria-hidden="true">
-    <div class="gw-blob gw-blob--a"></div>
-    <div class="gw-blob gw-blob--b"></div>
-    <div class="gw-blob gw-blob--c"></div>
-  </div>
-  <div class="gw-grid-floor" aria-hidden="true"></div>
+  <!-- ============== MAIN CONTENT (redesigned) ============== -->
+  <main>
+    <!-- Form + direct contact info -->
+    <section class="ct-form-section" id="ct-form">
+      <div class="ct-grid">
 
-  <!-- ============== HERO ============== -->
-  <section class="gw-shell gw-hero">
-    <div class="gw-hero__copy">
-      <span class="gw-eyebrow">Contact — MySEO Digital</span>
-      <h1>Let's build your<br />next <em>growth</em> chapter.</h1>
-      <p>
-        SEO, paid media and social strategy for brands that want results to compound,
-        not just spike. Tell us where you're starting and we'll map the fastest route up.
-      </p>
-      <div class="gw-cta-row">
-        <a href="#project-form" class="gw-btn gw-btn--primary">Start the conversation →</a>
-        <a href="mailto:info@myseodigital.com" class="gw-btn gw-btn--ghost">Email us directly</a>
-      </div>
-      <div class="gw-stats">
-        <div class="gw-stat"><strong>24H</strong><span>Avg. first response</span></div>
-        <div class="gw-stat"><strong>6+</strong><span>Channels, one roof</span></div>
-        <div class="gw-stat"><strong>0</strong><span>Cookie-cutter strategies</span></div>
-      </div>
-    </div>
-
-    <div class="gw-cube-scene" id="gwCubeScene">
-      <div class="gw-cube-glow" aria-hidden="true"></div>
-      <div class="gw-cube-stage">
-        <div class="gw-cube-row">
-          <div class="gw-cube gw-cube--c1" style="height:56px">
-            <div class="gw-cube__face gw-cube__top"></div>
-            <div class="gw-cube__face gw-cube__right"></div>
-            <div class="gw-cube__face gw-cube__front"></div>
+        <form class="ct-form ct-reveal" id="ctForm" novalidate>
+          <div class="ct-form__head">
+            <span class="section-tag" data-i18n="contact.form.eyebrow">Project details</span>
+            <h2 class="ct-form__title" data-i18n="contact.form.title">Tell us about your project</h2>
           </div>
-          <div class="gw-cube gw-cube--c2" style="height:92px">
-            <div class="gw-cube__face gw-cube__top"></div>
-            <div class="gw-cube__face gw-cube__right"></div>
-            <div class="gw-cube__face gw-cube__front"></div>
+
+          <div class="ct-field-row">
+            <div class="ct-field">
+              <label for="ctName" data-i18n="contact.form.name">Full name</label>
+              <input
+                id="ctName"
+                name="name"
+                type="text"
+                placeholder="Jane Carter"
+                data-i18n-placeholder="contact.form.namePh"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div class="ct-field">
+              <label for="ctEmail" data-i18n="contact.form.email">Email address</label>
+              <input
+                id="ctEmail"
+                name="email"
+                type="email"
+                placeholder="jane@company.com"
+                data-i18n-placeholder="contact.form.emailPh"
+                autocomplete="email"
+                required
+              />
+            </div>
           </div>
-          <div class="gw-cube gw-cube--c3" style="height:128px">
-            <div class="gw-cube__face gw-cube__top"></div>
-            <div class="gw-cube__face gw-cube__right"></div>
-            <div class="gw-cube__face gw-cube__front"></div>
+
+          <div class="ct-field">
+            <label for="ctSubject" data-i18n="contact.form.subject">Subject</label>
+            <input
+              id="ctSubject"
+              name="subject"
+              type="text"
+              placeholder="What&rsquo;s this about?"
+              data-i18n-placeholder="contact.form.subjectPh"
+              required
+            />
           </div>
-          <div class="gw-cube gw-cube--c4" style="height:164px">
-            <div class="gw-cube__face gw-cube__top"></div>
-            <div class="gw-cube__face gw-cube__right"></div>
-            <div class="gw-cube__face gw-cube__front"></div>
+
+          <div class="ct-field">
+            <label for="ctMessage" data-i18n="contact.form.message">Message</label>
+            <textarea
+              id="ctMessage"
+              name="message"
+              rows="5"
+              placeholder="Tell us about your project or goals."
+              data-i18n-placeholder="contact.form.messagePh"
+              required
+            ></textarea>
           </div>
-          <div class="gw-cube gw-cube--c5" style="height:210px">
-            <div class="gw-cube__face gw-cube__top"></div>
-            <div class="gw-cube__face gw-cube__right"></div>
-            <div class="gw-cube__face gw-cube__front"></div>
+
+          <div class="ct-form__footer">
+            <button type="submit" class="wd-btn ct-submit">
+              <span data-i18n="contact.form.submit">Send message</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <span class="ct-form__note" data-i18n="contact.form.note">We typically reply within one business day.</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </form>
 
-  <!-- ============== FORM ============== -->
-  <section class="gw-shell gw-section" id="project-form">
-    <div class="gw-section__head">
-      <span class="gw-eyebrow">Project intake</span>
-      <h2>Tell us where you're starting.</h2>
-      <p>A few details now means a sharper plan the moment we talk.</p>
-    </div>
+        <aside class="ct-info ct-reveal">
+          <div class="ct-info__head">
+            <span class="section-tag" data-i18n="contact.info.eyebrow">Direct contact</span>
+            <h2 class="ct-info__title" data-i18n="contact.info.title">Reach us directly</h2>
+            <p class="ct-info__lede" data-i18n="contact.info.lede">Prefer email or a call? Use whichever channel works best for you.</p>
+          </div>
 
-    <form class="gw-panel" id="gwForm">
-      <div class="gw-form-grid">
-        <div class="gw-field">
-          <label for="gwName">Full name</label>
-          <input id="gwName" name="name" type="text" placeholder="Jane Carter" required />
-        </div>
-        <div class="gw-field">
-          <label for="gwEmail">Email address</label>
-          <input id="gwEmail" name="email" type="email" placeholder="jane@company.com" required />
-        </div>
-        <div class="gw-field">
-          <label for="gwCompany">Company name</label>
-          <input id="gwCompany" name="company" type="text" placeholder="Company, Inc." />
-        </div>
-        <div class="gw-field">
-          <label for="gwWebsite">Website <span class="gw-optional">(optional)</span></label>
-          <input id="gwWebsite" name="website" type="url" placeholder="yourwebsite.com" />
-        </div>
-        <div class="gw-field">
-          <label for="gwService">Service you need</label>
-          <select id="gwService" name="service">
-            <option value="">Select a service</option>
-            <option value="seo">SEO</option>
-            <option value="paid-media">Paid Media — Google &amp; Meta Ads</option>
-            <option value="social">Social Media Management</option>
-            <option value="strategy">Digital Strategy</option>
-            <option value="not-sure">Not sure yet</option>
-          </select>
-        </div>
-        <div class="gw-field">
-          <label for="gwBudget">Monthly budget <span class="gw-optional">(optional)</span></label>
-          <select id="gwBudget" name="budget">
-            <option value="">Select a range</option>
-            <option value="lt-2k">Under $2k</option>
-            <option value="2-5k">$2k – $5k</option>
-            <option value="5-15k">$5k – $15k</option>
-            <option value="15k-plus">$15k+</option>
-          </select>
-        </div>
-        <div class="gw-field gw-field--full">
-          <label for="gwMessage">Tell us about your project or goals</label>
-          <textarea id="gwMessage" name="message" placeholder="What are you trying to grow, and what's slowing you down right now?"></textarea>
-        </div>
-        <div class="gw-submit-row">
-          <button type="submit" class="gw-submit">
-            Send project details
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <span class="gw-submit-note">We typically reply within one business day.</span>
-        </div>
-      </div>
-    </form>
+          <ul class="ct-info__list">
+            <li class="ct-info__item">
+              <span class="ct-info__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/>
+                </svg>
+              </span>
+              <div>
+                <h3 data-i18n="contact.info.emailLabel">Email</h3>
+                <a href="mailto:info@myseodigital.com">info@myseodigital.com</a>
+              </div>
+            </li>
+            <li class="ct-info__item">
+              <span class="ct-info__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>
+                </svg>
+              </span>
+              <div>
+                <h3 data-i18n="contact.info.addressLabel">Address</h3>
+                <span data-i18n="contact.info.addressValue">Varna, Bulgaria</span>
+              </div>
+            </li>
+          </ul>
 
-    <!-- ============== ALT CONTACT CARDS ============== -->
-    <div class="gw-cards">
-      <div class="gw-card" data-tilt>
-        <div class="gw-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
-        </div>
-        <h3>Email</h3>
-        <p>For proposals, partnerships and press inquiries.</p>
-        <a class="gw-card__link" href="mailto:info@myseodigital.com">info@myseodigital.com</a>
-      </div>
+          <div class="ct-info__hours">
+            <h3 data-i18n="contact.info.hoursLabel">Office hours</h3>
+            <p data-i18n="contact.info.hoursValue">Mon &ndash; Fri, 09:00&ndash;18:00 (EET)</p>
+          </div>
+        </aside>
 
-      <div class="gw-card" data-tilt>
-        <div class="gw-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
-        </div>
-        <h3>Book a strategy call</h3>
-        <p>Prefer to talk it through? Grab a slot on our calendar.</p>
-        <a class="gw-card__link" href="#">View availability →</a>
       </div>
-
-      <div class="gw-card" data-tilt>
-        <div class="gw-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-6-3.8-9s1.3-6.4 3.8-9z"/></svg>
-        </div>
-        <h3>Where we work</h3>
-        <p>Remote-first, partnering with brands across time zones.</p>
-        <span class="gw-card__link" style="border:none;cursor:default;">Worldwide</span>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer class="gw-shell gw-footer">
     <span><strong>MySEO Digital Growth</strong> — SEO, Paid Media, Social &amp; Strategy.</span>
@@ -1063,72 +729,46 @@
     // ---- Scroll reveals ----
     if (window.gsap) {
       gsap.registerPlugin(ScrollTrigger);
-      var revealTargets = document.querySelectorAll(
-        ".gw-hero__copy > *, .gw-cube-scene, .gw-section__head, .gw-panel, .gw-card, .gw-footer"
-      );
+      var revealTargets = document.querySelectorAll(".ct-reveal");
       revealTargets.forEach(function (el, i) {
         gsap.fromTo(
           el,
-          { opacity: 0, y: 36 },
+          { opacity: 0, y: 26 },
           {
             opacity: 1,
             y: 0,
-            duration: prefersReduced ? 0.01 : 0.8,
-            delay: prefersReduced ? 0 : Math.min(i * 0.03, 0.2),
+            duration: prefersReduced ? 0.01 : 0.7,
+            delay: prefersReduced ? 0 : Math.min(i * 0.06, 0.24),
             ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 88%" },
+            scrollTrigger: { trigger: el, start: "top 90%" },
           }
         );
       });
     }
 
-    // ---- 3D cube cluster parallax ----
-    var scene = document.getElementById("gwCubeScene");
-    if (scene && !prefersReduced) {
-      scene.addEventListener("mousemove", function (e) {
-        var rect = scene.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width - 0.5;
-        var py = (e.clientY - rect.top) / rect.height - 0.5;
-        scene.style.transform = "rotateX(" + (-py * 14) + "deg) rotateY(" + (px * 18) + "deg)";
-      });
-      scene.addEventListener("mouseleave", function () {
-        scene.style.transform = "rotateX(0deg) rotateY(0deg)";
-      });
-    }
-
-    // ---- Tilt cards ----
-    if (!prefersReduced) {
-      document.querySelectorAll("[data-tilt]").forEach(function (card) {
-        card.addEventListener("mousemove", function (e) {
-          var r = card.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width - 0.5;
-          var py = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform =
-            "perspective(700px) rotateX(" + (-py * 8) + "deg) rotateY(" + (px * 8) + "deg) translateY(-4px)";
-        });
-        card.addEventListener("mouseleave", function () {
-          card.style.transform = "perspective(700px) rotateX(0) rotateY(0) translateY(0)";
-        });
-      });
-    }
-
     // ---- Form (front-end only placeholder) ----
-    var form = document.getElementById("gwForm");
+    var form = document.getElementById("ctForm");
     if (form) {
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        var btn = form.querySelector(".gw-submit");
-        var original = btn.innerHTML;
-        btn.innerHTML = "Sent — thank you";
+        var btn = form.querySelector(".ct-submit");
+        var label = btn.querySelector("span");
+        var original = label.textContent;
+        var sentText =
+          (translations[currentLang] && translations[currentLang]["contact.form.sent"]) ||
+          "Sent — thank you";
+        label.textContent = sentText;
         btn.style.opacity = "0.85";
         setTimeout(function () {
-          btn.innerHTML = original;
+          label.textContent = original;
           btn.style.opacity = "1";
         }, 3000);
       });
     }
 
     // ===== MULTILINGUAL SCRIPT =====
+    var currentLang = "en";
+
     const translations = {
       en: {
         "nav.home": "Home",
@@ -1139,7 +779,30 @@
         "dropdown.seo": "SEO",
         "dropdown.paid": "Paid Media",
         "dropdown.social": "Social Media Management",
-        "dropdown.strategy": "Digital Strategy"
+        "dropdown.strategy": "Digital Strategy",
+
+        "contact.form.eyebrow": "Project details",
+        "contact.form.title": "Tell us about your project",
+        "contact.form.name": "Full name",
+        "contact.form.namePh": "Jane Carter",
+        "contact.form.email": "Email address",
+        "contact.form.emailPh": "jane@company.com",
+        "contact.form.subject": "Subject",
+        "contact.form.subjectPh": "What\u2019s this about?",
+        "contact.form.message": "Message",
+        "contact.form.messagePh": "Tell us about your project or goals.",
+        "contact.form.submit": "Send message",
+        "contact.form.sent": "Sent — thank you",
+        "contact.form.note": "We typically reply within one business day.",
+        "contact.info.eyebrow": "Direct contact",
+        "contact.info.title": "Reach us directly",
+        "contact.info.lede": "Prefer email or a call? Use whichever channel works best for you.",
+        "contact.info.emailLabel": "Email",
+        "contact.info.phoneLabel": "Phone",
+        "contact.info.addressLabel": "Address",
+        "contact.info.addressValue": "Varna, Bulgaria",
+        "contact.info.hoursLabel": "Office hours",
+        "contact.info.hoursValue": "Mon \u2013 Fri, 09:00\u201318:00 (EET)"
       },
       tr: {
         "nav.home": "Ana Sayfa",
@@ -1150,7 +813,30 @@
         "dropdown.seo": "SEO",
         "dropdown.paid": "Paid Media",
         "dropdown.social": "Sosyal Medya Yönetimi",
-        "dropdown.strategy": "Dijital Strateji"
+        "dropdown.strategy": "Dijital Strateji",
+
+        "contact.form.eyebrow": "Proje detayları",
+        "contact.form.title": "Projenizden bahsedin",
+        "contact.form.name": "Ad Soyad",
+        "contact.form.namePh": "Ayşe Yılmaz",
+        "contact.form.email": "E-posta adresi",
+        "contact.form.emailPh": "ayse@sirket.com",
+        "contact.form.subject": "Konu",
+        "contact.form.subjectPh": "Bu ne hakkında?",
+        "contact.form.message": "Mesaj",
+        "contact.form.messagePh": "Projeniz veya hedefleriniz hakkında bize bilgi verin.",
+        "contact.form.submit": "Mesaj gönder",
+        "contact.form.sent": "Gönderildi — teşekkürler",
+        "contact.form.note": "Genellikle bir iş günü içinde yanıt veriyoruz.",
+        "contact.info.eyebrow": "Doğrudan iletişim",
+        "contact.info.title": "Bize doğrudan ulaşın",
+        "contact.info.lede": "E-postayı mı yoksa aramayı mı tercih edersiniz? Sizin için en uygun kanalı kullanın.",
+        "contact.info.emailLabel": "E-posta",
+        "contact.info.phoneLabel": "Telefon",
+        "contact.info.addressLabel": "Adres",
+        "contact.info.addressValue": "Varna, Bulgaristan",
+        "contact.info.hoursLabel": "Çalışma saatleri",
+        "contact.info.hoursValue": "Pzt \u2013 Cuma, 09:00\u201318:00 (EET)"
       },
       bg: {
         "nav.home": "Начало",
@@ -1161,15 +847,47 @@
         "dropdown.seo": "SEO",
         "dropdown.paid": "Платени Медии",
         "dropdown.social": "Управление на социални медии",
-        "dropdown.strategy": "Дигитална стратегия"
+        "dropdown.strategy": "Дигитална стратегия",
+
+        "contact.form.eyebrow": "Детайли за проекта",
+        "contact.form.title": "Разкажете ни за вашия проект",
+        "contact.form.name": "Име и фамилия",
+        "contact.form.namePh": "Мария Иванова",
+        "contact.form.email": "Имейл адрес",
+        "contact.form.emailPh": "maria@company.com",
+        "contact.form.subject": "Тема",
+        "contact.form.subjectPh": "За какво се отнася?",
+        "contact.form.message": "Съобщение",
+        "contact.form.messagePh": "Разкажете ни за проекта или целите си.",
+        "contact.form.submit": "Изпрати съобщение",
+        "contact.form.sent": "Изпратено — благодарим",
+        "contact.form.note": "Обикновено отговаряме в рамките на един работен ден.",
+        "contact.info.eyebrow": "Директен контакт",
+        "contact.info.title": "Свържете се директно",
+        "contact.info.lede": "Предпочитате имейл или обаждане? Изберете канала, който работи най-добре за вас.",
+        "contact.info.emailLabel": "Имейл",
+        "contact.info.phoneLabel": "Телефон",
+        "contact.info.addressLabel": "Адрес",
+        "contact.info.addressValue": "Варна, България",
+        "contact.info.hoursLabel": "Работно време",
+        "contact.info.hoursValue": "Пон \u2013 Пет, 09:00\u201318:00 (EET)"
       }
     };
 
     function setLanguage(lang) {
+      currentLang = lang;
+
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (translations[lang] && translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (translations[lang] && translations[lang][key]) {
+          el.setAttribute('placeholder', translations[lang][key]);
         }
       });
 
@@ -1186,7 +904,7 @@
 
     function initLanguageSwitcher() {
       const buttons = document.querySelectorAll('.lang-btn');
-      
+
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
           const lang = btn.dataset.lang;
